@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Supyire Dictionary Project</title>
   <style>
     body {
@@ -23,11 +23,15 @@
       justify-content: center;
       gap: 20px;
       padding: 10px;
+      flex-wrap: wrap;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+    }
+    nav a:hover {
+      color: #ffd700;
     }
     section {
       max-width: 1000px;
@@ -57,236 +61,155 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    table {
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      justify-content: center;
+    }
+    .gallery-grid img {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-    th {
-      background-color: #4c3f91;
-      color: white;
+    .news-item {
+      background: #f5f5f5;
+      border-left: 5px solid #4c3f91;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
     }
     footer {
       text-align: center;
       padding: 20px;
       background: #eee;
     }
-      tr td:nth-child(1) {
-      font-weight: bold;
-    }
-    tr td {
-      background-color: #f9f9f9;
-    }
-    tbody tr td {
-      background-color: #ffffff;
-    }
-    tbody tr td:nth-child(1) {
-      background-color: #e9f7ef; /* light green for category labels */
-    }
-    tbody tr td:nth-child(1):contains("Tuition") {
-      background-color: #e0f0ff; /* light blue for tuition */
-    }
-    tbody tr td:nth-child(1):contains("Equipment") {
-      background-color: #fff3cd; /* light yellow for equipment */
-    }
-    tbody tr td:nth-child(1):contains("Personnel") {
-      background-color: #f8d7da; /* light red for personnel */
-    }
-    tbody tr td:nth-child(1):contains("Total") {
-      background-color: #d1ecf1; /* light cyan for totals */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>SUPYIRE DICTIONARY PROJECT</h1>
     <p>Preserving the Supyire Language through Dictionaries and Digital Texts</p>
   </header>
+
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#team">Team</a>
-    <a href="#contact">Contact</a>
-    <a href="#budget">Budget</a>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#about" onclick="showPage('about')">About</a>
+    <a href="#team" onclick="showPage('team')">Team</a>
+    <a href="#news" onclick="showPage('news')">News</a>
+    <a href="#publications" onclick="showPage('publications')">Publications</a>
+    <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    <a href="#budget" onclick="showPage('budget')">Budget</a>
+    <a href="#contact" onclick="showPage('contact')">Contact</a>
   </nav>
+
+  <!-- HOME -->
   <section id="home">
     <h2>Welcome</h2>
-    <p>This project aims to complete the Supyire-French-English dictionaries, a mobile app, and a digital text corpus. Supyire is spoken by 350,000+ people in Mali and this work will support education, cultural preservation, and research.</p>
+    <p>This project aims to complete the Supyire-French-English dictionaries, a mobile app, and a digital text corpus. Supyire is spoken by over 350,000 people in Mali, and this work will support education, cultural preservation, and research.</p>
   </section>
-  <section id="about">
+
+  <!-- ABOUT -->
+  <section id="about" class="hidden">
     <h2>About the Project</h2>
     <p>The Supyire Dictionary and Text Database Project was initiated by Prof. Robert Carlson, with contributions from Robert Sanogo and Michael Otieno. It includes the development of dictionaries, interlinearized texts, and language learning tools for Supyire, a national language in Mali.</p>
   </section>
-  <section id="goals">
-    <h2>Goals</h2>
-    <p>The goals of this project are to produce:</p>
-    <ol>
-      <li>A Supyire-French dictionary in print form</li>
-      <li>A Supyire-English dictionary in print form</li>
-      <li>A Supyire-French/English app for smart phones</li>
-      <li>A Supyire text database available online</li>
-    </ol>
-  </section>
-  <section id="about">
-    <h2>About the Project</h2>
-    <p>The Supyire Dictionary and Text Database Project was initiated by Prof. Robert Carlson, with contributions from Robert Sanogo and Michael Otieno. It includes the development of dictionaries, interlinearized texts, and language learning tools for Supyire, a national language in Mali.</p>
-  </section>
-  <section id="team">
+
+  <!-- TEAM -->
+  <section id="team" class="hidden">
     <h2>Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
+        <img src="images/robert-c.jpg" alt="Prof. Robert Carlson" />
         <p>Prof. Robert Carlson</p>
       </div>
       <div class="team-member">
-        <img src="images/robert-s.jpg" alt="Robert Sanogo">
+        <img src="images/robert-s.jpg" alt="Robert Sanogo" />
         <p>Robert Sanogo</p>
       </div>
       <div class="team-member">
-        <img src="images/mike.jpg" alt="Michael Otieno">
+        <img src="images/mike.jpg" alt="Michael Otieno" />
         <p>Michael Otieno</p>
       </div>
     </div>
   </section>
-  <section id="budget">
-    <h2>Overall Budget Summary</h2>
-    <table>
-      <thead>
-        <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
-        <tr><td>Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
-        <tr><td>Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
-        <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
-        <tr><td><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
-        <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
-        <tr><td><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
-      </tbody>
-    </table>
 
-    <h3>Robert Sanogo</h3>
-    <table>
-      <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
-      <tbody>
-        <tr><td>Training</td><td>1,881</td><td>2,307</td><td>2,053</td><td>1,690</td><td>1,692</td><td>1,812</td><td>11,434</td></tr>
-        <tr><td>Equipment</td><td>720</td><td>0</td><td>480</td><td>240</td><td>480</td><td>0</td><td>1,920</td></tr>
-        <tr><td>Salary & Expenses</td><td>6,685</td><td>5,149</td><td>7,025</td><td>5,943</td><td>8,035</td><td>6,581</td><td>39,419</td></tr>
-        <tr><td>Travel</td><td>1,296</td><td>0</td><td>1,360</td><td>0</td><td>1,360</td><td>0</td><td>4,016</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Michael Otieno</h3>
-<table>
-  <thead>
-    <tr><th>Item Description</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Tuition (DIU - 16 credits × $415)</td><td>$6,640</td><td></td><td></td><td></td><td>$11,200</td><td>$11,200</td><td>$29,040</td></tr>
-    <tr><td>Learning Resources Fee</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-    <tr><td>Registration Fee ($45 × 2 terms)</td><td>$90</td><td></td><td></td><td></td><td>$90</td><td>$90</td><td>$270</td></tr>
-    <tr><td>Student Activity Fee ($30 × 2)</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-    <tr><td>Technology Fee ($265 × 2)</td><td>$530</td><td></td><td></td><td></td><td>$530</td><td>$530</td><td>$1,590</td></tr>
-    <tr><td>Administrative Fee (one-time)</td><td>$80</td><td></td><td></td><td></td><td>$80</td><td></td><td>$160</td></tr>
-    <tr><td><strong>Total DIU</strong></td><td>$7,460</td><td>$0</td><td>$0</td><td>$0</td><td>$12,020</td><td>$11,940</td><td>$31,420</td></tr>
-    <tr><td>Tuition (ANU - 5 classes × 15,500 KES)</td><td>155,000</td><td>155,000</td><td>155,000</td><td>155,000</td><td></td><td></td><td>KES 620,000</td></tr>
-    <tr><td>Graduation Fee</td><td></td><td></td><td>8,000</td><td></td><td></td><td></td><td>KES 8,000</td></tr>
-    <tr><td><strong>Total ANU (KES)</strong></td><td>155,000</td><td>155,000</td><td>155,000</td><td>163,000</td><td></td><td></td><td>KES 628,000</td></tr>
-    <tr><td><strong>Total ANU (USD)</strong></td><td>$1,240</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td></td><td></td><td>$5,024</td></tr>
-    <tr><td><strong>Total Training (USD)</strong></td><td>$8,700</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td>$12,020</td><td>$11,940</td><td>$36,444</td></tr>
-    <tr><td>Computer</td><td>60,000</td><td></td><td>60,000</td><td></td><td>60,000</td><td></td><td>KES 180,000</td></tr>
-    <tr><td>Phone</td><td>30,000</td><td></td><td></td><td>30,000</td><td></td><td></td><td>KES 60,000</td></tr>
-    <tr><td><strong>Total Equipment (KES)</strong></td><td>90,000</td><td></td><td>60,000</td><td>30,000</td><td>60,000</td><td></td><td>KES 240,000</td></tr>
-    <tr><td><strong>Total Equipment (USD)</strong></td><td>$720</td><td></td><td>$480</td><td>$240</td><td>$480</td><td></td><td>$1,920</td></tr>
-    <tr><td>Transport (Local)</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>KES 864,000</td></tr>
-    <tr><td>WiFi</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>KES 21,600</td></tr>
-    <tr><td>Salary</td><td>840,000</td><td>882,000</td><td>926,100</td><td>973,200</td><td>1,021,860</td><td>1,080,000</td><td>KES 5,723,160</td></tr>
-    <tr><td>Health Insurance</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>KES 360,000</td></tr>
-    <tr><td><strong>Total Personnel (KES)</strong></td><td>1,047,600</td><td>1,089,600</td><td>1,133,700</td><td>1,180,800</td><td>1,229,460</td><td>1,287,600</td><td>KES 6,968,760</td></tr>
-    <tr><td><strong>Total Personnel (USD)</strong></td><td>$8,381</td><td>$8,717</td><td>$9,070</td><td>$9,446</td><td>$9,836</td><td>$10,301</td><td>$55,750</td></tr>
-    <tr><td><strong>Total (USD)</strong></td><td>$17,801</td><td>$9,957</td><td>$10,790</td><td>$10,990</td><td>$22,336</td><td>$22,241</td><td>$94,114</td></tr>
-  </tbody>
-</table>
-
-
-<h3>Robert Carlson</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Year 1</th>
-      <th>Year 2</th>
-      <th>Year 3</th>
-      <th>Year 4</th>
-      <th>Year 5</th>
-      <th>Year 6</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Travel (USD)</td>
-      <td>1,200</td>
-      <td>1,200</td>
-      <td>1,400</td>
-      <td>1,400</td>
-      <td>1,500</td>
-      <td>1,500</td>
-      <td>8,200</td>
-    </tr>
-  </tbody>
-</table><br>
-  <section id="donate">
-  <h2>Support Our Work</h2>
-  <p>We have a lot of work to do, and your generous donation helps us get that important work done.</p>
-  <h3>1. Donate via Credit or Debit Card</h3>
-  <form action="https://www.paypal.com/donate" method="post" target="_blank">
-    <input type="hidden" name="business" value="your-paypal-email@example.com">
-    <input type="hidden" name="no_recurring" value="0">
-    <input type="hidden" name="item_name" value="Support Supyire Dictionary Project">
-    <input type="hidden" name="currency_code" value="USD">
-    <button type="submit" style="background: #0070ba; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
-      Donate with Debit/Credit Card or PayPal
-    </button>
-  </form>
-  <h3>2. Bank Transfer</h3>
-  <p><strong>Bank Name:</strong> ABC Bank Kenya Ltd<br>
-     <strong>Account Name:</strong> Supyire Dictionary Project<br>
-     <strong>Account Number:</strong> 1234567890<br>
-     <strong>SWIFT Code:</strong> ABCKENX<br>
-     <strong>Branch:</strong> Nairobi Main</p>
-</section>
-
-
-  <h3>2. Bank Transfer</h3>
-  <p><strong>Bank Name:</strong> ABC Bank Kenya Ltd<br>
-     <strong>Account Name:</strong> Supyire Dictionary Project<br>
-     <strong>Account Number:</strong> 1234567890<br>
-     <strong>SWIFT Code:</strong> ABCKENX<br>
-     <strong>Branch:</strong> Nairobi Main</p>
-</section>
-
-  <section id="contact">
-  <h2 style="text-align: center;">Contact Us</h2>
-  <div style="display: flex; justify-content: center;">
-    <form style="width: 100%; max-width: 500px; padding: 20px; background: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);"
-      <label>Your email:<br><input type="email" name="email" required></label><br><br>
-      <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-      <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
-      <button type="submit">Send</button>
-    </form>
-  </div>
+  <!-- NEWS -->
+  <section id="news" class="hidden">
+    <h2>Project News & Updates</h2>
+    <div class="news-item">
+      <h3>June 2025 — Dictionary Draft Nears Completion</h3>
+      <p>Our team completed over 4,000 new word entries for the Supyire-French dictionary this month, advancing the project toward its publication goal.</p>
+    </div>
+    <div class="news-item">
+      <h3>March 2025 — Fieldwork in Sikasso, Mali</h3>
+      <p>Fieldwork sessions were conducted in partnership with local speakers to collect contextual sentences and refine grammatical structures.</p>
+    </div>
+    <div class="news-item">
+      <h3>January 2025 — New App Development Phase</h3>
+      <p>Development began on the Supyire Dictionary mobile app to make the language accessible globally on Android and iOS.</p>
+    </div>
   </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="hidden">
+    <h2>Publications</h2>
+    <p>Below are some of the academic and linguistic works associated with the Supyire Project:</p>
+    <ul>
+      <li><b>Carlson, R. (2022)</b> — "A Grammar of Supyire: Revised Edition."</li>
+      <li><b>Sanogo, R. & Otieno, M. (2024)</b> — "Digital Language Resources for African Linguistics."</li>
+      <li><b>Supyire Dictionary Team (2025)</b> — "Supyire-French-English Online Dictionary (in progress)."</li>
+    </ul>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="hidden">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="images/team-field.jpg" alt="Team in Fieldwork" />
+      <img src="images/supyire-texts.jpg" alt="Supyire Text Samples" />
+      <img src="images/workshop.jpg" alt="Language Workshop" />
+      <img src="images/dictionary-draft.jpg" alt="Dictionary Draft" />
+      <img src="images/field-group.jpg" alt="Group Photo" />
+      <img src="images/recording-session.jpg" alt="Recording Session" />
+    </div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget" class="hidden">
+    <h2>Budget Summary</h2>
+    <p>Details on funding and allocation for project operations and publication (content placeholder).</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="hidden">
+    <h2 style="text-align: center;">Contact Us</h2>
+    <div style="display: flex; justify-content: center;">
+      <form style="width: 100%; max-width: 500px; padding: 20px; background: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <label>Your email:<br><input type="email" name="email" required></label><br><br>
+        <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+        <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Supyire Dictionary Project | Africa International University</p>
   </footer>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll("section").forEach((s) => s.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+  </script>
+
 </body>
 </html>
-
-
-
