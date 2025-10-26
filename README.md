@@ -1,1 +1,1 @@
-# Supyire-
+Supyire lexicography project
