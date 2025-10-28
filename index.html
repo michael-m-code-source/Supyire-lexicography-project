@@ -5,30 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Supyire Lexicography Project</title>
 header {
-  position: relative;
-  background: url('images/background.jpeg') no-repeat center center/cover;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url('images/background.jpeg') no-repeat center center/cover;
   color: white;
   padding: 120px 20px;
   text-align: center;
-}
-
-/* Add a dark overlay */
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* darkness 0.5 = 50% */
-  z-index: 1;
-}
-
-/* Make sure text is above the overlay */
-header h1,
-header p {
-  position: relative;
-  z-index: 2;
 }
 
 background-size: cover;
@@ -305,6 +289,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </footer>
 </body>
 </html>
+
 
 
 
