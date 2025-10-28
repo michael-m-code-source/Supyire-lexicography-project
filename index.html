@@ -4,59 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Supyire Lexicography Project</title>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f5ff; }
 
-    /* ====== HEADER TEXT OVER BACKGROUND IMAGE ====== */
+  <style>
+    /* ===== HEADER SECTION ===== */
     header {
       position: relative;
-      background: url('manyatta.jpeg') no-repeat center center/cover;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: black;
+      background: url('images/background.jpeg') no-repeat center center/cover;
+      padding: 120px 20px 80px 20px;
       text-align: center;
-      border-bottom: 4px solid #4c3f91;
+      color: black;
     }
 
+    /* Dark overlay for better contrast */
     header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255,255,255,0.4); /* light overlay */
-      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
     }
 
-    header h1, header p {
+    /* Heading and subheading above image */
+    header h1,
+    header p {
       position: relative;
-      z-index: 1;
-      color: black;
-      text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.85);
+      color: #000;
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 8px;
     }
 
     header h1 {
       font-weight: 900;
-      font-size: 38px;
+      font-size: 2.5em;
       margin-bottom: 10px;
     }
 
     header p {
-      font-size: 18px;
       font-weight: 600;
+      font-size: 1.2em;
     }
 
+    /* ===== NAVIGATION MENU ===== */
     nav {
       background: #2d2d2d;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 10px;
     }
 
-    .dropdown { position: relative; display: inline-block; }
+    /* Main dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
     .dropbtn {
       background-color: #4c3f91;
@@ -72,10 +77,11 @@
       display: none;
       position: absolute;
       background-color: #3c3c3c;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 6px;
+      min-width: 240px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 100;
+      border-radius: 8px;
+      text-align: left;
     }
 
     .dropdown-content a {
@@ -83,72 +89,129 @@
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      text-align: left;
+      transition: background 0.3s;
     }
 
-    .dropdown-content a:hover { background-color: #4c3f91; }
-    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a:hover {
+      background-color: #4c3f91;
+    }
 
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* ===== SUB-DROPDOWNS ===== */
+    .sub-dropdown {
+      position: relative;
+    }
+
+    .sub-dropbtn {
+      display: block;
+      padding: 12px 16px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sub-dropdown-content {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #3c3c3c;
+      min-width: 230px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+
+    .sub-dropdown-content a:hover {
+      background-color: #4c3f91;
+    }
+
+    .sub-dropdown:hover .sub-dropdown-content {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
     section {
+      display: none;
       padding: 40px;
       background: white;
       margin: 30px auto;
       max-width: 900px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    h2 { color: #4c3f91; }
-    footer { text-align: center; padding: 20px; background: #222; color: white; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-    th { background: #4c3f91; color: white; }
-    .category-total { font-weight: bold; }
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #4c3f91;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+    }
   </style>
 </head>
+
 <body>
+
+  <!-- ===== HEADER ===== -->
   <header>
-    <h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
-    <p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
+    <h1>Supyire Lexicography Project</h1>
+    <p>Preserving the Language and Culture Through Research</p>
   </header>
 
- <nav>
-  <div class="dropdown">
-    <button class="dropbtn">☰ Menu</button>
-    <div class="dropdown-content">
-      <a href="#home" onclick="showSection('home')">Home</a>
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="dropdown">
+      <button class="dropbtn">☰ Menu</button>
 
-      <div class="dropdown">
-        <a href="#about" onclick="showSection('about')">About</a>
-        <ul>
-          <li><a href="#history" onclick="showSection('history')">History of Research</a></li>
-          <li><a href="#database" onclick="showSection('database')">Current Toolbox Database</a></li>
-          <li><a href="#example-text" onclick="showSection('example-text')">Example of a Text</a></li>
-        </ul>
-      </div>
+      <div class="dropdown-content">
+        <a href="#home" onclick="showSection('home')">Home</a>
 
-      <div class="dropdown">
-        <a href="#sections" onclick="showSection('sections')">Sections</a>
-        <ul>
-          <li><a href="#documentation" onclick="showSection('documentation')">Documentation</a></li>
-          <li><a href="#proposal" onclick="showSection('proposal')">Proposal</a></li>
-          <li><a href="#news" onclick="showSection('news')">News</a></li>
-          <li><a href="#team" onclick="showSection('team')">Team</a></li>
-          <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
-          <li><a href="#budget" onclick="showSection('budget')">Budget</a></li>
-        </ul>
-      </div>
+        <!-- ABOUT -->
+        <div class="sub-dropdown">
+          <a href="#about" class="sub-dropbtn" onclick="showSection('about')">About ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="#history" onclick="showSection('history')">History of Research</a>
+            <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
+            <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
+          </div>
+        </div>
 
-      <div class="dropdown">
-        <a href="#support" onclick="showSection('support')">Support</a>
-        <ul>
-          <li><a href="#prayer" onclick="showSection('prayer')">Prayer</a></li>
-          <li><a href="#donate" onclick="showSection('donate')">Donate</a></li>
-        </ul>
+        <!-- SECTIONS -->
+        <div class="sub-dropdown">
+          <a href="#sections" class="sub-dropbtn" onclick="showSection('sections')">Sections ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
+            <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
+            <a href="#news" onclick="showSection('news')">News</a>
+            <a href="#team" onclick="showSection('team')">Team</a>
+            <a href="#contact" onclick="showSection('contact')">Contact</a>
+            <a href="#budget" onclick="showSection('budget')">Budget</a>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="sub-dropdown">
+          <a href="#support" class="sub-dropbtn" onclick="showSection('support')">Support ▸</a>
+          <div class="sub-dropdown-content">
+            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+            <a href="#donate" onclick="showSection('donate')">Donate</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+
+  <!-- ===== CONTENT SECTIONS ===== -->
 
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
@@ -389,6 +452,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </footer>
 </body>
 </html>
+
 
 
 
