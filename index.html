@@ -4,56 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Supyire Lexicography Project</title>
-
   <style>
-    /* ====== HEADER TEXT ABOVE IMAGE ====== */
-    .header-text {
-      text-align: center;
-      background: #f8f8f8;
-      padding: 40px 20px 20px 20px;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f5ff; }
 
-    .header-text h1 {
-      font-weight: 900;
-      color: #222;
-      margin-bottom: 10px;
-    }
-
-    .header-text p {
-      font-weight: 600;
-      color: #4c3f91;
-      font-size: 1.1em;
-    }
-
-    /* ====== IMAGE SECTION BELOW TEXT ====== */
+    /* ====== HEADER TEXT OVER BACKGROUND IMAGE ====== */
     header {
       position: relative;
-      background: url('images/background.jpeg') no-repeat center center/cover;
-      height: 300px;
-      border-top: 4px solid #4c3f91;
+      background: url('manyatta.jpeg') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      text-align: center;
+      border-bottom: 4px solid #4c3f91;
     }
 
     header::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.2); /* optional dark overlay */
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.4); /* light overlay */
+      z-index: 0;
     }
 
-    /* ====== NAVIGATION & OTHER STYLES ====== */
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+      color: black;
+      text-shadow: 1px 1px 3px rgba(255,255,255,0.6);
+    }
+
+    header h1 {
+      font-weight: 900;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
     nav {
       background: #2d2d2d;
-      padding: 10px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+    .dropdown { position: relative; display: inline-block; }
 
     .dropbtn {
       background-color: #4c3f91;
@@ -70,7 +73,7 @@
       position: absolute;
       background-color: #3c3c3c;
       min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
       border-radius: 6px;
     }
@@ -83,52 +86,32 @@
       text-align: left;
     }
 
-    .dropdown-content a:hover {
-      background-color: #4c3f91;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+    .dropdown-content a:hover { background-color: #4c3f91; }
+    .dropdown:hover .dropdown-content { display: block; }
 
     section {
-      display: none;
       padding: 40px;
       background: white;
       margin: 30px auto;
       max-width: 900px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    section.active {
-      display: block;
-    }
-
-    h2 {
-      color: #4c3f91;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #222;
-      color: white;
-    }
+    h2 { color: #4c3f91; }
+    footer { text-align: center; padding: 20px; background: #222; color: white; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background: #4c3f91; color: white; }
+    .category-total { font-weight: bold; }
   </style>
 </head>
 <body>
-
-  <!-- Text above the image -->
-  <div class="header-text">
+  <header>
     <h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
     <p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
-  </div>
+  </header>
 
-  <!-- Image below -->
-  <header></header>
-
-  <!-- Navigation example -->
   <nav>
 <div class="dropdown">
 <button class="dropbtn">☰ Menu</button>
@@ -378,6 +361,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </footer>
 </body>
 </html>
+
 
 
 
