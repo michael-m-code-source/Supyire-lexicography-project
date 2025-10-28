@@ -21,6 +21,249 @@
     }
 
     .top-heading h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      color: #4c3f91;
+      margin-bottom: 10px;
+    }
+
+    .top-heading p {
+      font-size: 1.2em;
+      color: #333;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ---------- HEADER IMAGE SECTION ---------- */
+    header {
+      background: url('images/background.jpeg') no-repeat center center/cover;
+      height: 65vh;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      background: #2d2d2d;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin: 0 3px;
+    }
+
+    .dropbtn {
+      background-color: #4c3f91;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .dropbtn:hover {
+      background-color: #5a4bb1;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #3c3c3c;
+      min-width: 200px;
+      border-radius: 6px;
+      padding: 5px 0;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 8px 14px;
+      text-decoration: none;
+      display: block;
+      font-size: 15px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #4c3f91;
+    }
+
+    .dropdown:hover > .dropdown-content {
+      display: block;
+    }
+
+    /* ---------- PAGE SECTIONS ---------- */
+    section {
+      display: none;
+      padding: 40px;
+      background: white;
+      margin: 30px auto;
+      max-width: 900px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #4c3f91;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TITLE ABOVE IMAGE -->
+  <div class="top-heading">
+    <h1>Supyire Lexicography Project</h1>
+    <p>Preserving language through digital innovation</p>
+  </div>
+
+  <!-- BACKGROUND IMAGE HEADER -->
+  <header></header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="dropdown">
+      <button class="dropbtn">☰ Menu</button>
+      <div class="dropdown-content">
+        <a href="#home" onclick="showSection('home')">Home</a>
+
+        <!-- ABOUT -->
+        <div class="dropdown">
+          <a href="#about">About ▸</a>
+          <div class="dropdown-content">
+            <a href="#history" onclick="showSection('history')">History of Research</a>
+            <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
+            <a href="#example" onclick="showSection('example')">Example of a Text</a>
+          </div>
+        </div>
+
+        <!-- SECTIONS -->
+        <div class="dropdown">
+          <a href="#sections">Sections ▸</a>
+          <div class="dropdown-content">
+            <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
+            <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
+            <a href="#news" onclick="showSection('news')">News</a>
+            <a href="#team" onclick="showSection('team')">Team</a>
+            <a href="#contact" onclick="showSection('contact')">Contact</a>
+            <a href="#budget" onclick="showSection('budget')">Budget</a>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="dropdown">
+          <a href="#support">Support ▸</a>
+          <div class="dropdown-content">
+            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+            <a href="#donate" onclick="showSection('donate')">Donate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SECTIONS -->
+  <section id="home" class="active">
+    <h2>Welcome</h2>
+    <p>This is the Supyire Lexicography Project homepage.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Supyire Lexicography Project</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+</body>
+</html>
+✅ What this does:
+
+The heading + subheading are now above the image (in a white area).
+
+The background image now appears as a banner below the title.
+
+Everything else (dropdowns, sections, and JS switching) still works perfectly.
+
+Would you like me to make the top title area have a slight gradient or shadow so it blends better with the image below it?
+
+
+
+
+
+
+
+You said:
+i don't want enlarged image
+
+
+
+ChatGPT said:
+Perfect — so you want the background image (in the header) to be smaller in height, not taking up a large part of the screen.
+
+Here’s the updated full code, with:
+
+A smaller header image (now about 250 px tall instead of 65 vh).
+
+The heading and subheading still above the image.
+
+Everything neatly aligned and working.
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supyire Lexicography Project</title>
+
+  <style>
+    /* ---------- GENERAL ---------- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+    }
+
+    /* ---------- HEADING ABOVE IMAGE ---------- */
+    .top-heading {
+      text-align: center;
+      padding: 40px 20px 10px 20px;
+      background: white;
+    }
+
+    .top-heading h1 {
       font-size: 2.4em;
       font-weight: 800;
       color: #4c3f91;
@@ -164,31 +407,6 @@
         </div>
 
         <!-- SECTIONS -->
-        <div class="dropdown">
-          <a href="#sections">Sections ▸</a>
-          <div class="dropdown-content">
-            <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
-            <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
-            <a href="#news" onclick="showSection('news')">News</a>
-            <a href="#team" onclick="showSection('team')">Team</a>
-            <a href="#contact" onclick="showSection('contact')">Contact</a>
-            <a href="#budget" onclick="showSection('budget')">Budget</a>
-          </div>
-        </div>
-
-        <!-- SUPPORT -->
-        <div class="dropdown">
-          <a href="#support">Support ▸</a>
-          <div class="dropdown-content">
-            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-            <a href="#donate" onclick="showSection('donate')">Donate</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- SECTIONS -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -436,6 +654,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </script>
 </body>
 </html>
+
 
 
 
