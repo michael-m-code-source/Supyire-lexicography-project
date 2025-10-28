@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supyire Lexicography Project</title>
-
-  <style>
-    /* ---------- HEADER SECTION ---------- */
-    header {
-      position: relative;
-      background: url('images/background.jpeg') no-repeat center center/cover;
-      color: black;
-      padding: 120px 20px 100px 20px;
-      text-align: center;
-    }
-
-    /* Dark overlay for readability */
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.35);
-      z-index: 1;
-    }
-
-    header h1,
+header h1,
     header p {
       position: relative;
       z-index: 2;
@@ -60,7 +31,7 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      margin: 0 3px;
+      margin: 0 5px;
     }
 
     .dropbtn {
@@ -107,9 +78,28 @@
       display: block;
     }
 
+    /* ---------- SUB-DROPDOWN (Nested menus) ---------- */
+    .sub-dropdown {
+      position: relative;
+    }
+
+    .sub-dropdown-content {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #3c3c3c;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+    }
+
+    .sub-dropdown:hover .sub-dropdown-content {
+      display: block;
+    }
+
     /* ---------- PAGE SECTIONS ---------- */
     section {
-      display: none;
       padding: 40px;
       background: white;
       margin: 30px auto;
@@ -118,12 +108,12 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    section.active {
-      display: block;
-    }
-
     h2 {
       color: #4c3f91;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     /* ---------- FOOTER ---------- */
@@ -185,7 +175,7 @@
     </div>
   </nav>
 
-  <!-- SECTIONS -->
+  <!-- ---------- PAGE SECTIONS ---------- -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -435,6 +425,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </script>  
 </body>
 </html>
+
 
 
 
