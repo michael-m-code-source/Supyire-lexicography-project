@@ -224,29 +224,98 @@
 
 <!-- Add this inside your <style> block -->
 <style>
+/* ---------- DATABASE SECTION ---------- */
+#database {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 900px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#database h2 {
+  color: #4c3f91;
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+#database p {
+  color: #333;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
 .database {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .database img {
-  width: 200%;              /* middle size */
-  max-width: 220px;        /* limits image width */
+  width: 30%;                /* desktop default size */
+  max-width: 220px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.database img:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+  #database {
+    padding: 30px 20px;
+  }
+
+  #database h2 {
+    font-size: 1.6em;
+  }
+
+  #database p {
+    font-size: 1em;
+  }
+
+  .database img {
+    width: 50%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  #database {
+    padding: 25px 15px;
+  }
+
+  #database h2 {
+    font-size: 1.4em;
+  }
+
+  #database p {
+    font-size: 0.95em;
+  }
+
+  .database img {
+    width: 80%;
+    max-width: 180px;
+  }
 }
 </style>
 
-<!-- And this is your section -->
+<!-- ---------- SECTION CONTENT ---------- -->
 <section id="database">
   <h2>Current Toolbox Database</h2>
   <p>
     The current Toolbox database includes lexical entries, sample texts, and interlinear glossed examples that feed our dictionaries and corpus.
   </p>
-  <div class="database"><p><strong>example of a textbox database</strong></p>
+  <div class="database">
+    <p><strong>Example of a Toolbox Database</strong></p>
     <img src="images/example.jpg" alt="example of a text in toolbox">
   </div>
-</section>>
+</section>
+
 
  <section id="documentation">
   <h2>Documentation</h2>
@@ -468,6 +537,7 @@ Carmel, IN 46082 <br>
   </script>
 </body>
 </html>
+
 
 
 
