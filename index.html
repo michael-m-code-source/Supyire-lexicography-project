@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Supyire Lexicography Project</title>
 
   <style>
+    /* ====== HEADER TEXT ABOVE IMAGE ====== */
+    .header-text {
+      text-align: center;
+      background: #f8f8f8;
+      padding: 40px 20px 20px 20px;
+    }
+
+    .header-text h1 {
+      font-weight: 900;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .header-text p {
+      font-weight: 600;
+      color: #4c3f91;
+      font-size: 1.1em;
+    }
+
+    /* ====== IMAGE SECTION BELOW TEXT ====== */
     header {
       position: relative;
       background: url('images/background.jpeg') no-repeat center center/cover;
-      color: black;
-      padding: 100px 20px 60px 20px;
-      text-align: center;
+      height: 300px;
+      border-top: 4px solid #4c3f91;
     }
 
-    /* Optional dark overlay for better visibility */
     header::before {
       content: "";
       position: absolute;
@@ -22,31 +40,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+      background: rgba(0, 0, 0, 0.2); /* optional dark overlay */
     }
 
-    header h1,
-    header p {
-      position: relative;
-      z-index: 2;
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 6px;
-    }
-
-    header h1 {
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-weight: 600;
-      padding: 5px 15px;
-    }
-
+    /* ====== NAVIGATION & OTHER STYLES ====== */
     nav {
       background: #2d2d2d;
       padding: 10px;
@@ -120,15 +117,19 @@
     }
   </style>
 </head>
-
 <body>
-<header>
-<h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
-<p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
-</header>
 
+  <!-- Text above the image -->
+  <div class="header-text">
+    <h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
+    <p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
+  </div>
 
-<nav>
+  <!-- Image below -->
+  <header></header>
+
+  <!-- Navigation example -->
+  <nav>
 <div class="dropdown">
 <button class="dropbtn">☰ Menu</button>
 <div class="dropdown-content">
@@ -377,6 +378,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </footer>
 </body>
 </html>
+
 
 
 
