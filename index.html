@@ -124,6 +124,28 @@
       color: #4c3f91;
     }
 
+    /* ---------- TEAM IMAGES ---------- */
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-member p {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
@@ -135,7 +157,7 @@
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
       header {
-        height: 18vh; /* smaller on mobile */
+        height: 18vh;
       }
 
       .top-heading h1 {
@@ -171,7 +193,6 @@
       <div class="dropdown-content">
         <a href="#home" onclick="showSection('home')">Home</a>
 
-        <!-- ABOUT -->
         <div class="dropdown">
           <a href="#about">About ▸</a>
           <div class="dropdown-content">
@@ -181,7 +202,6 @@
           </div>
         </div>
 
-        <!-- SECTIONS -->
         <div class="dropdown">
           <a href="#sections">Sections ▸</a>
           <div class="dropdown-content">
@@ -189,24 +209,16 @@
             <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
             <a href="#news" onclick="showSection('news')">News</a>
             <a href="#team" onclick="showSection('team')">Team</a>
-          <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+            <a href="#support" onclick="showSection('support')">Support</a>
+            <a href="#contact" onclick="showSection('contact')">Contact</a>
             <a href="#budget" onclick="showSection('budget')">Budget</a>
-          </div>
-        </div>
-
-        <!-- SUPPORT -->
-        <div class="dropdown">
-          <a href="#support">Support ▸</a>
-          <div class="dropdown-content">
-            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-            <a href="#donate" onclick="showSection('donate')">Donate</a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- SAMPLE SECTIONS -->
+  <!-- HOME SECTION -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -604,52 +616,50 @@ Carmel, IN 46082 <br>
     <em>In the payment purpose box, specify: Linguistic Project</em></p>                 
 
 <p></p>Be sure to indicate on the check that it is for AIU-Linguistic Project</p>
-   <section id="contact">
-  <h2>Contact Us</h2>
-  <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-  <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
-  <h2 style="text-align: center;">Feedback</h2>
-  <div style="display: flex; justify-content: center;">
-    <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
-      style="width: 100%; max-width: 500px; padding: 20px; background: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
-      <label>Your email:<br><input type="email" name="email" required></label><br><br>
-      <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-      <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</section>
+<!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+
+    <h3 style="text-align:center;">Feedback</h3>
+    <div style="display:flex; justify-content:center;">
+      <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
+        style="width:100%; max-width:500px; padding:20px; background:#f4f4f4; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+        <label>Your email:<br><input type="email" name="email" required></label><br><br>
+        <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+        <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section
 
   <footer>
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   
   </footer>
-<!-- JAVASCRIPT -->
-<script>
-  function showSection(id) {
-    // Hide all sections
-    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-    
-    // Show the clicked section
-    const selected = document.getElementById(id);
-    if (selected) {
-      selected.classList.add("active");
-      selected.scrollIntoView({ behavior: "smooth" }); // smooth scroll to section
-    } else {
-      // fallback: scroll to top
-      window.scrollTo({ top: 0, behavior: "smooth" });
+ <!-- JAVASCRIPT -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      const selected = document.getElementById(id);
+      if (selected) {
+        selected.classList.add("active");
+        selected.scrollIntoView({ behavior: "smooth" });
+      }
     }
-  }
 
-  // Show "home" section by default when the page loads
-  document.addEventListener("DOMContentLoaded", () => {
-    const home = document.getElementById("home");
-    if (home) home.classList.add("active");
-  });
-</script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const home = document.getElementById("home");
+      if (home) home.classList.add("active");
+    });
+  </script>
+</body>
+</html>
 
 </body>
 </html>
+
 
 
 
