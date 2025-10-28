@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supyire Lexicography Project</title>
+
+  <style>
+    /* ---------- HEADER SECTION ---------- */
+    header {
+      position: relative;
+      background: url('images/background.jpeg') no-repeat center center/cover;
+      color: black;
+      padding: 120px 20px 100px 20px;
+      text-align: center;
+    }
+
+    /* Dark overlay for readability */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
 
     header h1,
     header p {
@@ -32,7 +60,7 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      margin: 0 5px;
+      margin: 0 3px;
     }
 
     .dropbtn {
@@ -79,28 +107,9 @@
       display: block;
     }
 
-    /* ---------- SUB-DROPDOWN (Nested menus) ---------- */
-    .sub-dropdown {
-      position: relative;
-    }
-
-    .sub-dropdown-content {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
-      background-color: #3c3c3c;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      border-radius: 6px;
-    }
-
-    .sub-dropdown:hover .sub-dropdown-content {
-      display: block;
-    }
-
     /* ---------- PAGE SECTIONS ---------- */
     section {
+      display: none;
       padding: 40px;
       background: white;
       margin: 30px auto;
@@ -109,12 +118,12 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    h2 {
-      color: #4c3f91;
+    section.active {
+      display: block;
     }
 
-    html {
-      scroll-behavior: smooth;
+    h2 {
+      color: #4c3f91;
     }
 
     /* ---------- FOOTER ---------- */
@@ -139,44 +148,44 @@
     <div class="dropdown">
       <button class="dropbtn">☰ Menu</button>
       <div class="dropdown-content">
-        <a href="#home">Home</a>
+        <a href="#home" onclick="showSection('home')">Home</a>
 
-        <!-- ABOUT -->
-        <div class="sub-dropdown">
-          <a href="#about">About ▸</a>
-          <div class="sub-dropdown-content">
-            <a href="#history">History of Research</a>
-            <a href="#database">Current Toolbox Database</a>
-            <a href="#example">Example of a Text</a>
+        <!-- About Dropdown -->
+        <div class="dropdown">
+          <a href="#about" onclick="showSection('about')">About ▼</a>
+          <div class="dropdown-content">
+            <a href="#history" onclick="showSection('history')">History of Research</a>
+            <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
+            <a href="#example" onclick="showSection('example')">Example of a Text</a>
           </div>
         </div>
 
-        <!-- SECTIONS -->
-        <div class="sub-dropdown">
-          <a href="#sections">Sections ▸</a>
-          <div class="sub-dropdown-content">
-            <a href="#documentation">Documentation</a>
-            <a href="#proposal">Proposal</a>
-            <a href="#news">News</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
-            <a href="#budget">Budget</a>
+        <!-- Sections Dropdown -->
+        <div class="dropdown">
+          <a href="#sections" onclick="showSection('sections')">Sections ▼</a>
+          <div class="dropdown-content">
+            <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
+            <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
+            <a href="#news" onclick="showSection('news')">News</a>
+            <a href="#team" onclick="showSection('team')">Team</a>
+            <a href="#contact" onclick="showSection('contact')">Contact</a>
+            <a href="#budget" onclick="showSection('budget')">Budget</a>
           </div>
         </div>
 
-        <!-- SUPPORT -->
-        <div class="sub-dropdown">
-          <a href="#support">Support ▸</a>
-          <div class="sub-dropdown-content">
-            <a href="#prayer">Prayer</a>
-            <a href="#donate">Donate</a>
+        <!-- Support Dropdown -->
+        <div class="dropdown">
+          <a href="#support" onclick="showSection('support')">Support ▼</a>
+          <div class="dropdown-content">
+            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+            <a href="#donate" onclick="showSection('donate')">Donate</a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- ---------- PAGE SECTIONS ---------- -->
+  <!-- SECTIONS -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -426,6 +435,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </script>  
 </body>
 </html>
+
 
 
 
