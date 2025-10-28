@@ -624,17 +624,33 @@ Carmel, IN 46082 <br>
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   
   </footer>
-   
- <!-- JAVASCRIPT -->
-  <script>
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+<!-- JAVASCRIPT -->
+<script>
+  function showSection(id) {
+    // Hide all sections
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    
+    // Show the clicked section
+    const selected = document.getElementById(id);
+    if (selected) {
+      selected.classList.add("active");
+      selected.scrollIntoView({ behavior: "smooth" }); // smooth scroll to section
+    } else {
+      // fallback: scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  </script>
+  }
+
+  // Show "home" section by default when the page loads
+  document.addEventListener("DOMContentLoaded", () => {
+    const home = document.getElementById("home");
+    if (home) home.classList.add("active");
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
