@@ -6,15 +6,21 @@
   <title>Supyire Lexicography Project</title>
 
   <style>
-    /* ---------- HEADER ---------- */
+    /* ---------- HEADER SECTION ---------- */
     header {
       position: relative;
+      height: 100vh;
       background: url('images/background.jpeg') no-repeat center center/cover;
-      color: black;
-      padding: 120px 20px 100px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
       text-align: center;
+      padding-top: 60px;
+      color: white;
     }
 
+    /* Dark overlay for text visibility */
     header::before {
       content: "";
       position: absolute;
@@ -22,31 +28,30 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.45);
       z-index: 1;
     }
 
+    /* Text Styling */
     header h1,
     header p {
       position: relative;
       z-index: 2;
-      background: rgba(255, 255, 255, 0.85);
-      color: black;
-      display: inline-block;
-      padding: 10px 25px;
-      border-radius: 6px;
-      margin: 5px 0;
+      margin: 0;
     }
 
     header h1 {
-      font-weight: 900;
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      font-size: 3em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     header p {
-      font-weight: 600;
-      font-size: 1.2em;
+      font-size: 1.4em;
+      font-weight: 500;
+      margin-top: 8px;
+      color: #eaeaea;
     }
 
     /* ---------- NAVIGATION ---------- */
@@ -86,7 +91,6 @@
       z-index: 2;
       border-radius: 6px;
       padding: 5px 0;
-      text-align: left;
     }
 
     .dropdown-content a {
@@ -106,7 +110,7 @@
       display: block;
     }
 
-    /* ---------- SUBMENU (nested dropdowns) ---------- */
+    /* Sub-dropdowns */
     .sub-dropdown {
       position: relative;
     }
@@ -127,7 +131,7 @@
       display: block;
     }
 
-    /* ---------- PAGE SECTIONS ---------- */
+    /* ---------- SECTIONS ---------- */
     section {
       display: none;
       padding: 40px;
@@ -170,6 +174,7 @@
       <div class="dropdown-content">
         <a href="#home" onclick="showSection('home')">Home</a>
 
+        <!-- ABOUT -->
         <div class="sub-dropdown">
           <a href="#about">About ▸</a>
           <div class="sub-dropdown-content">
@@ -179,6 +184,7 @@
           </div>
         </div>
 
+        <!-- SECTIONS -->
         <div class="sub-dropdown">
           <a href="#sections">Sections ▸</a>
           <div class="sub-dropdown-content">
@@ -191,6 +197,7 @@
           </div>
         </div>
 
+        <!-- SUPPORT -->
         <div class="sub-dropdown">
           <a href="#support">Support ▸</a>
           <div class="sub-dropdown-content">
@@ -202,7 +209,7 @@
     </div>
   </nav>
 
-  <!-- Example Sections -->
+  <!-- SECTIONS -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -450,6 +457,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </script>
 </body>
 </html>
+
 
 
 
