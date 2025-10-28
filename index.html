@@ -36,17 +36,19 @@
 
     /* ---------- HEADER IMAGE SECTION ---------- */
     header {
-      background: url('images/background.jpeg') no-repeat center;
-      background-size: cover;
-      height: 25vh; /* smaller image banner */
+      background: url('images/background.jpeg') no-repeat center center;
+      background-size: contain; /* show the full image */
+      background-color: #000;
+      height: 60vh;
       position: relative;
+      border-bottom: 4px solid #4c3f91;
     }
 
     header::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.15);
       z-index: 1;
     }
 
@@ -157,7 +159,7 @@
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
       header {
-        height: 18vh;
+        height: 40vh;
       }
 
       .top-heading h1 {
@@ -208,17 +210,19 @@
             <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
             <a href="#news" onclick="showSection('news')">News</a>
             <a href="#team" onclick="showSection('team')">Team</a>
-            <a href="#contact" onclick="showSection('contact')">Contact</a>
             <a href="#budget" onclick="showSection('budget')">Budget</a>
           </div>
         </div>
-           <div class="dropdown">
-         <<a href="#sections">Support ▸</a>
+
+        <div class="dropdown">
+          <a href="#support">Support ▸</a>
           <div class="dropdown-content">
-            <a href="#documentation" onclick="showSection('prayer')">Prayer</a>
-            <a href="#proposal" onclick="showSection('donate')">Donate</a>
-              </div>
-    </div>
+            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+            <a href="#donate" onclick="showSection('donate')">Donate</a>
+          </div>
+        </div>
+
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
   </nav>
@@ -493,106 +497,156 @@
 
 
   <section id="budget">
-    <h2>Budget Overview</h2>
-    <p>The project budget includes training, equipment, salaries, and travel costs distributed over six years.</p>
+  <h2>Budget Overview</h2>
+  <p>The project budget includes training, equipment, salaries, and travel costs distributed over six years.</p>
 
-    <h3>Detailed Budget Tables</h3>
+  <style>
+    /* --- Stylish Table Look --- */
+    .table-container {
+      margin: 30px 0;
+      overflow-x: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 15px;
+    }
 
-    <div class="table-container">
-      <!-- Main budget -->
-      <table>
-        <thead>
-          <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="category-training">Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
-          <tr><td class="category-equipment">Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
-          <tr><td class="category-personnel">Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
-          <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
-          <tr><td class="category-total"><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
-          <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
-          <tr><td class="category-total"><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 15px;
+    }
 
-    <div class="table-container">
-      <h3>Robert Sanogo</h3>
-      <table>
-        <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
-        <tbody>
-          <tr><td>Training</td><td>1,881</td><td>2,307</td><td>2,053</td><td>1,690</td><td>1,692</td><td>1,812</td><td>11,434</td></tr>
-          <tr><td>Equipment</td><td>720</td><td>0</td><td>480</td><td>240</td><td>480</td><td>0</td><td>1,920</td></tr>
-          <tr><td>Salary & Expenses</td><td>6,685</td><td>5,149</td><td>7,025</td><td>5,943</td><td>8,035</td><td>6,581</td><td>39,419</td></tr>
-          <tr><td>Travel</td><td>1,296</td><td>0</td><td>1,360</td><td>0</td><td>1,360</td><td>0</td><td>4,016</td></tr>
-        </tbody>
-      </table>
-    </div>
+    thead {
+      background-color: #4c3f91;
+      color: #fff;
+      text-transform: uppercase;
+    }
 
-    <div class="table-container">
-      <h3>Michael Otieno</h3>
-      <table>
-        <thead>
-          <tr><th>Item Description</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Tuition (DIU - 16 credits × $415)</td><td>$6,640</td><td></td><td></td><td></td><td>$11,200</td><td>$11,200</td><td>$29,040</td></tr>
-          <tr><td>Learning Resources Fee</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-          <tr><td>Registration Fee ($45 × 2 terms)</td><td>$90</td><td></td><td></td><td></td><td>$90</td><td>$90</td><td>$270</td></tr>
-          <tr><td>Student Activity Fee ($30 × 2)</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-          <tr><td>Technology Fee ($265 × 2)</td><td>$530</td><td></td><td></td><td></td><td>$530</td><td>$530</td><td>$1,590</td></tr>
-          <tr><td>Administrative Fee (one-time)</td><td>$80</td><td></td><td></td><td></td><td>$80</td><td></td><td>$160</td></tr>
-          <tr><td><strong>Total DIU</strong></td><td>$7,460</td><td>$0</td><td>$0</td><td>$0</td><td>$12,020</td><td>$11,940</td><td>$31,420</td></tr>
-          <tr><td>Tuition (ANU - 5 classes × 15,500 KES)</td><td>155,000</td><td>155,000</td><td>155,000</td><td>155,000</td><td></td><td></td><td>KES 620,000</td></tr>
-          <tr><td>Graduation Fee</td><td></td><td></td><td>8,000</td><td></td><td></td><td></td><td>KES 8,000</td></tr>
-          <tr><td><strong>Total ANU (KES)</strong></td><td>155,000</td><td>155,000</td><td>155,000</td><td>163,000</td><td></td><td></td><td>KES 628,000</td></tr>
-          <tr><td><strong>Total ANU (USD)</strong></td><td>$1,240</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td></td><td></td><td>$5,024</td></tr>
-          <tr><td><strong>Total Training (USD)</strong></td><td>$8,700</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td>$12,020</td><td>$11,940</td><td>$36,444</td></tr>
-          <tr><td>Computer</td><td>60,000</td><td></td><td>60,000</td><td></td><td>60,000</td><td></td><td>KES 180,000</td></tr>
-          <tr><td>Phone</td><td>30,000</td><td></td><td></td><td>30,000</td><td></td><td></td><td>KES 60,000</td></tr>
-          <tr><td><strong>Total Equipment (KES)</strong></td><td>90,000</td><td></td><td>60,000</td><td>30,000</td><td>60,000</td><td></td><td>KES 240,000</td></tr>
-          <tr><td><strong>Total Equipment (USD)</strong></td><td>$720</td><td></td><td>$480</td><td>$240</td><td>$480</td><td></td><td>$1,920</td></tr>
-          <tr><td>Transport (Local)</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>KES 864,000</td></tr>
-          <tr><td>WiFi</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>KES 21,600</td></tr>
-          <tr><td>Salary</td><td>840,000</td><td>882,000</td><td>926,100</td><td>973,200</td><td>1,021,860</td><td>1,080,000</td><td>KES 5,723,160</td></tr>
-          <tr><td>Health Insurance</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>KES 360,000</td></tr>
-          <tr><td class="category-total"><strong>Total Personnel (KES)</strong></td><td>1,047,600</td><td>1,089,600</td><td>1,133,700</td><td>1,180,800</td><td>1,229,460</td><td>1,287,600</td><td>KES 6,968,760</td></tr>
-          <tr><td class="category-total"><strong>Total Personnel (USD)</strong></td><td>$8,381</td><td>$8,717</td><td>$9,070</td><td>$9,446</td><td>$9,836</td><td>$10,301</td><td>$55,750</td></tr>
-          <tr><td class="category-total"><strong>Total (USD)</strong></td><td>$17,801</td><td>$9,957</td><td>$10,790</td><td>$10,990</td><td>$22,336</td><td>$22,241</td><td>$94,114</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table-container">
-      <h3>Robert Carlson</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Year 1</th>
-            <th>Year 2</th>
-            <th>Year 3</th>
-            <th>Year 4</th>
-            <th>Year 5</th>
-            <th>Year 6</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Travel (USD)</td>
-            <td>1,200</td>
-            <td>1,200</td>
-            <td>1,400</td>
-            <td>1,400</td>
-            <td>1,500</td>
-            <td>1,500</td>
-            <td>8,200</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    th, td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
 
-  </section>
+    tbody tr:nth-child(even) {
+      background-color: #f8f6ff;
+    }
+
+    tbody tr:hover {
+      background-color: #e8e2ff;
+      transition: 0.3s;
+    }
+
+    h3 {
+      color: #4c3f91;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .category-total {
+      background-color: #ede7ff;
+      font-weight: bold;
+      color: #2d2d2d;
+    }
+
+    .category-training { color: #4b0082; font-weight: 600; }
+    .category-equipment { color: #007b83; font-weight: 600; }
+    .category-personnel { color: #b23b3b; font-weight: 600; }
+
+    .table-container table th:first-child {
+      border-top-left-radius: 10px;
+    }
+    .table-container table th:last-child {
+      border-top-right-radius: 10px;
+    }
+  </style>
+
+  <h3>Detailed Budget Tables</h3>
+
+  <!-- ===== MAIN BUDGET ===== -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="category-training">Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
+        <tr><td class="category-equipment">Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
+        <tr><td class="category-personnel">Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
+        <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
+        <tr class="category-total"><td><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
+        <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
+        <tr class="category-total"><td><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== ROBERT SANOGO ===== -->
+  <div class="table-container">
+    <h3>Robert Sanogo</h3>
+    <table>
+      <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Training</td><td>1,881</td><td>2,307</td><td>2,053</td><td>1,690</td><td>1,692</td><td>1,812</td><td>11,434</td></tr>
+        <tr><td>Equipment</td><td>720</td><td>0</td><td>480</td><td>240</td><td>480</td><td>0</td><td>1,920</td></tr>
+        <tr><td>Salary & Expenses</td><td>6,685</td><td>5,149</td><td>7,025</td><td>5,943</td><td>8,035</td><td>6,581</td><td>39,419</td></tr>
+        <tr><td>Travel</td><td>1,296</td><td>0</td><td>1,360</td><td>0</td><td>1,360</td><td>0</td><td>4,016</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== MICHAEL OTIENO ===== -->
+  <div class="table-container">
+    <h3>Michael Otieno</h3>
+    <table>
+      <thead>
+        <tr><th>Item Description</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tuition (DIU - 16 credits × $415)</td><td>$6,640</td><td></td><td></td><td></td><td>$11,200</td><td>$11,200</td><td>$29,040</td></tr>
+        <tr><td>Learning Resources Fee</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
+        <tr><td>Registration Fee ($45 × 2 terms)</td><td>$90</td><td></td><td></td><td></td><td>$90</td><td>$90</td><td>$270</td></tr>
+        <tr><td>Student Activity Fee ($30 × 2)</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
+        <tr><td>Technology Fee ($265 × 2)</td><td>$530</td><td></td><td></td><td></td><td>$530</td><td>$530</td><td>$1,590</td></tr>
+        <tr><td>Administrative Fee (one-time)</td><td>$80</td><td></td><td></td><td></td><td>$80</td><td></td><td>$160</td></tr>
+        <tr><td><strong>Total DIU</strong></td><td>$7,460</td><td>$0</td><td>$0</td><td>$0</td><td>$12,020</td><td>$11,940</td><td>$31,420</td></tr>
+        <tr><td>Tuition (ANU - 5 classes × 15,500 KES)</td><td>155,000</td><td>155,000</td><td>155,000</td><td>155,000</td><td></td><td></td><td>KES 620,000</td></tr>
+        <tr><td>Graduation Fee</td><td></td><td></td><td>8,000</td><td></td><td></td><td></td><td>KES 8,000</td></tr>
+        <tr><td><strong>Total ANU (KES)</strong></td><td>155,000</td><td>155,000</td><td>155,000</td><td>163,000</td><td></td><td></td><td>KES 628,000</td></tr>
+        <tr><td><strong>Total ANU (USD)</strong></td><td>$1,240</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td></td><td></td><td>$5,024</td></tr>
+        <tr><td><strong>Total Training (USD)</strong></td><td>$8,700</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td>$12,020</td><td>$11,940</td><td>$36,444</td></tr>
+        <tr><td>Computer</td><td>60,000</td><td></td><td>60,000</td><td></td><td>60,000</td><td></td><td>KES 180,000</td></tr>
+        <tr><td>Phone</td><td>30,000</td><td></td><td></td><td>30,000</td><td></td><td></td><td>KES 60,000</td></tr>
+        <tr><td><strong>Total Equipment (KES)</strong></td><td>90,000</td><td></td><td>60,000</td><td>30,000</td><td>60,000</td><td></td><td>KES 240,000</td></tr>
+        <tr><td><strong>Total Equipment (USD)</strong></td><td>$720</td><td></td><td>$480</td><td>$240</td><td>$480</td><td></td><td>$1,920</td></tr>
+        <tr><td>Transport (Local)</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>KES 864,000</td></tr>
+        <tr><td>WiFi</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>KES 21,600</td></tr>
+        <tr><td>Salary</td><td>840,000</td><td>882,000</td><td>926,100</td><td>973,200</td><td>1,021,860</td><td>1,080,000</td><td>KES 5,723,160</td></tr>
+        <tr><td>Health Insurance</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>KES 360,000</td></tr>
+        <tr class="category-total"><td><strong>Total Personnel (KES)</strong></td><td>1,047,600</td><td>1,089,600</td><td>1,133,700</td><td>1,180,800</td><td>1,229,460</td><td>1,287,600</td><td>KES 6,968,760</td></tr>
+        <tr class="category-total"><td><strong>Total Personnel (USD)</strong></td><td>$8,381</td><td>$8,717</td><td>$9,070</td><td>$9,446</td><td>$9,836</td><td>$10,301</td><td>$55,750</td></tr>
+        <tr class="category-total"><td><strong>Total (USD)</strong></td><td>$17,801</td><td>$9,957</td><td>$10,790</td><td>$10,990</td><td>$22,336</td><td>$22,241</td><td>$94,114</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== ROBERT CARLSON ===== -->
+  <div class="table-container">
+    <h3>Robert Carlson</h3>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Travel (USD)</td><td>1,200</td><td>1,200</td><td>1,400</td><td>1,400</td><td>1,500</td><td>1,500</td><td>8,200</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- SUPPORT SECTION -->
 <section id="support">
   <h2>Support the Project</h2>
@@ -691,6 +745,7 @@
   </script>
 </body>
 </html>>
+
 
 
 
