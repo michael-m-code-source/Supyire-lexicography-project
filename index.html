@@ -352,23 +352,119 @@
     </p>
   </article>
 </section>
-  <section id="team">
-    <h2>Our Team</h2>
-    <div class="team-grid">
-<div class="team-member">
-<img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
-<p><strong>Prof. Robert Carlson</strong><br>Project Lead</p>
-</div>
-<div class="team-member">
-<img src="images/robert-s.jpg" alt="Robert Sanogo">
-<p><strong>Robert Sanogo</strong><br>Supyire Specialist</p>
-</div>
-<div class="team-member">
-<img src="images/mike.jpg" alt="Michael Otieno">
-<p><strong>Michael Otieno</strong><br>IT Specialist</p>
-</div>
-</div>
-  </section>
+ <!-- Add this CSS inside your <style> block -->
+<style>
+/* ---------- TEAM SECTION ---------- */
+#team {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 1000px;
+  background: white;
+  padding: 50px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#team h2 {
+  color: #4c3f91;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.team-member {
+  background: #f8f8ff;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.team-member img {
+  width: 150px;             /* fixed size for neat layout */
+  height: 150px;
+  border-radius: 50%;       /* makes them circular */
+  object-fit: cover;        /* keeps face centered */
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-member p {
+  font-size: 1em;
+  color: #333;
+  margin: 0;
+}
+
+.team-member strong {
+  color: #4c3f91;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+  .team-member {
+    width: 180px;
+  }
+
+  .team-member img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  #team {
+    padding: 30px 15px;
+  }
+
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    width: 80%;
+  }
+
+  .team-member img {
+    width: 110px;
+    height: 110px;
+  }
+}
+</style>
+
+<!-- ---------- TEAM SECTION HTML ---------- -->
+<section id="team">
+  <h2>Our Team</h2>
+  <div class="team-grid">
+    <div class="team-member">
+      <img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
+      <p><strong>Prof. Robert Carlson</strong><br>Project Lead</p>
+    </div>
+
+    <div class="team-member">
+      <img src="images/robert-s.jpg" alt="Robert Sanogo">
+      <p><strong>Robert Sanogo</strong><br>Supyire Specialist</p>
+    </div>
+
+    <div class="team-member">
+      <img src="images/mike.jpg" alt="Michael Otieno">
+      <p><strong>Michael Otieno</strong><br>IT Specialist</p>
+    </div>
+  </div>
+</section>
+
 
   <section id="budget">
     <h2>Budget Overview</h2>
@@ -538,6 +634,7 @@ Carmel, IN 46082 <br>
   </script>
 </body>
 </html>
+
 
 
 
