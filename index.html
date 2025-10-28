@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supyire Lexicography Project</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f5ff; }
-    header {
-      color: black;
-      text-align: center;
-      padding: 60px 20px;
-      background-image: url('manyatta.jpeg');
-      background-size: cover;
-      background-position: center;
-    }
-    header h1 { background: rgba(255, 255, 255, 0.8); color: black; font-weight: 900; display: inline-block; padding: 10px 20px; border-radius: 6px; }
-    header p { background: rgba(255, 255, 255, 0.8); color: black; display: inline-block; padding: 5px 15px; border-radius: 6px; font-weight: 600; }
-    nav { background: #2d2d2d; padding: 10px; text-align: center; }
-    .dropdown { position: relative; display: inline-block; }
-    .dropbtn { background-color: #4c3f91; color: white; padding: 14px 20px; border: none; cursor: pointer; font-size: 16px; border-radius: 6px; }
-    .dropdown-content { display: none; position: absolute; background-color: #3c3c3c; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1; border-radius: 6px; }
-    .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: left; }
-    .dropdown-content a:hover { background-color: #4c3f91; }
-    .dropdown:hover .dropdown-content { display: block; }
-    section { padding: 40px; background: white; margin: 30px auto; max-width: 900px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    h2 { color: #4c3f91; }
-    footer { text-align: center; padding: 20px; background: #222; color: white; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supyire Lexicography Project</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f5ff; }
+header {
+color: black;
+text-align: center;
+padding: 60px 20px;
+background-image: url('./manyatta.jpeg'); /* local image file */
+background-size: cover;
+background-position: center;
+}
+header h1 { background: rgba(255, 255, 255, 0.8); color: black; font-weight: 900; display: inline-block; padding: 10px 20px; border-radius: 6px; }
+header p { background: rgba(255, 255, 255, 0.8); color: black; display: inline-block; padding: 5px 15px; border-radius: 6px; font-weight: 600; }
+nav { background: #2d2d2d; padding: 10px; text-align: center; }
+.dropdown { position: relative; display: inline-block; }
+.dropbtn { background-color: #4c3f91; color: white; padding: 14px 20px; border: none; cursor: pointer; font-size: 16px; border-radius: 6px; }
+.dropdown-content { display: none; position: absolute; background-color: #3c3c3c; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1; border-radius: 6px; }
+.dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: left; }
+.dropdown-content a:hover { background-color: #4c3f91; }
+.dropdown:hover .dropdown-content { display: block; }
+section { display: none; padding: 40px; background: white; margin: 30px auto; max-width: 900px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+section.active { display: block; }
+h2 { color: #4c3f91; }
+footer { text-align: center; padding: 20px; background: #222; color: white; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
-    <br>
-    <p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
-  </header>
+<header>
+<h1>SUPYIRE LEXICOGRAPHY PROJECT</h1>
+<p>Preserving the Supyire Language through Lexicography and Digital Documentation</p>
+</header>
 
-  <nav>
-    <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#history">History of Research</a>
-        <a href="#database">Current Toolbox Database</a>
-        <a href="#example-text">Example of a Text</a>
-        <a href="#documentation">Documentation</a>
-        <a href="#news">News</a>
-        <a href="#team">Team</a>
-        <a href="#budget">Budget</a>
-        <a href="#prayer">Prayer</a>
-        <a href="#donate">Donate</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
 
+<nav>
+<div class="dropdown">
+<button class="dropbtn">☰ Menu</button>
+<div class="dropdown-content">
+<a href="#home" onclick="showSection('home')">Home</a>
+<a href="#about" onclick="showSection('about')">About</a>
+<a href="#contact" onclick="showSection('contact')">Contact</a>
+</div>
+</div>
+</nav>
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -294,6 +285,7 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </footer>
 </body>
 </html>
+
 
 
 
