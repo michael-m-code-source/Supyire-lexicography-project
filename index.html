@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -34,11 +34,11 @@
       margin: 0;
     }
 
-    /* ---------- HEADER IMAGE ---------- */
+    /* ---------- HEADER IMAGE SECTION ---------- */
     header {
       background: url('images/background.jpeg') no-repeat center;
       background-size: cover;
-      height: 55vh;
+      height: 35vh; /* smaller image */
       position: relative;
     }
 
@@ -47,6 +47,7 @@
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
     }
 
     /* ---------- NAVIGATION ---------- */
@@ -54,9 +55,6 @@
       background: #2d2d2d;
       padding: 8px;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
     .dropdown {
@@ -88,7 +86,7 @@
       border-radius: 6px;
       padding: 5px 0;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 99;
+      z-index: 2;
     }
 
     .dropdown-content a {
@@ -107,18 +105,7 @@
       display: block;
     }
 
-    /* Nested dropdowns */
-    .dropdown-content .dropdown {
-      position: relative;
-    }
-
-    .dropdown-content .dropdown-content {
-      top: 0;
-      left: 100%;
-      margin-left: 2px;
-    }
-
-    /* ---------- SECTIONS ---------- */
+    /* ---------- PAGE SECTIONS ---------- */
     section {
       display: none;
       padding: 40px;
@@ -144,6 +131,26 @@
       background: #222;
       color: white;
     }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      header {
+        height: 25vh; /* smaller on mobile */
+      }
+
+      .top-heading h1 {
+        font-size: 2em;
+      }
+
+      .dropbtn {
+        font-size: 15px;
+        padding: 8px 12px;
+      }
+
+      .dropdown-content a {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 
@@ -166,7 +173,7 @@
 
         <!-- ABOUT -->
         <div class="dropdown">
-          <a href="#">About ▸</a>
+          <a href="#about">About ▸</a>
           <div class="dropdown-content">
             <a href="#history" onclick="showSection('history')">History of Research</a>
             <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
@@ -176,7 +183,7 @@
 
         <!-- SECTIONS -->
         <div class="dropdown">
-          <a href="#">Sections ▸</a>
+          <a href="#sections">Sections ▸</a>
           <div class="dropdown-content">
             <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
             <a href="#proposal" onclick="showSection('proposal')">Proposal</a>
@@ -189,7 +196,7 @@
 
         <!-- SUPPORT -->
         <div class="dropdown">
-          <a href="#">Support ▸</a>
+          <a href="#support">Support ▸</a>
           <div class="dropdown-content">
             <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
             <a href="#donate" onclick="showSection('donate')">Donate</a>
@@ -199,7 +206,7 @@
     </div>
   </nav>
 
-  <!-- EXAMPLE SECTIONS -->
+  <!-- SAMPLE SECTIONS -->
   <section id="home">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
@@ -439,15 +446,17 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   
   </footer>
    
+ <!-- JAVASCRIPT -->
   <script>
     function showSection(id) {
       document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
 </html>
+
 
 
 
