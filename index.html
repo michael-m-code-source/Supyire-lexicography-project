@@ -1,762 +1,597 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Supyire Lexicography Project</title>
-
   <style>
     /* ---------- GENERAL ---------- */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
+    :root{
+      --primary:#4c3f91;
+      --accent:#d9ccff;
+      --muted:#f4f4ff;
+      --dark:#222;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f8f8f8;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ---------- HEADING ABOVE IMAGE ---------- */
-    .top-heading {
-      text-align: center;
-      padding: 40px 20px 10px 20px;
-      background: white;
+    /* ---------- TOP HEADING ---------- */
+    .top-heading{
+      text-align:center;
+      padding:40px 20px 12px;
+      background:#fff;
+      border-bottom:4px solid var(--primary);
+    }
+    .top-heading h1{
+      margin:0;
+      font-size:2.6rem;
+      font-weight:800;
+      color:var(--primary);
+    }
+    .top-heading p{
+      margin:6px 0 0;
+      color:#333;
+      font-size:1.05rem;
+      font-weight:500;
     }
 
-    .top-heading h1 {
-      font-size: 2.6em;
-      font-weight: 800;
-      color: #4c3f91;
-      margin-bottom: 8px;
+    /* ---------- HEADER IMAGE ---------- */
+    header{
+      background:url('images/background.jpeg') center center no-repeat;
+      background-size:cover;
+      height:60vh;
+      position:relative;
+      border-bottom:4px solid var(--primary);
+    }
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.18);
+      z-index:1;
     }
 
-    .top-heading p {
-      font-size: 1.1em;
-      color: #333;
-      font-weight: 500;
-      margin: 0;
+    /* ---------- NAV ---------- */
+    nav{
+      background:#2d2d2d;
+      padding:10px 12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .dropbtn{
+      background:var(--primary);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:0 4px 10px rgba(76,63,145,0.12);
+    }
+    .dropdown{position:relative; display:inline-block;}
+    .dropdown-content{
+      display:none;
+      position:absolute;
+      top:110%;
+      left:0;
+      background:#333;
+      border-radius:8px;
+      padding:8px 0;
+      min-width:230px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+      z-index:50;
+    }
+    .dropdown-content a{display:block;color:#fff;padding:10px 16px;text-decoration:none}
+    .dropdown-content a:hover{background:var(--primary)}
+    .dropdown:hover>.dropdown-content{display:block}
+
+    /* ---------- SECTION CARDS ---------- */
+    section{
+      display:none;
+      max-width:1100px;
+      margin:28px auto;
+      background:#fff;
+      border-radius:12px;
+      padding:34px;
+      box-shadow:0 6px 18px rgba(18,18,18,0.06);
+    }
+    section.active{display:block}
+    h2{color:var(--primary); margin-top:0}
+    p, li, td{color:#333}
+    ul{padding-left:1.15rem}
+
+    /* ---------- TEAM ---------- */
+    .team-grid{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+    .team-member{
+      width:220px;background:var(--muted);border-radius:12px;padding:18px;text-align:center;
+      transition:transform .25s ease,box-shadow .25s ease;
+    }
+    .team-member:hover{transform:translateY(-6px); box-shadow:0 8px 22px rgba(0,0,0,0.12)}
+    .team-member img{width:150px;height:150px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px}
+
+    /* ---------- TABLE DESIGN ---------- */
+    .table-container{margin:22px 0;border-radius:10px;overflow:auto;background:#fff;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    thead{background:var(--primary);color:#fff;text-transform:uppercase}
+    th,td{padding:10px 12px;border-bottom:1px solid #eae6ff;text-align:center}
+    tbody tr:nth-child(even){background:#faf7ff}
+    tbody tr:hover{background:#f0ebff}
+    .category-total{background:#ede7ff;font-weight:700}
+    .small{font-size:0.9rem}
+
+    /* ---------- TIMELINE ---------- */
+    .timeline-container{
+      position:relative;
+      max-width:1000px;margin:30px auto 10px;
+      display:flex;gap:20px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;
+    }
+    .timeline-container::before{
+      content:"";position:absolute;left:0;right:0;top:50%;height:6px;background:var(--accent);z-index:1;border-radius:6px;
+    }
+    .timeline-item{
+      width:30%;background:#fff;border-radius:12px;padding:18px;position:relative;z-index:2;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);opacity:0;transform:translateY(12px);
+      transition:opacity .6s ease, transform .6s cubic-bezier(.22,.9,.31,1);
+    }
+    .timeline-item.in-view{opacity:1; transform:translateY(0)}
+    .timeline-year{font-weight:800;color:var(--primary);font-size:1.1rem;margin-bottom:8px}
+    .timeline-content h3{margin:0 0 8px 0}
+    .timeline-summary{text-align:center;font-weight:700;color:var(--primary);margin-top:14px}
+
+    /* ---------- SMALLER SCREEN TIMELINE ---------- */
+    @media (max-width:900px){
+      .timeline-container{flex-direction:column;align-items:center}
+      .timeline-container::before{left:50%;top:0;bottom:0;width:6px;height:100%}
+      .timeline-item{width:85%;margin:18px 0}
     }
 
-    /* ---------- HEADER IMAGE SECTION ---------- */
-    header {
-      background: url('images/background.jpeg') no-repeat center center;
-      background-size: contain; /* show the full image */
-      background-color: #000;
-      height: 60vh;
-      position: relative;
-      border-bottom: 4px solid #4c3f91;
-    }
+    /* ---------- DONATE IMAGES ---------- */
+    .donate-image{max-width:100%;border-radius:8px;margin:10px 0;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
 
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.15);
-      z-index: 1;
+    /* ---------- FORM ---------- */
+    form input, form textarea, form select{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-top:6px;box-sizing:border-box;
     }
-
-    /* ---------- NAVIGATION ---------- */
-    nav {
-      background: #2d2d2d;
-      padding: 10px 0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      gap: 15px; /* equal spacing between menu groups */
-      flex-wrap: wrap;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      background-color: #4c3f91;
-      color: white;
-      padding: 10px 18px;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      border-radius: 6px;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .dropbtn:hover {
-      background-color: #5a4bb1;
-      transform: scale(1.05);
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #3c3c3c;
-      min-width: 200px;
-      border-radius: 8px;
-      padding: 6px 0;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-      z-index: 2;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 10px 16px;
-      text-decoration: none;
-      display: block;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #4c3f91;
-    }
-
-    .dropdown:hover > .dropdown-content {
-      display: block;
-    }
-
-    /* ---------- PAGE SECTIONS ---------- */
-    section {
-      display: none;
-      padding: 40px;
-      background: white;
-      margin: 25px auto;
-      max-width: 900px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    section.active {
-      display: block;
-    }
-
-    h2 {
-      color: #4c3f91;
-    }
-
-    /* ---------- TEAM IMAGES ---------- */
-    .team-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .team-member img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .team-member p {
-      text-align: center;
-      margin-top: 10px;
-      font-weight: 500;
-    }
+    form button{background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
 
     /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #222;
-      color: white;
-    }
+    footer{text-align:center;padding:18px;background:var(--dark);color:#fff;margin-top:18px;border-top:4px solid var(--primary)}
+    a{color:var(--primary)}
+    .muted{color:#666;font-size:.95rem}
 
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      header {
-        height: 40vh;
-      }
-
-      .top-heading h1 {
-        font-size: 2em;
-      }
-
-      .dropbtn {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
-
-      .dropdown-content a {
-        font-size: 13px;
-        padding: 8px 12px;
-      }
+    @media (max-width:760px){
+      .team-member{width:86%}
+      .dropbtn{padding:8px 12px}
     }
   </style>
 </head>
-
 <body>
-  <!-- TITLE ABOVE IMAGE -->
+
+  <!-- TOP HEADING -->
   <div class="top-heading">
     <h1>Supyire Lexicography Project</h1>
-    <p>Preserving language through digital innovation</p>
+    <p>Completion of Supyire Dictionary and Digitized Text Corpus — Department of Language, Linguistics, and Translation, AIU</p>
   </div>
 
-  <!-- BACKGROUND IMAGE HEADER -->
-  <header></header>
+  <!-- HEADER IMAGE -->
+  <header aria-hidden="true"></header>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav>
     <div class="dropdown">
       <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
+      <div class="dropdown-content" role="menu" aria-label="site menu">
         <a href="#home" onclick="showSection('home')">Home</a>
-
-        <div class="dropdown">
-          <a href="#about">About ▸</a>
-          <div class="dropdown-content">
-            <a href="#history" onclick="showSection('history')">History of Research</a>
-            <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
-           <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <a href="#sections">Sections ▸</a>
-          <div class="dropdown-content">
-            <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
-            <a href="#news" onclick="showSection('news')">News</a>
-            <a href="#team" onclick="showSection('team')">Team</a>
-            <a href="#budget" onclick="showSection('budget')">Budget</a>
-            <a href="#contact" onclick="showSection('contact')">Contact</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <a href="#support">Support ▸</a>
-          <div class="dropdown-content">
-            <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-            <a href="#donate" onclick="showSection('donate')">Donate</a>
-          </div>
-        </div>
+        <a href="#about" onclick="showSection('about')">About</a>
+        <a href="#history" onclick="showSection('history')">History</a>
+        <a href="#database" onclick="showSection('database')">Toolbox Database</a>
+        <a href="#example-text" onclick="showSection('example-text')">Example Text</a>
+        <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
+        <a href="#news" onclick="showSection('news')">News</a>
+        <a href="#goals" onclick="showSection('goals')">Goals</a>
+        <a href="#activities" onclick="showSection('activities')">Activities</a>
+        <a href="#timeline" onclick="showSection('timeline')">Timeline</a>
+        <a href="#team" onclick="showSection('team')">Team</a>
+        <a href="#budget" onclick="showSection('budget')">Budget</a>
+        <a href="#operations" onclick="showSection('operations')">Operations</a>
+        <a href="#risks" onclick="showSection('risks')">Risks</a>
+        <a href="#support" onclick="showSection('support')">Support</a>
+        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+        <a href="#donate" onclick="showSection('donate')">Donate</a>
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- HOME SECTION -->
-  <section id="home">
-    <h2>Welcome to the Supyire Lexicography Project</h2>
-    <p>This project aims to preserve and document the Supyire language through dictionary development, linguistic research, and digital resources accessible to educators, students, and researchers worldwide.</p>
+  <!-- HOME -->
+  <section id="home" class="active" aria-labelledby="home-heading">
+    <h2 id="home-heading">Welcome to the Supyire Lexicography Project</h2>
+    <p>
+      The project preserves and documents Supyire — producing bilingual dictionaries, a digitized text corpus,
+      training team members, and delivering a smartphone app to make this knowledge broadly accessible.
+    </p>
   </section>
 
-  <section id="about">
-    <h2>About the Project</h2>
-    <p>The Supyire Lexicography Project focuses on producing dictionaries, databases, and text collections to promote the study and preservation of the Supyire language.</p>
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">About the Project</h2>
+    <p>
+      The Supyire Lexicography Project builds on decades of research by Prof. Robert Carlson and collaborators,
+      aiming to produce Supyire–French and Supyire–English dictionaries, a comprehensive online text corpus,
+      and mobile tools for educators, translators, and researchers.
+    </p>
+    <p>
+      The project is presented to the Department of Language, Linguistics, and Translation at Africa International University.
+      It seeks to make existing lexical and textual data accessible to Supyire communities and to scholars worldwide.
+    </p>
   </section>
 
+  <!-- HISTORY of RESEARCH -->
   <section id="history">
     <h2>History of Research on Supyire</h2>
-    <p>Research on Supyire dates back to the 1970s and has included phonological, grammatical, and lexical studies led by various linguists.</p>
+    <p>
+      Research began in the late 1970s under SIL International, led by Robert Carlson. Since then lexical databases and text corpora
+      were compiled and improved alongside Supyire speakers and collaborators. The New Testament (2008) and ongoing translation work
+      are part of the project's linguistic context.
+    </p>
   </section>
 
-<!-- Add this inside your <style> block -->
-<style>
-/* ---------- DATABASE SECTION ---------- */
-#database {
-  text-align: center;
-  margin: 40px auto;
-  max-width: 900px;
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-#database h2 {
-  color: #4c3f91;
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-
-#database p {
-  color: #333;
-  font-size: 1.1em;
-  line-height: 1.6;
-}
-
-.database {
-  text-align: center;
-  margin-top: 25px;
-}
-
-.database img {
-  width: 30%;                /* desktop default size */
-  max-width: 220px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.database img:hover {
-  transform: scale(1.05);
-}
-
-/* ---------- RESPONSIVE DESIGN ---------- */
-@media (max-width: 768px) {
-  #database {
-    padding: 30px 20px;
-  }
-
-  #database h2 {
-    font-size: 1.6em;
-  }
-
-  #database p {
-    font-size: 1em;
-  }
-
-  .database img {
-    width: 50%;
-    max-width: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  #database {
-    padding: 25px 15px;
-  }
-
-  #database h2 {
-    font-size: 1.4em;
-  }
-
-  #database p {
-    font-size: 0.95em;
-  }
-
-  .database img {
-    width: 100%;
-    max-width: 180px;
-  }
-}
-</style>
-
-<!-- ---------- SECTION CONTENT ---------- -->
-<section id="database">
-  <h2>Current Toolbox Database</h2>
-  <p>
-    The current Toolbox database includes lexical entries, sample texts, and interlinear glossed examples that feed our dictionaries and corpus.
-  </p>
-  <div class="database">
-    <p><strong>Example of a Toolbox Database</strong></p>
-    <img src="images/example.jpg" alt="example of a text in toolbox">
-  </div>
-</section>
-<section id="example-text">
-  <h2>Example of a Text</h2>
-  <p><em>Kòɔ́rɛ̀ nɛ̀ yíí nàgá.</em> — “The man went to the market.”</p>
-</section>
- <section id="documentation">
-  <h2>Documentation</h2>
-  <p>Download and view project documents, data-entry guides, and protocols here.</p>
-  <p>
-    <a href="Project proposal.docx" 
-       download="Supyire_Project_Proposal.docx"
-       style="color:#4c3f91; font-weight:bold;">
-       📄 Download Project Proposal (Revised)
-    </a>
-  </p>
-</section>
- <section id="news">
-  <h2>News & Updates</h2>
-
-  <article>
-    <h3>Volunteer or Donation Appeals</h3>
-    <p><em>October 2025</em></p>
+  <!-- DATABASE -->
+  <section id="database">
+    <h2>Current Toolbox Database</h2>
     <p>
-      The Supyire Lexicography Project invites individuals and organizations 
-      to join in supporting the preservation of the Supyire language.
-      You can help by:
+      The Toolbox database contains lexical entries, interlinear examples, and texts used to fuel the dictionary and corpus work.
+      We are standardizing entries and preparing export to FLEx.
     </p>
+    <div class="muted small">Example Toolbox snapshot:</div>
+    <div style="text-align:center;margin-top:12px">
+      <img src="images/example.jpg" alt="Toolbox example" style="max-width:260px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)"/>
+    </div>
+  </section>
+
+  <!-- EXAMPLE TEXT -->
+  <section id="example-text">
+    <h2>Example of a Text</h2>
+    <p><em>Kòɔ́rɛ̀ nɛ̀ yíí nàgá.</em> — “The man went to the market.”</p>
+  </section>
+
+  <!-- DOCUMENTATION -->
+  <section id="documentation">
+    <h2>Documentation</h2>
+    <p>Download project documents and the full project proposal below.</p>
+    <p>
+      <a href="Project proposal.docx" download="Supyire_Project_Proposal.docx" style="font-weight:700;color:var(--primary)">
+        📄 Download Project Proposal (Revised)
+      </a>
+    </p>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2>News & Updates</h2>
+    <article>
+      <h3>Volunteer and Donation Appeals</h3>
+      <p><em>October 2025</em></p>
+      <p>
+        We invite individuals and institutions to support the project through prayer, donations, and volunteering
+        (transcription, translation, proofreading). Contact: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a>
+      </p>
+    </article>
+  </section>
+
+  <!-- GOALS -->
+  <section id="goals">
+    <h2>Project Goals</h2>
     <ul>
-      <li>🙏 Praying regularly for the success of the project and its team members.</li>
-      <li>💰 Donating to assist with training, research, and technology expenses.</li>
-      <li>📝 Volunteering your time to help with transcription, translation, or proofreading of Supyire texts.</li>
+      <li>Produce Supyire–French and Supyire–English dictionaries (print & digital).</li>
+      <li>Create a smartphone dictionary app.</li>
+      <li>Develop and publish an online Supyire text database.</li>
+      <li>Standardize Toolbox data and transfer to FLEx.</li>
+      <li>Train project personnel in linguistics and FLEx usage.</li>
     </ul>
-    <p>
-      Every contribution — big or small — helps us move closer to publishing a complete 
-      and accessible Supyire dictionary and digital text archive. 
-      <br><strong>To get involved, visit the Support page or contact us at:</strong> 
-      <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a>
-    </p>
-  </article>
-</section>
- <!-- Add this CSS inside your <style> block -->
-<style>
-/* ---------- TEAM SECTION ---------- */
-#team {
-  text-align: center;
-  margin: 40px auto;
-  max-width: 1000px;
-  background: white;
-  padding: 50px 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+  </section>
 
-#team h2 {
-  color: #4c3f91;
-  font-size: 2em;
-  margin-bottom: 30px;
-}
+  <!-- ACTIVITIES -->
+  <section id="activities">
+    <h2>Project Activities</h2>
+    <h3>Dictionary Production</h3>
+    <ul>
+      <li>Standardize entries, add orthography and example sentences, and correct translations.</li>
+      <li>Output print and electronic editions and prepare app-ready data exports.</li>
+    </ul>
+    <h3>Text Database</h3>
+    <ul>
+      <li>Revise transcription, interlinearize, translate, and annotate texts for online publication.</li>
+      <li>Publish the annotated text database and integrate with dictionary resources.</li>
+    </ul>
+  </section>
 
-.team-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.team-member {
-  background: #f8f8ff;
-  border-radius: 10px;
-  padding: 15px;
-  width: 220px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.team-member:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.team-member img {
-  width: 150px;             /* fixed size for neat layout */
-  height: 150px;
-  border-radius: 50%;       /* makes them circular */
-  object-fit: cover;        /* keeps face centered */
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.team-member p {
-  font-size: 1em;
-  color: #333;
-  margin: 0;
-}
-
-.team-member strong {
-  color: #4c3f91;
-}
-
-/* ---------- RESPONSIVE DESIGN ---------- */
-@media (max-width: 768px) {
-  .team-member {
-    width: 180px;
-  }
-
-  .team-member img {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  #team {
-    padding: 30px 15px;
-  }
-
-  .team-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .team-member {
-    width: 80%;
-  }
-
-  .team-member img {
-    width: 110px;
-    height: 110px;
-  }
-}
-</style>
-
-<!-- ---------- TEAM SECTION HTML ---------- -->
-<section id="team">
-  <h2>Our Team</h2>
-  <div class="team-grid">
-    <div class="team-member">
-      <img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
-      <p><strong>Prof. Robert Carlson</strong><br>Project Lead</p>
+  <!-- TEAM -->
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
+        <p><strong>Prof. Robert Carlson</strong><br>Project Manager / Linguist</p>
+      </div>
+      <div class="team-member">
+        <img src="images/robert-s.jpg" alt="Robert Sanogo">
+        <p><strong>Robert Sanogo</strong><br>Supyire Specialist (L1 speaker)</p>
+      </div>
+      <div class="team-member">
+        <img src="images/mike.jpg" alt="Michael Otieno">
+        <p><strong>Michael Otieno</strong><br>IT Specialist / FLEx support</p>
+      </div>
     </div>
+  </section>
 
-    <div class="team-member">
-      <img src="images/robert-s.jpg" alt="Robert Sanogo">
-      <p><strong>Robert Sanogo</strong><br>Supyire Specialist</p>
+  <!-- TIMELINE (animated) -->
+  <section id="timeline">
+    <h2>Project Timeline (2025–2031)</h2>
+    <div class="timeline-container">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2025–2027</div>
+        <div class="timeline-content">
+          <h3>Database & Training Phase</h3>
+          <p>Revise and standardize Toolbox entries, add orthographic information, and transfer data to FLEx. Train RS and MO in linguistics and FLEx.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2028–2029</div>
+        <div class="timeline-content">
+          <h3>Dictionary & App Development</h3>
+          <p>Revise dictionary entries, produce indexes and grammar sketch, and develop a smartphone dictionary app.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2030–2031</div>
+        <div class="timeline-content">
+          <h3>Text Database & Publication</h3>
+          <p>Expand and annotate the text corpus (target 450k–500k words), integrate with the dictionary, and publish the database online. Finalize training outcomes (PhD completion for team members where applicable).</p>
+        </div>
+      </div>
     </div>
+    <p class="timeline-summary"><strong>Expected completion:</strong> December 2031</p>
+  </section>
 
-    <div class="team-member">
-      <img src="images/mike.jpg" alt="Michael Otieno">
-      <p><strong>Michael Otieno</strong><br>IT Specialist</p>
-    </div>
-  </div>
-</section>
-<section id="support">
-  <h2>Support the Project</h2>
-  <p>You can support the Supyire Lexicography Project through prayer or donations.</p>
-  <ul>
-    <li><a href="#prayer" onclick="showSection('prayer')">🙏 Prayer</a></li>
-    <li><a href="#donate" onclick="showSection('donate')">💰 Donate</a></li>
-  </ul>
-  <p>Thank you for your partnership in preserving the Supyire language.</p>
-</section>
-
-
+  <!-- BUDGET SUMMARY + DETAILED TABLES -->
   <section id="budget">
-  <h2>Budget Overview</h2>
-  <p>The project budget includes training, equipment, salaries, and travel costs distributed over six years.</p>
+    <h2>Budget Overview</h2>
+    <p>The project budget (six-year) includes training, equipment, salaries, travel, and administration.</p>
 
-  <style>
-    /* --- Stylish Table Look --- */
-    .table-container {
-      margin: 30px 0;
-      overflow-x: auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      background: #fff;
-      padding: 15px;
-    }
+    <!-- Main summary -->
+    <div class="table-container" aria-labelledby="budget-table">
+      <table id="budget-summary" role="table">
+        <thead>
+          <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
+          <tr><td>Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
+          <tr><td>Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
+          <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
+          <tr class="category-total"><td><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
+          <tr><td>Administration (10%)</td><td colspan="6"></td><td>15,910</td></tr>
+          <tr class="category-total"><td><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 10px;
-      overflow: hidden;
-      font-size: 15px;
-    }
+    <!-- ROBERT SANOGO DETAILED -->
+    <h3 style="color:var(--primary);margin-top:18px">Robert Sanogo (KES / USD breakdown)</h3>
+    <div class="table-container">
+      <table role="table" aria-label="Robert Sanogo budget">
+        <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>Training (USD)</td><td>1,881</td><td>2,307</td><td>2,053</td><td>1,690</td><td>1,692</td><td>1,812</td><td>11,434</td></tr>
+          <tr><td>Equipment (USD)</td><td>720</td><td>0</td><td>480</td><td>240</td><td>480</td><td>0</td><td>1,920</td></tr>
+          <tr><td>Salary & Expenses (USD)</td><td>6,685</td><td>5,149</td><td>7,025</td><td>5,943</td><td>8,035</td><td>6,581</td><td>39,419</td></tr>
+          <tr><td>Travel (USD)</td><td>1,296</td><td></td><td>1,360</td><td></td><td>1,360</td><td></td><td>4,016</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    thead {
-      background-color: #4c3f91;
-      color: #fff;
-      text-transform: uppercase;
-    }
+    <!-- MICHAEL OTIENO DETAILED (DIU + ANU + Personnel summary) -->
+    <h3 style="color:var(--primary);margin-top:8px">Michael Otieno (DIU / ANU / Personnel)</h3>
+    <div class="table-container">
+      <table role="table" aria-label="Michael Otieno DIU and ANU">
+        <thead><tr><th>Item Description</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>Tuition (DIU - 16 credits × $415)</td><td>$6,640</td><td></td><td></td><td></td><td>$11,200</td><td>$11,200</td><td>$29,040</td></tr>
+          <tr><td>Learning Resources Fee</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
+          <tr><td>Registration Fee ($45 × 2 terms)</td><td>$90</td><td></td><td></td><td></td><td>$90</td><td>$90</td><td>$270</td></tr>
+          <tr><td>Student Activity Fee ($30 × 2)</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
+          <tr><td>Technology Fee ($265 × 2)</td><td>$530</td><td></td><td></td><td></td><td>$530</td><td>$530</td><td>$1,590</td></tr>
+          <tr><td>Administrative Fee (one-time)</td><td>$80</td><td></td><td></td><td></td><td>$80</td><td></td><td>$160</td></tr>
+          <tr class="category-total"><td><strong>Total DIU (USD)</strong></td><td>$7,460</td><td>$0</td><td>$0</td><td>$0</td><td>$12,020</td><td>$11,940</td><td>$31,420</td></tr>
 
-    th, td {
-      padding: 12px 10px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+          <tr><td>Tuition (ANU - 5 classes × 15,500 KES)</td><td>155,000</td><td>155,000</td><td>155,000</td><td>155,000</td><td></td><td></td><td>KES 620,000</td></tr>
+          <tr><td>Graduation Fee</td><td></td><td></td><td>8,000</td><td></td><td></td><td></td><td>KES 8,000</td></tr>
+          <tr class="category-total"><td><strong>Total ANU (KES)</strong></td><td>155,000</td><td>155,000</td><td>155,000</td><td>163,000</td><td></td><td></td><td>KES 628,000</td></tr>
 
-    tbody tr:nth-child(even) {
-      background-color: #f8f6ff;
-    }
+          <tr><td>Computer (KES)</td><td>60,000</td><td></td><td>60,000</td><td></td><td>60,000</td><td></td><td>KES 180,000</td></tr>
+          <tr><td>Phone (KES)</td><td>30,000</td><td></td><td></td><td>30,000</td><td></td><td></td><td>KES 60,000</td></tr>
 
-    tbody tr:hover {
-      background-color: #e8e2ff;
-      transition: 0.3s;
-    }
+          <tr class="category-total"><td><strong>Total Equipment (KES)</strong></td><td>90,000</td><td></td><td>60,000</td><td>30,000</td><td>60,000</td><td></td><td>KES 240,000</td></tr>
 
-    h3 {
-      color: #4c3f91;
-      text-align: center;
-      margin-top: 25px;
-    }
+          <tr><td>Transport (Local - KES)</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>KES 864,000</td></tr>
+          <tr><td>WiFi (KES)</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>KES 21,600</td></tr>
+          <tr><td>Salary (KES)</td><td>840,000</td><td>882,000</td><td>926,100</td><td>973,200</td><td>1,021,860</td><td>1,080,000</td><td>KES 5,723,160</td></tr>
+          <tr><td>Health Insurance (KES)</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>KES 360,000</td></tr>
+          <tr class="category-total"><td><strong>Total Personnel (KES)</strong></td><td>1,047,600</td><td>1,089,600</td><td>1,133,700</td><td>1,180,800</td><td>1,229,460</td><td>1,287,600</td><td>KES 6,968,760</td></tr>
+          <tr class="category-total"><td><strong>Total (USD)</strong></td><td>$17,801</td><td>$9,957</td><td>$10,790</td><td>$10,990</td><td>$22,336</td><td>$22,241</td><td>$94,114</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    .category-total {
-      background-color: #ede7ff;
-      font-weight: bold;
-      color: #2d2d2d;
-    }
+    <!-- ROBERT CARLSON TRAVEL -->
+    <h3 style="color:var(--primary);margin-top:10px">Robert Carlson</h3>
+    <div class="table-container">
+      <table role="table" aria-label="Robert Carlson travel budget">
+        <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>Travel (USD)</td><td>1,200</td><td>1,200</td><td>1,400</td><td>1,400</td><td>1,500</td><td>1,500</td><td>8,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    .category-training { color: #4b0082; font-weight: 600; }
-    .category-equipment { color: #007b83; font-weight: 600; }
-    .category-personnel { color: #b23b3b; font-weight: 600; }
+  <!-- ACTIVITY SCHEDULE (full) -->
+  <section id="activity-schedule">
+    <h2>Activity Schedule (Implementation Plan)</h2>
+    <p>This implementation plan lists activities, responsible people, timelines, and expected outputs.</p>
+    <div class="table-container">
+      <table role="table" aria-label="Activity Schedule">
+        <thead><tr><th>Activity</th><th>Responsible Person</th><th>Timeline</th><th>Expected Output</th></tr></thead>
+        <tbody>
+          <tr><td>Standardize Toolbox entries and coding</td><td>Michael Otieno</td><td>2025–2026</td><td>Consistent data ready for FLEx transfer</td></tr>
+          <tr><td>Transfer data from Toolbox to FLEx</td><td>Prof. Robert Carlson</td><td>2026–2027</td><td>Lexical database in FLEx format</td></tr>
+          <tr><td>Training in lexicography & tool use</td><td>Robert Sanogo</td><td>2025–2028</td><td>Increased capacity in lexicography and FLEx</td></tr>
+          <tr><td>Development of mobile dictionary app</td><td>Michael Otieno</td><td>2028–2029</td><td>Functional bilingual dictionary app</td></tr>
+          <tr><td>Revision & expansion of dictionary</td><td>RC, RS, MO</td><td>2028–2029</td><td>Improved entries, indexes, and grammar sketch</td></tr>
+          <tr><td>Expansion and annotation of text database</td><td>Robert Sanogo</td><td>2030–2031</td><td>Fully annotated Supyire corpus (450k–500k words)</td></tr>
+          <tr><td>Publish database online & integrate with app</td><td>Michael Otieno, Prof Carlson</td><td>2031</td><td>Publicly accessible integrated resources</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    .table-container table th:first-child {
-      border-top-left-radius: 10px;
-    }
-    .table-container table th:last-child {
-      border-top-right-radius: 10px;
-    }
-  </style>
+  <!-- OPERATIONS -->
+  <section id="operations">
+    <h2>Operational Procedures</h2>
+    <ul>
+      <li>The project is run under AIU's Department of Language, Linguistics, and Translation (LLTD).</li>
+      <li>Quarterly reports (end of March, June, September, December) to the Head of Department.</li>
+      <li>Funding from individual and institutional donations; AIU Finance approves disbursements.</li>
+      <li>AIU and LLTD will be acknowledged in all publications.</li>
+    </ul>
+  </section>
 
-  <h3>Detailed Budget Tables</h3>
+  <!-- RISKS -->
+  <section id="risks">
+    <h2>Risks & Mitigation</h2>
+    <ul>
+      <li><strong>Training dependency:</strong> Project success depends on RS and MO completing training — RC will mentor and coordinate training.</li>
+      <li><strong>Travel limitations:</strong> Political issues in Mali may restrict travel; meetings will be held in neighboring countries if necessary.</li>
+      <li><strong>Leadership transition:</strong> Due to RC's age, responsibilities will be transferred progressively to RS and MO.</li>
+    </ul>
+  </section>
 
-  <!-- ===== MAIN BUDGET ===== -->
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="category-training">Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
-        <tr><td class="category-equipment">Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
-        <tr><td class="category-personnel">Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
-        <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
-        <tr class="category-total"><td><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
-        <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
-        <tr class="category-total"><td><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- SUPPORT -->
+  <section id="support">
+    <h2>Support the Project</h2>
+    <p>You can support the project through prayer, volunteering, or donations (international giving, CLA, or bank transfer to AIU).</p>
+    <ul>
+      <li><a href="#prayer" onclick="showSection('prayer')">Prayer</a></li>
+      <li><a href="#donate" onclick="showSection('donate')">Donate</a></li>
+    </ul>
+  </section>
 
-  <!-- ===== ROBERT SANOGO ===== -->
-  <div class="table-container">
-    <h3>Robert Sanogo</h3>
-    <table>
-      <thead><tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr></thead>
-      <tbody>
-        <tr><td>Training</td><td>1,881</td><td>2,307</td><td>2,053</td><td>1,690</td><td>1,692</td><td>1,812</td><td>11,434</td></tr>
-        <tr><td>Equipment</td><td>720</td><td>0</td><td>480</td><td>240</td><td>480</td><td>0</td><td>1,920</td></tr>
-        <tr><td>Salary & Expenses</td><td>6,685</td><td>5,149</td><td>7,025</td><td>5,943</td><td>8,035</td><td>6,581</td><td>39,419</td></tr>
-        <tr><td>Travel</td><td>1,296</td><td>0</td><td>1,360</td><td>0</td><td>1,360</td><td>0</td><td>4,016</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- PRAYER -->
+  <section id="prayer">
+    <h2>Prayer</h2>
+    <p>Heavenly Father,<br>
+    We thank You for every generous heart and every willing hand that gives to support this mission. Bless each person who sows into this work — may their offering bring hope, light, and transformation to those in need.</p>
+    <p>We pray that You multiply these gifts, O Lord, so that they may go further than we can imagine. Grant us wisdom to use resources faithfully and transparency to steward them well. In Jesus' name, Amen.</p>
+  </section>
 
-  <!-- ===== MICHAEL OTIENO ===== -->
-  <div class="table-container">
-    <h3>Michael Otieno</h3>
-    <table>
-      <thead>
-        <tr><th>Item Description</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Tuition (DIU - 16 credits × $415)</td><td>$6,640</td><td></td><td></td><td></td><td>$11,200</td><td>$11,200</td><td>$29,040</td></tr>
-        <tr><td>Learning Resources Fee</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-        <tr><td>Registration Fee ($45 × 2 terms)</td><td>$90</td><td></td><td></td><td></td><td>$90</td><td>$90</td><td>$270</td></tr>
-        <tr><td>Student Activity Fee ($30 × 2)</td><td>$60</td><td></td><td></td><td></td><td>$60</td><td>$60</td><td>$180</td></tr>
-        <tr><td>Technology Fee ($265 × 2)</td><td>$530</td><td></td><td></td><td></td><td>$530</td><td>$530</td><td>$1,590</td></tr>
-        <tr><td>Administrative Fee (one-time)</td><td>$80</td><td></td><td></td><td></td><td>$80</td><td></td><td>$160</td></tr>
-        <tr><td><strong>Total DIU</strong></td><td>$7,460</td><td>$0</td><td>$0</td><td>$0</td><td>$12,020</td><td>$11,940</td><td>$31,420</td></tr>
-        <tr><td>Tuition (ANU - 5 classes × 15,500 KES)</td><td>155,000</td><td>155,000</td><td>155,000</td><td>155,000</td><td></td><td></td><td>KES 620,000</td></tr>
-        <tr><td>Graduation Fee</td><td></td><td></td><td>8,000</td><td></td><td></td><td></td><td>KES 8,000</td></tr>
-        <tr><td><strong>Total ANU (KES)</strong></td><td>155,000</td><td>155,000</td><td>155,000</td><td>163,000</td><td></td><td></td><td>KES 628,000</td></tr>
-        <tr><td><strong>Total ANU (USD)</strong></td><td>$1,240</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td></td><td></td><td>$5,024</td></tr>
-        <tr><td><strong>Total Training (USD)</strong></td><td>$8,700</td><td>$1,240</td><td>$1,240</td><td>$1,304</td><td>$12,020</td><td>$11,940</td><td>$36,444</td></tr>
-        <tr><td>Computer</td><td>60,000</td><td></td><td>60,000</td><td></td><td>60,000</td><td></td><td>KES 180,000</td></tr>
-        <tr><td>Phone</td><td>30,000</td><td></td><td></td><td>30,000</td><td></td><td></td><td>KES 60,000</td></tr>
-        <tr><td><strong>Total Equipment (KES)</strong></td><td>90,000</td><td></td><td>60,000</td><td>30,000</td><td>60,000</td><td></td><td>KES 240,000</td></tr>
-        <tr><td><strong>Total Equipment (USD)</strong></td><td>$720</td><td></td><td>$480</td><td>$240</td><td>$480</td><td></td><td>$1,920</td></tr>
-        <tr><td>Transport (Local)</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>144,000</td><td>KES 864,000</td></tr>
-        <tr><td>WiFi</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>3,600</td><td>KES 21,600</td></tr>
-        <tr><td>Salary</td><td>840,000</td><td>882,000</td><td>926,100</td><td>973,200</td><td>1,021,860</td><td>1,080,000</td><td>KES 5,723,160</td></tr>
-        <tr><td>Health Insurance</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>60,000</td><td>KES 360,000</td></tr>
-        <tr class="category-total"><td><strong>Total Personnel (KES)</strong></td><td>1,047,600</td><td>1,089,600</td><td>1,133,700</td><td>1,180,800</td><td>1,229,460</td><td>1,287,600</td><td>KES 6,968,760</td></tr>
-        <tr class="category-total"><td><strong>Total Personnel (USD)</strong></td><td>$8,381</td><td>$8,717</td><td>$9,070</td><td>$9,446</td><td>$9,836</td><td>$10,301</td><td>$55,750</td></tr>
-        <tr class="category-total"><td><strong>Total (USD)</strong></td><td>$17,801</td><td>$9,957</td><td>$10,790</td><td>$10,990</td><td>$22,336</td><td>$22,241</td><td>$94,114</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- DONATE -->
+  <section id="donate">
+    <h2>Ways to Donate</h2>
+    <p>Use the channels below to support the Supyire project. Images below are placeholders — add real screenshots to /images/.</p>
 
-  <!-- ===== ROBERT CARLSON ===== -->
-  <div class="table-container">
-    <h3>Robert Carlson</h3>
-    <table>
-      <thead>
-        <tr><th>Item</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Travel (USD)</td><td>1,200</td><td>1,200</td><td>1,400</td><td>1,400</td><td>1,500</td><td>1,500</td><td>8,200</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <h3>1. International Generosity (TrustBridge Global)</h3>
+    <p>Visit <a href="https://internationalgenerosity.com" target="_blank" rel="noopener">internationalgenerosity.com</a>, click Donate Now.<br>
+      Select <strong>Africa International University (global) (#TGF243189)</strong> and enter <strong>"Linguistic Project"</strong> in the purpose box.</p>
+    <img src="images/Picture1.jpg" alt="International Generosity screenshot" class="donate-image">
 
-<!-- SUPPORT SECTION -->
-<section id="support">
-  <h2>Support the Project</h2>
-  <p>You can support the Supyire Lexicography Project through prayer or donations.</p>
-  <ul>
-    <li><a href="#prayer" onclick="showSection('prayer')">🙏 Prayer</a></li>
-    <li><a href="#donate" onclick="showSection('donate')">💰 Donate</a></li>
-  </ul>
-  <p>Thank you for your partnership in preserving the Supyire language.</p>
-</section>
+    <h3>2. Christian Leaders for Africa (CLA)</h3>
+    <p>Visit <a href="https://www.clafrica.com" target="_blank" rel="noopener">CLA</a> and choose "Donate to CLA". You can pay via PayPal or credit card.</p>
+    <img src="images/Picture10.jpg" alt="CLA screenshot" class="donate-image">
+    <p>Or send a check to:<br>Christian Leaders for Africa, PO Box 3302, Carmel, IN 46082<br>Write: <em>AIU - Linguistic Project</em></p>
 
-<section id="prayer">
-  <h2>Prayer</h2>
-  <p>Heavenly Father,<br>
-  We thank You for every generous heart and every willing hand that gives to support this mission.<br>
-  Bless each person who sows into this work — may their offering bring hope, light, and transformation to those in need.</p>
-  <p>We pray that You multiply these gifts, O Lord, so that they may go further than we can imagine.<br>
-  Let every coin, every note, and every act of giving become a seed that bears fruit for Your glory.</p>
-  <p>Grant us wisdom to use these resources faithfully, transparency to handle them rightly,<br>
-  and joy in seeing Your purposes fulfilled through our shared effort.</p>
-  <p>In Jesus’ name we pray,<br>
-  <strong>Amen.</strong></p>
-</section>
+    <h3>3. Bank Transfer to AIU (USA donors)</h3>
+    <p>
+      <strong>Bank:</strong> Stanbic Bank<br>
+      <strong>Name:</strong> Africa International University<br>
+      <strong>Account Number:</strong> 0100000200136<br>
+      <strong>SWIFT:</strong> SBICKENX<br>
+      <em>Specify: Linguistic Project</em>
+    </p>
+  </section>
 
-<section id="donate">
-  <h2>Ways to Donate</h2>
-  <p>The following are the various donation channels and step-by-step instructions (images are indicated as placeholders — add your PictureX.jpeg files into the images/ folder):</p>
-
-  <h3>1. International Generosity (TrustBridge Global)</h3>
-  <p>Visit <a href="https://internationalgenerosity.com" target="_blank">internationalgenerosity.com</a>, click on <strong>Donate Now</strong>.<br>
-  <img src="images/Picture1.jpg" alt="International Generosity screenshot" class="donate-image"><br>
-  Select a Charity or Fund, <em>Africa International University (global) (#TGF243189)</em>.<br>
-  <img src="images/Picture2.jpg" alt="International Generosity screenshot" class="donate-image"><br>
-  Select a contribution type and method.<br>
-  Follow the instructions and enter <strong>Linguistic Project</strong> in the Contribution Purpose box.</p>
-
-  <h3>2. Christian Leaders for Africa (CLA)</h3>
-  <p>If you prefer to donate through Christian Leaders for Africa, visit 
-  <a href="https://www.clafrica.com" target="_blank">CLA</a> and click on “Donate to CLA.”<br>
-  <img src="images/Picture10.jpg" alt="CLA screenshot" class="donate-image"><br>
-  You can pay via PayPal or credit card.<br>
-  Or send a check to:<br>
-  Christian Leaders for Africa<br>
-  PO Box 3302,<br>
-  Carmel, IN 46082.<br>
-  Be sure to write on the check: <em>AIU-Linguistic Project</em>.
-  </p>
-
-  <h3>3. Bank Transfer to AIU (USA donors)</h3>
-  <p>
-    <strong>Bank:</strong> Stanbic Bank<br>
-    <strong>Name:</strong> Africa International University<br>
-    <strong>Account Number:</strong> 0100000200136<br>
-    <strong>Swift Code:</strong> SBICKENX<br>
-    <em>In the payment purpose box, specify: Linguistic Project</em>
-  </p>
-</section>
-
-<!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
     <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
 
-    <h3 style="text-align:center;">Feedback</h3>
-    <div style="display:flex; justify-content:center;">
+    <h3 style="text-align:center">Feedback</h3>
+    <div style="display:flex;justify-content:center">
       <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
-        style="width:100%; max-width:500px; padding:20px; background:#f4f4f4; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+            style="width:100%;max-width:560px;background:#fbfbff;padding:18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.06)">
         <label>Your email:<br><input type="email" name="email" required></label><br><br>
         <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-        <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
+        <label>Upload a file (optional):<br><input type="file" name="upload"></label><br><br>
         <button type="submit">Send</button>
       </form>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
-  
   </footer>
- <!-- JAVASCRIPT -->
+
+  <!-- JS: Navigation + Timeline animation -->
   <script>
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      const selected = document.getElementById(id);
-      if (selected) {
-        selected.classList.add("active");
-        selected.scrollIntoView({ behavior: "smooth" });
-      }
+    // Simple section show/hide
+    function showSection(id){
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(el) el.classList.add('active');
+      // smooth scroll to top
+      window.scrollTo({top:0, behavior:'smooth'});
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const home = document.getElementById("home");
-      if (home) home.classList.add("active");
+    // keep Home visible by default
+    document.addEventListener('DOMContentLoaded', () => {
+      const home = document.getElementById('home');
+      if(home) home.classList.add('active');
+
+      // timeline reveal using IntersectionObserver
+      const observerOptions = {threshold: 0.18};
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+    });
+
+    // keyboard accessibility: close menu with escape
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+      }
     });
   </script>
 </body>
-</html>>
+</html>
+
 
 
 
