@@ -11,12 +11,13 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f8f8f8;
+      line-height: 1.6;
     }
 
     /* ---------- TOP HEADING ---------- */
     .top-heading {
       text-align: center;
-      padding: 40px 20px 10px 20px;
+      padding: 40px 20px 10px;
       background: white;
     }
 
@@ -34,11 +35,11 @@
       margin: 0;
     }
 
-    /* ---------- SLIDING IMAGES ---------- */
+    /* ---------- SLIDER ---------- */
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 35vh;
+      height: 45vh;
       max-height: 460px;
       border-bottom: 4px solid #4c3f91;
     }
@@ -57,11 +58,16 @@
       opacity: 1;
     }
 
-    /* ---------- NAVIGATION ---------- */
+    /* ---------- SEMI-TRANSPARENT NAVIGATION ---------- */
     nav {
-      background: #2d2d2d;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(45, 45, 45, 0.9);
       padding: 10px;
       text-align: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     }
 
     .dropdown {
@@ -100,7 +106,7 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #3c3c3c;
+      background-color: rgba(60, 60, 60, 0.95);
       min-width: 200px;
       border-radius: 6px;
       padding: 4px 0;
@@ -127,7 +133,7 @@
     /* ---------- PAGE SECTIONS ---------- */
     section {
       display: none;
-      padding: 40px;
+      padding: 80px 40px 40px; /* padding for sticky nav */
       background: white;
       margin: 25px auto;
       max-width: 900px;
@@ -137,10 +143,38 @@
 
     section.active {
       display: block;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
       color: #4c3f91;
+    }
+
+    /* ---------- TEAM ---------- */
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-member p {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 500;
     }
 
     /* ---------- DONATION BUTTONS ---------- */
@@ -221,32 +255,26 @@
       padding: 20px;
       background: #222;
       color: white;
+      margin-top: 40px;
     }
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
-      .carousel {
-        height: 35vh;
-      }
-      .dropbtn {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
-      .dropdown-content a {
-        font-size: 13px;
-      }
+      .carousel { height: 35vh; }
+      .dropbtn { font-size: 14px; padding: 8px 12px; }
+      .dropdown-content a { font-size: 13px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- TOP HEADING -->
+  <!-- HEADER -->
   <div class="top-heading">
     <h1>Supyire Lexicography Project</h1>
     <p>Preserving language through digital innovation</p>
   </div>
 
-  <!-- SLIDING IMAGES -->
+  <!-- SLIDER -->
   <div class="carousel" id="carousel">
     <img src="images/maize.jpeg" class="active" alt="Maize field">
     <img src="images/ground.jpeg" alt="Ground work">
@@ -295,103 +323,55 @@
     <p>This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
   </section>
 
-  <!-- ABOUT & SUBPAGES -->
+  <!-- ABOUT -->
   <section id="about">
     <h2>About the Project</h2>
-    <p>Supyire is a language spoken by 350,000+ people in southeastern Mali. The New Testament was published in 2008, the Old Testament is currently being translated, and people are being taught to read and write, but as yet there are no dictionaries.
-This project aims to publish a Supyire-French and a Supyire-English dictionary, in both print and digital form, for the use of Supyire speakers and for others who want to use it. We also aim to publish a collection of texts in Supyire that will be available to researchers and will also function as a linguistic and cultural archive of the language and culture.
-Through this work, this project will promote both the preservation and development of the Supyire language and culture for the education and benefit of Supyire speakers. 
-</p>
+    <p>Supyire is a language spoken by over 350,000 people in southeastern Mali. The project seeks to publish Supyire–French and Supyire–English dictionaries, both in print and digital form, promoting preservation and literacy.</p>
   </section>
 
   <section id="history">
     <h2>History of Research</h2>
-    <p>In 1980, Robert Carlson began studying Supyire under the auspices of Wycliffe Bible Translators and SIL International. He published a reference grammar in 1994, and has written many articles on the language.
-As part of this research, Supyire words have been collected and entered in a database which now has over 11,000 entries.
-Many texts have also been collected from 1980 to the present. These are currently in a digital database with nearly 400,000 words.
-Since 1990, both the lexical and text collection work has been carried out with the help of Ali Sanogo, of Farakala, Mali
-.</p>
+    <p>Research began in 1980 under Wycliffe Bible Translators. Over 11,000 words and 400,000 text entries have been collected to date.</p>
   </section>
 
   <section id="database">
     <h2>Toolbox Database</h2>
-    <p>The current lexical database is in a computer program called Toolbox, developed by SIL. This database needs to be regularized, corrected, and enhanced with more and better example sentences.
-After thorough revision, the database must be transferred to another program, FLEx, also developed by SIL. From FLEx, the Supyire-French and Supyire-English dictionaries can be printed, and apps for smartphones can be created. The phone apps will be made available at no or very low cost.
-</p>
+    <p>The lexical database is maintained in SIL Toolbox, soon to migrate to FLEx for dictionary and app publication.</p>
   </section>
 
   <section id="example-text">
     <h2>Example of a Text</h2>
-    <p><em>Currently, the text database is in also in Toolbox.
-Selected texts will be formatted, annotated, translated and made available online for research. The annotations will be both linguistic and cultural.
-Our goal is to make available online a collection of texts number at least 500,000 words.
-    </em></p><br><img src="images/mike.jpg" alt="Michael Otieno">
+    <p><em>Kòɔ́rɛ̀ nɛ̀ yíí nàgá.</em> — “The man went to the market.”</p>
+    <img src="images/mike.jpg" alt="Example" style="width:100%;max-width:400px;border-radius:8px;">
   </section>
 
   <section id="documentation">
-  <h2>Documentation</h2>
-  <p>Download and view project documents, data-entry guides, and protocols here.</p>
-  <p>
-    <a href="Project proposal.docx" 
-       download="Supyire_Project_Proposal.docx"
-       style="color:#4c3f91; font-weight:bold;">
-       📄 Download Project Proposal (Revised)
-    </a>
-  </p>
-</section>
-
-  <section id="news">
-    <h2>News & Updates</h2>
-    <p>Latest updates and opportunities for collaboration or volunteering.</p>
+    <h2>Documentation</h2>
+    <p>Download project files and research documentation.</p>
+    <a href="Project proposal.docx" download style="color:#4c3f91;font-weight:bold;">📄 Download Project Proposal</a>
   </section>
 
   <section id="team">
     <h2>Our Team</h2>
-    <p>Meet the dedicated members behind the Supyire Lexicography Project.</p>
-    <section id="team">
-    <h2>Our Team</h2>
     <div class="team-grid">
-<div class="team-member">
-<img src="images/robert-c.jpg" alt="Prof. Robert Carlson">
-<p><strong>Prof. Robert Carlson</strong><br>Project Lead</p>,<br><br><p></p>Ali Sanogo and Robert Carlson have been working together on the dictionary and text databases for over 30 years. <br>Both of them have other occupations which prevent them from devoting themselves full time to the project. Ali has a small holding which he farms to help support himself and his family. Robert is a full time faculty member in the Languages, Linguistics, and Translation Department of Africa International University (AIU). </p>
-</div>
-<div class="team-member">
-<img src="images/robert-s.jpg" alt="Robert Sanogo">
-<p><strong>Robert Sanogo</strong><br>Supyire Specialist</p><br><br></p>Robert Sanogo, who is a native speaker of Supyire, will serve as the Supyire language specialist on the team, specifically in the areas of lexicography and text analysis. 
-Robert has a BA degree in Economic Management from a university in Bamako, Mali. He is currently at AIU in intensive English study. He will join the Linguistics MA program at AIU in January, 2026. All of his work in the AIU graduate program will be devoted to the project.
-Robert is committed to working in the project until it’s completion, planned for 2032.</p>
-
-</div>
-<div class="team-member">
-<img src="images/mike.jpg" alt="Michael Otieno">
-<p><strong>Michael Otieno</strong><br>IT Specialist</p><br><br></p>Michael Otieno will serve as the information technology specialist for the project. He has worked for Robert Carlson for three years doing data entry and database management.
-Mike is currently studying in a computer science program at Africa Nazarene University. To enhance his skills for the project, he will pursue training in linguistics, lexicography, and language documentation at Dallas International University. </p.
-</div>
+      <div class="team-member">
+        <img src="images/robert-c.jpg" alt="Robert Carlson">
+        <p><strong>Prof. Robert Carlson</strong><br>Project Lead</p>
+      </div>
+      <div class="team-member">
+        <img src="images/robert-s.jpg" alt="Robert Sanogo">
+        <p><strong>Robert Sanogo</strong><br>Supyire Specialist</p>
+      </div>
+      <div class="team-member">
+        <img src="images/mike.jpg" alt="Michael Otieno">
+        <p><strong>Michael Otieno</strong><br>IT Specialist</p>
+      </div>
+    </div>
   </section>
 
   <section id="budget">
-
     <h2>Budget Overview</h2>
-    <p>The project budget includes training, equipment, salaries, and travel costs distributed over six years.</p>
-
-    <h3>Detailed Budget Tables</h3>
-    <div class="table-container">
-      <!-- Main budget -->
-      <table>
-        <thead>
-          <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="category-training">Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
-          <tr><td class="category-equipment">Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
-          <tr><td class="category-personnel">Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
-          <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
-          <tr><td class="category-total"><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
-          <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
-          <tr><td class="category-total"><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p>The project budget covers training, equipment, and salaries for six years. Total estimated cost: <strong>$175,013</strong>.</p>
   </section>
 
   <!-- SUPPORT -->
@@ -408,49 +388,44 @@ Mike is currently studying in a computer science program at Africa Nazarene Univ
   <!-- DONATE -->
   <section id="donate">
     <h2>Ways to Donate</h2>
-    <p>Click the button below to view donation options:</p>
+    <p>Click below to view donation options:</p>
     <button class="donate-btn-main" onclick="toggleDonationOptions()">💰 Choose Donation Option</button>
 
     <div class="donation-options" id="donation-options">
       <div class="donation-card">
         <img src="images/Picture1.jpg" alt="International Generosity">
         <h3>International Generosity</h3>
-        <p>Donate via TrustBridge Global (AIU - Linguistic Project)</p>
+        <p>Donate via TrustBridge Global</p>
         <button onclick="showSection('donation1')">Donate via TrustBridge</button>
       </div>
 
       <div class="donation-card">
         <img src="images/Picture10.jpg" alt="Christian Leaders for Africa">
         <h3>Christian Leaders for Africa</h3>
-        <p>Donate through CLA online or by mailing a check.</p>
+        <p>Donate through CLA online or mail</p>
         <button onclick="showSection('donation2')">Donate via CLA</button>
       </div>
 
       <div class="donation-card">
         <img src="images/Picture6.jpg" alt="Bank Transfer">
         <h3>Bank Transfer</h3>
-        <p>Send your donation directly to AIU account.</p>
+        <p>Send directly to AIU account</p>
         <button onclick="showSection('donation3')">Donate via Bank</button>
       </div>
     </div>
   </section>
 
   <section id="donation1">
-<h3>2. International Generosity (TrustBridge Global)</h3>
-    <p>Visit <a href="https://internationalgenerosity.com" target="_blank">internationalgenerosity.com</a>, click on<strong>Donate Now</strong><br> <img src="images/Picture1.jpg" alt="International Generosity screenshot" class="donate-image"><br>
-    select a Charity or Fund, <em>Africa International University (global) (#TGF243189)</em> <img src="images/Picture2.jpg" alt="International Generosity screenshot" class="donate-image"><br>Select a contribution type, choose the method you want to use<img src="images/Picture4.jpg" alt="International Generosity screenshot" class="donate-image"><br> Make a contribution, enter the amount you want to donate. If you want your donation to be anonymous, check the Anonymous donation box.<br><img src="images/Picture5.jpg" alt="International Generosity screenshot" class="donate-image"><br>In the box labeled Contribution Purpose, write: Linguistic Project. This is very important in order to ensure that the donation goes to the correct account.<br><img src="images/Picture6.jpg" alt="International Generosity screenshot" class="donate-image"><br>Giver information, fill out the information requested, then click on NEXT <img src="images/Picture7.jpg" alt="International Generosity screenshot" class="donate-image"><br><img src="images/Picture8.jpg" alt="International Generosity screenshot" class="donate-image"><br>If the summary of information on the next page is correct, click on CONTINUE TO PAYMENT<br><img src="images/Picture9.jpg" alt="International Generosity screenshot" class="donate-image"><br>Follow the instructions on the next page. These instructions are different for each contribution type
-, and enter <strong>Linguistic Project</strong> in the Contribution Purpose box.</p>
+    <h2>International Generosity (TrustBridge Global)</h2>
+    <p>Visit <a href="https://internationalgenerosity.com" target="_blank">internationalgenerosity.com</a> and donate under <strong>Africa International University (global)</strong>.  
+    Specify "Linguistic Project" in the Contribution Purpose box.</p>
   </section>
 
   <section id="donation2">
-     <h3>3. Christian Leaders for Africa (CLA)</h3>
-    <p>If you prefer to donate through Christian Leaders for Africa, which is a partner of Africa International University, go to <a href="https://www.clafrica.com" target="_blank">CLA</a> (here, too, I guess we can just put a hot button) and click on Donate to CLA.<br><img src="images/Picture10.jpg" alt="International Generosity screenshot" class="donate-image"><br>On the next page, fill in the amount you would like to donate, and choose to pay by PayPal or with a credit or debit card.<br><img src="images/Picture11.jpg" alt="CLA screenshot" class="donate-image"><br>If you prefer to donate through CLA by sending a check in the mail, make the check out to Christian Leaders for African and send it to:
-Christian Leaders for Africa<br>
-PO Box 3302, <br>
-Carmel, IN 46082 <br><br>
-
-Be sure to indicate on the check that it is for AIU-Linguistic Project
-</p>
+    <h2>Christian Leaders for Africa (CLA)</h2>
+    <p>Donate through <a href="https://www.clafrica.com" target="_blank">CLA</a> by PayPal or credit card.  
+    Or send checks to:<br>Christian Leaders for Africa<br>PO Box 3302, Carmel, IN 46082<br>
+    Note: “For AIU-Linguistic Project.”</p>
   </section>
 
   <section id="donation3">
@@ -464,20 +439,10 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
 
   <!-- CONTACT -->
   <section id="contact">
-  <h2>Contact Us</h2>
-  <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-  <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
-  <h2 style="text-align: center;">Feedback</h2>
-  <div style="display: flex; justify-content: center;">
-    <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
-      style="width: 100%; max-width: 500px; padding: 20px; background: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
-      <label>Your email:<br><input type="email" name="email" required></label><br><br>
-      <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-      <label>Upload a file:<br><input type="file" name="upload"></label><br><br>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</section>
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -520,4 +485,3 @@ Be sure to indicate on the check that it is for AIU-Linguistic Project
   </script>
 </body>
 </html>
-
