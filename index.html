@@ -38,8 +38,8 @@
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 35vh;
-      max-height: 420px;
+      height: 45vh;
+      max-height: 460px;
       border-bottom: 4px solid #4c3f91;
     }
 
@@ -48,16 +48,13 @@
       height: 100%;
       object-fit: cover;
       display: none;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
 
     .carousel img.active {
       display: block;
-      animation: fade 2s ease-in-out;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      opacity: 1;
     }
 
     /* ---------- NAVIGATION ---------- */
@@ -146,6 +143,78 @@
       color: #4c3f91;
     }
 
+    /* ---------- DONATION BUTTONS ---------- */
+    .donate-btn-main {
+      background: #4c3f91;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .donate-btn-main:hover {
+      background: #372e70;
+    }
+
+    .donation-options {
+      display: none;
+      margin-top: 25px;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .donation-options.show {
+      display: flex;
+    }
+
+    .donation-card {
+      background: #f9f8ff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      width: 260px;
+      text-align: center;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .donation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .donation-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .donation-card h3 {
+      color: #4c3f91;
+      margin-top: 10px;
+    }
+
+    .donation-card button {
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: #4c3f91;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .donation-card button:hover {
+      background: #372e70;
+    }
+
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
@@ -177,7 +246,7 @@
     <p>Preserving language through digital innovation</p>
   </div>
 
-  <!-- SLIDING IMAGES (ONLY FOR HOME) -->
+  <!-- SLIDING IMAGES -->
   <div class="carousel" id="carousel">
     <img src="images/maize.jpeg" class="active" alt="Maize field">
     <img src="images/ground.jpeg" alt="Ground work">
@@ -187,12 +256,10 @@
 
   <!-- NAVIGATION -->
   <nav>
-    <!-- HOME MENU -->
     <div class="dropdown">
       <button class="dropbtn" onclick="showSection('home')">🏠 Home</button>
     </div>
 
-    <!-- ABOUT MENU -->
     <div class="dropdown">
       <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
         📘 About <span class="arrow">▾</span>
@@ -201,6 +268,7 @@
         <a href="#about" onclick="showSection('about')">About the Project</a>
         <a href="#history" onclick="showSection('history')">History of Research</a>
         <a href="#database" onclick="showSection('database')">Toolbox Database</a>
+        <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
         <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
         <a href="#news" onclick="showSection('news')">News</a>
         <a href="#team" onclick="showSection('team')">Team</a>
@@ -208,7 +276,6 @@
       </div>
     </div>
 
-    <!-- SUPPORT MENU -->
     <div class="dropdown">
       <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
         💖 Support <span class="arrow">▾</span>
@@ -221,51 +288,52 @@
       </div>
     </div>
   </nav>
+
   <!-- HOME -->
   <section id="home" class="active">
     <h2>Welcome to the Supyire Lexicography Project</h2>
     <p>This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT & SUBPAGES -->
   <section id="about">
     <h2>About the Project</h2>
     <p>The Supyire Lexicography Project focuses on producing dictionaries, databases, and text collections to promote the study and preservation of the Supyire language.</p>
   </section>
 
-  <!-- DATABASE -->
+  <section id="history">
+    <h2>History of Research</h2>
+    <p>The research on Supyire language documentation began decades ago, evolving through collaboration between linguistic experts and field researchers.</p>
+  </section>
+
   <section id="database">
-    <h2>Current Toolbox Database</h2>
+    <h2>Toolbox Database</h2>
     <p>The current Toolbox database includes lexical entries, sample texts, and interlinear glossed examples that feed our dictionaries and corpus.</p>
   </section>
 
-  <!-- DOCUMENTATION -->
+  <section id="example-text">
+    <h2>Example of a Text</h2>
+    <p><em>Kòɔ́rɛ̀ nɛ̀ yíí nàgá.</em><br>man DEF go market — “The man went to the market.”</p>
+  </section>
+
   <section id="documentation">
     <h2>Documentation</h2>
-    <p>Download and view project documents, data-entry guides, and protocols here.</p>
+    <p>Project documents, guides, and reports are available for contributors and partners.</p>
   </section>
 
- <!-- NEWS -->
-  <section id="news" class="reveal">
+  <section id="news">
     <h2>News & Updates</h2>
-    <article>
-      <h3>Volunteer and Donation Appeals</h3>
-      <p><em>October 2025</em></p>
-      <p>We invite individuals and institutions to support the project through prayer, donations, and volunteering (transcription, translation, proofreading).</p>
-      <p>Contact: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-    </article>
+    <p>Latest updates and opportunities for collaboration or volunteering.</p>
   </section>
 
-  <!-- TEAM -->
   <section id="team">
     <h2>Our Team</h2>
     <p>Meet the dedicated members behind the Supyire Lexicography Project.</p>
   </section>
 
-  <!-- BUDGET -->
   <section id="budget">
     <h2>Budget Overview</h2>
-    <p>Details of training, salaries, and travel costs distributed over six years.</p>
+    <p>Details of project expenses including salaries, fieldwork, and travel.</p>
   </section>
 
   <!-- SUPPORT -->
@@ -274,22 +342,65 @@
     <p>You can support the project through prayer or donations.</p>
   </section>
 
+  <section id="prayer">
+    <h2>Prayer</h2>
+    <p>🙏 “Lord, bless every supporter of this mission and multiply their impact.”</p>
+  </section>
+
+  <!-- DONATE -->
+  <section id="donate">
+    <h2>Ways to Donate</h2>
+    <p>Click the button below to view donation options:</p>
+    <button class="donate-btn-main" onclick="toggleDonationOptions()">💰 Choose Donation Option</button>
+
+    <div class="donation-options" id="donation-options">
+      <div class="donation-card">
+        <img src="images/Picture1.jpg" alt="International Generosity">
+        <h3>International Generosity</h3>
+        <p>Donate via TrustBridge Global (AIU - Linguistic Project)</p>
+        <button onclick="showSection('donation1')">Donate via TrustBridge</button>
+      </div>
+
+      <div class="donation-card">
+        <img src="images/Picture10.jpg" alt="Christian Leaders for Africa">
+        <h3>Christian Leaders for Africa</h3>
+        <p>Donate through CLA online or by mailing a check.</p>
+        <button onclick="showSection('donation2')">Donate via CLA</button>
+      </div>
+
+      <div class="donation-card">
+        <img src="images/Picture6.jpg" alt="Bank Transfer">
+        <h3>Bank Transfer</h3>
+        <p>Send your donation directly to AIU account.</p>
+        <button onclick="showSection('donation3')">Donate via Bank</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="donation1">
+    <h2>International Generosity (TrustBridge Global)</h2>
+    <p>Visit <a href="https://internationalgenerosity.com" target="_blank">internationalgenerosity.com</a> and select <em>Africa International University (#TGF243189)</em>. Specify “Linguistic Project”.</p>
+  </section>
+
+  <section id="donation2">
+    <h2>Christian Leaders for Africa (CLA)</h2>
+    <p>Go to <a href="https://www.clafrica.com" target="_blank">clafrica.com</a> → Donate → “AIU-Linguistic Project”.</p>
+  </section>
+
+  <section id="donation3">
+    <h2>Bank Transfer</h2>
+    <p><strong>Bank:</strong> Stanbic Bank<br>
+    <strong>Account Name:</strong> Africa International University<br>
+    <strong>Account No:</strong> 0100000200136<br>
+    <strong>SWIFT:</strong> SBICKENX<br>
+    <em>Specify: Linguistic Project</em></p>
+  </section>
+
   <!-- CONTACT -->
-  <section id="contact" class="reveal">
+  <section id="contact">
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
-
-    <h3 style="text-align:center">Feedback</h3>
-    <div style="display:flex;justify-content:center">
-      <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
-            style="width:100%;max-width:560px;background:#fbfbff;padding:18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.06)">
-        <label>Your email:<br><input type="email" name="email" required></label><br><br>
-        <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-        <label>Upload a file (optional):<br><input type="file" name="upload"></label><br><br>
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    <p>Phone: +254 714 308 167</p>
   </section>
 
   <!-- FOOTER -->
@@ -299,22 +410,37 @@
 
   <!-- SCRIPT -->
   <script>
-    // Show only the selected section
     function showSection(id) {
       document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       window.scrollTo(0, 0);
     }
 
-    // Carousel image rotation
+    function toggleDropdown(menuId, button) {
+      const menu = document.getElementById(menuId);
+      const arrow = button.querySelector(".arrow");
+      document.querySelectorAll(".dropdown-content").forEach(m => {
+        if (m !== menu) m.classList.remove("show");
+      });
+      document.querySelectorAll(".arrow").forEach(a => {
+        if (a !== arrow) a.classList.remove("rotate");
+      });
+      menu.classList.toggle("show");
+      arrow.classList.toggle("rotate");
+    }
+
+    function toggleDonationOptions() {
+      document.getElementById("donation-options").classList.toggle("show");
+    }
+
+    // Slow slideshow
     const slides = document.querySelectorAll(".carousel img");
     let index = 0;
     setInterval(() => {
       slides[index].classList.remove("active");
       index = (index + 1) % slides.length;
       slides[index].classList.add("active");
-    }, 4000);
+    }, 8000);
   </script>
 </body>
 </html>
-
