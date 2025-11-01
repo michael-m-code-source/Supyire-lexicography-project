@@ -519,20 +519,73 @@
     <p>We pray that You multiply these gifts, O Lord, so that they may go further than we can imagine. Grant us wisdom to use resources faithfully and transparency to steward them well. In Jesus' name, Amen.</p>
   </section>
 
-  <!-- DONATE -->
-  <section id="donate" class="reveal">
-    <h2>Ways to Donate</h2>
-    <h3>1. International Generosity (TrustBridge Global)</h3>
-    <p>Visit <a href="https://internationalgenerosity.com" target="_blank" rel="noopener">internationalgenerosity.com</a>, click Donate Now. Select <strong>Africa International University (global) (#TGF243189)</strong> and enter <strong>"Linguistic Project"</strong> in the purpose box.</p>
-    <img src="images/Picture1.jpg" alt="International Generosity screenshot" class="donate-image">
+ <!-- ========== SUPPORT THE PROJECT SECTION ========== -->
+<section id="support" style="padding:40px;background:white;margin:25px auto;max-width:900px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+  <h2 style="color:#4c3f91;text-align:center;">How to Support the Project</h2>
+  <p style="text-align:center;font-size:1.1em;color:#333;">
+    You can support the Supyire Lexicography Project through <strong>donations</strong> and <strong>prayer</strong>.<br>
+    Click the button below to view donation options.
+  </p>
 
-    <h3>2. Christian Leaders for Africa (CLA)</h3>
-    <p>Visit <a href="https://www.clafrica.com" target="_blank" rel="noopener">CLA</a> and choose "Donate to CLA". You can pay via PayPal or credit card. Or send a check to: Christian Leaders for Africa, PO Box 3302, Carmel, IN 46082 (write: AIU - Linguistic Project).</p>
-    <img src="images/Picture10.jpg" alt="CLA screenshot" class="donate-image">
+  <!-- DONATE BUTTON -->
+  <div style="text-align:center;margin-top:25px;">
+    <button id="donateBtn" 
+      style="background-color:#4c3f91;color:white;padding:14px 30px;border:none;
+             border-radius:8px;font-size:17px;font-weight:600;cursor:pointer;
+             transition:background 0.3s, transform 0.2s;">
+      💝 Donate Now
+    </button>
+  </div>
 
-    <h3>3. Bank Transfer to AIU (USA donors)</h3>
-    <p><strong>Bank:</strong> Stanbic Bank<br><strong>Name:</strong> Africa International University<br><strong>Account Number:</strong> 0100000200136<br><strong>SWIFT:</strong> SBICKENX<br><em>Specify: Linguistic Project</em></p>
-  </section>
+  <!-- HIDDEN DONATION OPTIONS -->
+  <div id="donateOptions" 
+       style="display:none;margin-top:30px;background:#f8f8ff;padding:25px;border-radius:10px;
+              box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+    <h3 style="color:#4c3f91;text-align:center;">Donation Options</h3>
+    <ol style="line-height:1.8;color:#333;">
+      <li>
+        <strong>International Generosity (TrustBridge Global)</strong><br>
+        Visit <a href="https://www.internationalgenerosity.com" target="_blank" style="color:#4c3f91;">internationalgenerosity.com</a><br>
+        Select <em>Africa International University (global) #TGF243189</em><br>
+        In the <strong>Contribution Purpose</strong> box, write: <strong>Linguistic Project</strong>.
+      </li>
+      <br>
+      <li>
+        <strong>Christian Leaders for Africa (CLA)</strong><br>
+        Visit <a href="https://www.clafrica.com" target="_blank" style="color:#4c3f91;">clafrica.com</a><br>
+        Click <em>Donate to CLA</em> and specify: <strong>AIU–Linguistic Project</strong>.<br>
+        You can also mail a check to:<br>
+        <em>Christian Leaders for Africa,<br>
+        PO Box 3302, Carmel, IN 46082.</em>
+      </li>
+      <br>
+      <li>
+        <strong>Other Countries</strong><br>
+        If you are outside the USA, please email us at 
+        <a href="mailto:supyire.lexicography@gmail.com" style="color:#4c3f91;">supyire.lexicography@gmail.com</a> 
+        for guidance on international donations.
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+  // Smooth show/hide animation for donation options
+  const btn = document.getElementById("donateBtn");
+  const options = document.getElementById("donateOptions");
+
+  btn.addEventListener("click", () => {
+    if (options.style.display === "none" || options.style.display === "") {
+      options.style.display = "block";
+      btn.style.backgroundColor = "#372f73";
+      btn.style.transform = "scale(0.98)";
+      setTimeout(() => btn.style.transform = "scale(1)", 200);
+    } else {
+      options.style.display = "none";
+      btn.style.backgroundColor = "#4c3f91";
+    }
+  });
+</script>
 
   <!-- CONTACT -->
   <section id="contact" class="reveal">
@@ -632,4 +685,5 @@
   </script>
 </body>
 </html>
+
 
