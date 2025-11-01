@@ -34,12 +34,12 @@
       margin: 0;
     }
 
-    /* ---------- SLIDING IMAGES (CAROUSEL) ---------- */
+    /* ---------- SLIDING IMAGES ---------- */
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 45vh; /* reduced height */
-      max-height: 500px;
+      height: 35vh;
+      max-height: 420px;
       border-bottom: 4px solid #4c3f91;
     }
 
@@ -70,7 +70,7 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      margin: 0 6px;
+      margin: 0 10px;
     }
 
     .dropbtn {
@@ -82,26 +82,42 @@
       font-size: 15px;
       border-radius: 6px;
       transition: background 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .dropbtn:hover {
       background-color: #5a4bb1;
     }
 
+    .arrow {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .arrow.rotate {
+      transform: rotate(180deg);
+    }
+
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #3c3c3c;
-      min-width: 180px;
+      min-width: 200px;
       border-radius: 6px;
       padding: 4px 0;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       z-index: 2;
     }
 
+    .dropdown-content.show {
+      display: block;
+    }
+
     .dropdown-content a {
       color: white;
-      padding: 8px 12px;
+      padding: 10px 14px;
       text-decoration: none;
       display: block;
       font-size: 14px;
@@ -109,10 +125,6 @@
 
     .dropdown-content a:hover {
       background-color: #4c3f91;
-    }
-
-    .dropdown:hover > .dropdown-content {
-      display: block;
     }
 
     /* ---------- PAGE SECTIONS ---------- */
@@ -149,7 +161,7 @@
       }
       .dropbtn {
         font-size: 14px;
-        padding: 8px 10px;
+        padding: 8px 12px;
       }
       .dropdown-content a {
         font-size: 13px;
@@ -175,22 +187,40 @@
 
   <!-- NAVIGATION -->
   <nav>
+    <!-- HOME MENU -->
     <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
-        <a href="#home" onclick="showSection('home')">Home</a>
-        <a href="#about" onclick="showSection('about')">About</a>
-        <a href="#database" onclick="showSection('database')">Database</a>
+      <button class="dropbtn" onclick="showSection('home')">🏠 Home</button>
+    </div>
+
+    <!-- ABOUT MENU -->
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
+        📘 About <span class="arrow">▾</span>
+      </button>
+      <div id="about-menu" class="dropdown-content">
+        <a href="#about" onclick="showSection('about')">About the Project</a>
+        <a href="#history" onclick="showSection('history')">History of Research</a>
+        <a href="#database" onclick="showSection('database')">Toolbox Database</a>
         <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
         <a href="#news" onclick="showSection('news')">News</a>
         <a href="#team" onclick="showSection('team')">Team</a>
         <a href="#budget" onclick="showSection('budget')">Budget</a>
-        <a href="#support" onclick="showSection('support')">Support</a>
+      </div>
+    </div>
+
+    <!-- SUPPORT MENU -->
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+        💖 Support <span class="arrow">▾</span>
+      </button>
+      <div id="support-menu" class="dropdown-content">
+        <a href="#support" onclick="showSection('support')">Support Overview</a>
+        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+        <a href="#donate" onclick="showSection('donate')">Donate</a>
         <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
   </nav>
-
   <!-- HOME -->
   <section id="home" class="active">
     <h2>Welcome to the Supyire Lexicography Project</h2>
@@ -215,10 +245,15 @@
     <p>Download and view project documents, data-entry guides, and protocols here.</p>
   </section>
 
-  <!-- NEWS -->
-  <section id="news">
+ <!-- NEWS -->
+  <section id="news" class="reveal">
     <h2>News & Updates</h2>
-    <p>Find out the latest progress, volunteer opportunities, and project announcements here.</p>
+    <article>
+      <h3>Volunteer and Donation Appeals</h3>
+      <p><em>October 2025</em></p>
+      <p>We invite individuals and institutions to support the project through prayer, donations, and volunteering (transcription, translation, proofreading).</p>
+      <p>Contact: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    </article>
   </section>
 
   <!-- TEAM -->
@@ -240,10 +275,21 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class="reveal">
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-    <p>Phone: +254 714 308 167</p>
+    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+
+    <h3 style="text-align:center">Feedback</h3>
+    <div style="display:flex;justify-content:center">
+      <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data"
+            style="width:100%;max-width:560px;background:#fbfbff;padding:18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.06)">
+        <label>Your email:<br><input type="email" name="email" required></label><br><br>
+        <label>Your message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+        <label>Upload a file (optional):<br><input type="file" name="upload"></label><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -271,3 +317,4 @@
   </script>
 </body>
 </html>
+
