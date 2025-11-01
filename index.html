@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Supyire Lexicography Project</title>
+
   <style>
+    /* ---------- GENERAL ---------- */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -14,7 +16,7 @@
     /* ---------- TOP HEADING ---------- */
     .top-heading {
       text-align: center;
-      padding: 30px 20px;
+      padding: 40px 20px 10px 20px;
       background: white;
     }
 
@@ -32,37 +34,30 @@
       margin: 0;
     }
 
-    /* ---------- SLIDESHOW ---------- */
-    .slideshow-container {
+    /* ---------- SLIDING IMAGES (CAROUSEL) ---------- */
+    .carousel {
       position: relative;
-      max-width: 100%;
-      height: 70vh;
       overflow: hidden;
+      height: 45vh; /* reduced height */
+      max-height: 500px;
+      border-bottom: 4px solid #4c3f91;
     }
 
-    .slide {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide img {
+    .carousel img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: none;
     }
 
-    .slide-text {
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 1.6em;
-      font-weight: 600;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      background: rgba(0,0,0,0.3);
-      padding: 10px 0;
+    .carousel img.active {
+      display: block;
+      animation: fade 2s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     /* ---------- NAVIGATION ---------- */
@@ -75,13 +70,13 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      margin: 0 10px;
+      margin: 0 6px;
     }
 
     .dropbtn {
       background-color: #4c3f91;
       color: white;
-      padding: 10px 16px;
+      padding: 10px 18px;
       border: none;
       cursor: pointer;
       font-size: 15px;
@@ -97,7 +92,7 @@
       display: none;
       position: absolute;
       background-color: #3c3c3c;
-      min-width: 200px;
+      min-width: 180px;
       border-radius: 6px;
       padding: 4px 0;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -106,10 +101,10 @@
 
     .dropdown-content a {
       color: white;
-      padding: 10px 14px;
+      padding: 8px 12px;
       text-decoration: none;
       display: block;
-      text-align: left;
+      font-size: 14px;
     }
 
     .dropdown-content a:hover {
@@ -120,7 +115,7 @@
       display: block;
     }
 
-    /* ---------- SECTIONS ---------- */
+    /* ---------- PAGE SECTIONS ---------- */
     section {
       display: none;
       padding: 40px;
@@ -149,97 +144,130 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
+      .carousel {
+        height: 35vh;
+      }
       .dropbtn {
-        font-size: 13px;
+        font-size: 14px;
         padding: 8px 10px;
       }
-
-      .slide-text {
-        font-size: 1.2em;
-        bottom: 20px;
+      .dropdown-content a {
+        font-size: 13px;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- TOP HEADING -->
   <div class="top-heading">
     <h1>Supyire Lexicography Project</h1>
-    <p>Preserving the Supyire language through digital innovation</p>
+    <p>Preserving language through digital innovation</p>
   </div>
 
-  <!-- SLIDESHOW ON HOME PAGE -->
-  <div class="slideshow-container" id="slideshow">
-    <div class="slide fade"><img src="images/maize.jpeg" alt="Maize"><div class="slide-text">Preserving Culture Through Words</div></div>
-    <div class="slide fade"><img src="images/ground.jpeg" alt="Ground"><div class="slide-text">Connecting Language and Heritage</div></div>
-    <div class="slide fade"><img src="images/lighter.jpg" alt="Lighter"><div class="slide-text">Illuminating Supyire Knowledge</div></div>
-    <div class="slide fade"><img src="images/house.jpeg" alt="House"><div class="slide-text">Building a Legacy of Language</div></div>
+  <!-- SLIDING IMAGES (ONLY FOR HOME) -->
+  <div class="carousel" id="carousel">
+    <img src="images/maize.jpeg" class="active" alt="Maize field">
+    <img src="images/ground.jpeg" alt="Ground work">
+    <img src="images/lighter.jpg" alt="Village light">
+    <img src="images/house.jpeg" alt="Traditional house">
   </div>
 
-  <!-- NAVIGATION MENU -->
+  <!-- NAVIGATION -->
   <nav>
     <div class="dropdown">
       <button class="dropbtn">☰ Menu</button>
       <div class="dropdown-content">
         <a href="#home" onclick="showSection('home')">Home</a>
         <a href="#about" onclick="showSection('about')">About</a>
-        <a href="#history" onclick="showSection('history')">History of Research</a>
-        <a href="#database" onclick="showSection('database')">Current Toolbox Database</a>
-        <a href="#example" onclick="showSection('example')">Example of a Text</a>
+        <a href="#database" onclick="showSection('database')">Database</a>
         <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
         <a href="#news" onclick="showSection('news')">News</a>
         <a href="#team" onclick="showSection('team')">Team</a>
         <a href="#budget" onclick="showSection('budget')">Budget</a>
-        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-        <a href="#donate" onclick="showSection('donate')">Donate</a>
+        <a href="#support" onclick="showSection('support')">Support</a>
         <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- HOME SECTION -->
+  <!-- HOME -->
   <section id="home" class="active">
     <h2>Welcome to the Supyire Lexicography Project</h2>
-    <p>The Supyire Lexicography Project is committed to documenting and preserving the Supyire language through dictionary development, linguistic research, and digital tools for education and culture.</p>
+    <p>This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
   </section>
 
-  <!-- OTHER SECTIONS -->
-  <section id="about"><h2>About</h2><p>This project aims to create a comprehensive Supyire dictionary and text database to aid linguists and communities.</p></section>
-  <section id="history"><h2>History of Research</h2><p>Research on Supyire has been ongoing since the 1980s, with contributions from dedicated linguists and communities.</p></section>
-  <section id="database"><h2>Current Toolbox Database</h2><p>The database stores lexical and grammatical data for digital analysis and publication.</p></section>
-  <section id="example"><h2>Example of a Text</h2><p><em>Kòɔ́rɛ̀ nɛ̀ yíí nàgá.</em> — “The man went to the market.”</p></section>
-  <section id="documentation"><h2>Documentation</h2><p>Access guides and project documentation here.</p></section>
-  <section id="news"><h2>News</h2><p>Volunteer and donation appeals, and updates on Supyire work.</p></section>
-  <section id="team"><h2>Team</h2><p>Meet the contributors of the Supyire Lexicography Project.</p></section>
-  <section id="budget"><h2>Budget</h2><p>Detailed financial overview of the project’s operations.</p></section>
-  <section id="prayer"><h2>Prayer</h2><p>Join us in prayer to support the mission and work of language preservation.</p></section>
-  <section id="donate"><h2>Donate</h2><p>Learn how you can contribute financially or through volunteer work.</p></section>
-  <section id="contact"><h2>Contact Us</h2><p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a><br>Phone: +254 714 308 167</p></section>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About the Project</h2>
+    <p>The Supyire Lexicography Project focuses on producing dictionaries, databases, and text collections to promote the study and preservation of the Supyire language.</p>
+  </section>
 
+  <!-- DATABASE -->
+  <section id="database">
+    <h2>Current Toolbox Database</h2>
+    <p>The current Toolbox database includes lexical entries, sample texts, and interlinear glossed examples that feed our dictionaries and corpus.</p>
+  </section>
+
+  <!-- DOCUMENTATION -->
+  <section id="documentation">
+    <h2>Documentation</h2>
+    <p>Download and view project documents, data-entry guides, and protocols here.</p>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2>News & Updates</h2>
+    <p>Find out the latest progress, volunteer opportunities, and project announcements here.</p>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <h2>Our Team</h2>
+    <p>Meet the dedicated members behind the Supyire Lexicography Project.</p>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget">
+    <h2>Budget Overview</h2>
+    <p>Details of training, salaries, and travel costs distributed over six years.</p>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support">
+    <h2>Support the Project</h2>
+    <p>You can support the project through prayer or donations.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    <p>Phone: +254 714 308 167</p>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   </footer>
 
+  <!-- SCRIPT -->
   <script>
-    // ---------- SLIDESHOW ----------
-    let slideIndex = 0;
-    showSlides();
-    function showSlides() {
-      let slides = document.querySelectorAll(".slide");
-      slides.forEach(slide => slide.style.display = "none");
-      slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 4000); // change image every 4 seconds
+    // Show only the selected section
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo(0, 0);
     }
 
-    // ---------- SECTION NAVIGATION ----------
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      // Hide slideshow if not Home
-      document.getElementById("slideshow").style.display = id === "home" ? "block" : "none";
-    }
+    // Carousel image rotation
+    const slides = document.querySelectorAll(".carousel img");
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }, 4000);
   </script>
 </body>
 </html>
