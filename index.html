@@ -280,6 +280,9 @@
     <img src="images/ground.jpeg" alt="Ground work">
     <img src="images/lighter.jpg" alt="Village light">
     <img src="images/house.jpeg" alt="Traditional house">
+    <img src="images/people.jpeg" alt="Traditional house">
+    <img src="images/people1.jpeg" alt="Traditional house">
+    <img src="images/people2.jpeg" alt="Traditional house">
   </div>
 
   <!-- NAVIGATION -->
@@ -345,7 +348,7 @@ Since 1990, both the lexical and text collection work has been carried out with 
     <h2>Toolbox Database</h2>
     <p>The current lexical database is in a computer program called Toolbox, developed by SIL. This database needs to be regularized, corrected, and enhanced with more and better example sentences.
 After thorough revision, the database must be transferred to another program, FLEx, also developed by SIL. From FLEx, the Supyire-French and Supyire-English dictionaries can be printed, and apps for smartphones can be created. The phone apps will be made available at no or very low cost.
-</p>
+</p><br><br><img src="images/text.jPG" alt="Example" style="width:100%;max-width:400px;border-radius:8px;">
   </section>
 
   <section id="example-text">
@@ -354,7 +357,7 @@ After thorough revision, the database must be transferred to another program, FL
 Selected texts will be formatted, annotated, translated and made available online for research. The annotations will be both linguistic and cultural.
 Our goal is to make available online a collection of texts number at least 500,000 words.
 </p>
-    <img src="images/text.jpg" alt="Example" style="width:100%;max-width:400px;border-radius:8px;">
+    <img src="images/screenshot of a proverb.jpg" alt="Example" style="width:100%;max-width:400px;border-radius:8px;">
   </section>
 
   <section id="documentation">
@@ -422,30 +425,201 @@ Our goal is to make available online a collection of texts number at least 500,0
   }
 </style>
 
-<section id="budget">
-    <h2>Budget Overview</h2>
-    <p>The project budget includes training, equipment, salaries, and travel costs distributed over six years.</p>
+<!-- ==================  BUDGET SECTION  ================== -->
+<section id="budget" class="reveal">
+  <h2>Budget Overview</h2>
+  <p>
+    The project budget covers training, equipment, personnel, and travel costs distributed over six years.
+    The tables below summarize all expenditures and totals.
+  </p>
 
-    <h3>Detailed Budget Tables</h3>
+  <h3>Detailed Budget Tables</h3>
 
-    <div class="table-container">
-      <!-- Main budget -->
-      <table>
-        <thead>
-          <tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th><th>Year 6</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="category-training">Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td><td>47,878</td></tr>
-          <tr><td class="category-equipment">Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td><td>3,840</td></tr>
-          <tr><td class="category-personnel">Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td><td>95,169</td></tr>
-          <tr><td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td><td>12,216</td></tr>
-          <tr><td class="category-total"><strong>Total Expenses</strong></td><td colspan="6"></td><td><strong>159,103</strong></td></tr>
-          <tr><td>Admin (10%)</td><td colspan="6"></td><td>15,910</td></tr>
-          <tr><td class="category-total"><strong>Grand Total</strong></td><td colspan="6"></td><td><strong>175,013</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <div class="table-container">
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Year 1</th>
+          <th>Year 2</th>
+          <th>Year 3</th>
+          <th>Year 4</th>
+          <th>Year 5</th>
+          <th>Year 6</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="category-training">
+          <td>Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td>
+          <td class="count" data-value="47878">0</td>
+        </tr>
+        <tr class="category-equipment">
+          <td>Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td>
+          <td class="count" data-value="3840">0</td>
+        </tr>
+        <tr class="category-personnel">
+          <td>Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td>
+          <td class="count" data-value="95169">0</td>
+        </tr>
+        <tr>
+          <td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td>
+          <td class="count" data-value="12216">0</td>
+        </tr>
+        <tr class="category-total">
+          <td><strong>Total Expenses</strong></td><td colspan="6"></td>
+          <td class="count" data-value="159103"><strong>0</strong></td>
+        </tr>
+        <tr>
+          <td>Admin (10%)</td><td colspan="6"></td><td class="count" data-value="15910">0</td>
+        </tr>
+        <tr class="grand-total">
+          <td><strong>Grand Total</strong></td><td colspan="6"></td>
+          <td class="count" data-value="175013"><strong>0</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===============  STYLES FOR BUDGET TABLE  =============== -->
+<style>
+:root {
+  --primary: #4c3f91;
+}
+
+/* ---------- Budget Table Modern Styling ---------- */
+.table-container {
+  margin: 25px 0;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  animation: fadeUp 0.8s ease both;
+}
+
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.budget-table thead {
+  background: linear-gradient(90deg, #4c3f91, #6b58c2);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: bold;
+}
+
+.budget-table th, .budget-table td {
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.budget-table tbody tr:nth-child(even) {
+  background-color: #f7f5ff;
+}
+
+.budget-table tbody tr:hover {
+  background: #ede7ff;
+  transition: 0.3s ease;
+}
+
+.category-training td:first-child {
+  color: #4b0082;
+  font-weight: 600;
+}
+
+.category-equipment td:first-child {
+  color: #008080;
+  font-weight: 600;
+}
+
+.category-personnel td:first-child {
+  color: #b23b3b;
+  font-weight: 600;
+}
+
+.category-total td {
+  background-color: #f2ecff;
+  font-weight: 700;
+  color: #222;
+}
+
+.grand-total td {
+  background: linear-gradient(90deg, #4c3f91, #6b58c2);
+  color: white;
+  font-weight: 800;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .budget-table th, .budget-table td {
+    padding: 10px 6px;
+    font-size: 0.85rem;
+  }
+}
+</style>
+
+<!-- ===============  COUNT-UP ANIMATION SCRIPT  =============== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count");
+  let counted = false;
+
+  const animateCount = (el, target) => {
+    let start = 0;
+    const duration = 1500;
+    const stepTime = 15;
+    const increment = target / (duration / stepTime);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        start = target;
+        clearInterval(timer);
+        el.classList.add('glow'); // add glow when finished
+      }
+      el.textContent = Math.floor(start).toLocaleString();
+    }, stepTime);
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !counted) {
+        counters.forEach(counter => {
+          const target = +counter.getAttribute("data-value");
+          animateCount(counter, target);
+        });
+        counted = true;
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const budgetTable = document.querySelector("#budget");
+  if (budgetTable) observer.observe(budgetTable);
+});
+</script>
+
+<style>
+/* subtle glow when a number finishes counting */
+.glow {
+  animation: glowPulse 1.5s ease-in-out 1;
+}
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 0px rgba(255,255,255,0); }
+  50% { text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+  100% { text-shadow: 0 0 0px rgba(255,255,255,0); }
+}
+</style>
 
   <!-- SUPPORT -->
   <section id="support">
@@ -656,6 +830,7 @@ Our goal is to make available online a collection of texts number at least 500,0
   </script>
 </body>
 </html>
+
 
 
 
