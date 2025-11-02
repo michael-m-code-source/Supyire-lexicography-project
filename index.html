@@ -6,7 +6,6 @@
   <title>Supyire Lexicography Project</title>
 
   <style>
-    /* ---------- GENERAL ---------- */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -58,7 +57,7 @@
       opacity: 1;
     }
 
-    /* ---------- SEMI-TRANSPARENT NAVIGATION ---------- */
+    /* ---------- NAVIGATION ---------- */
     nav {
       position: sticky;
       top: 0;
@@ -130,10 +129,10 @@
       background-color: #4c3f91;
     }
 
-    /* ---------- PAGE SECTIONS ---------- */
+    /* ---------- SECTIONS ---------- */
     section {
       display: none;
-      padding: 80px 40px 40px; /* padding for sticky nav */
+      padding: 80px 40px 40px;
       background: white;
       margin: 25px auto;
       max-width: 900px;
@@ -177,78 +176,6 @@
       font-weight: 500;
     }
 
-    /* ---------- DONATION BUTTONS ---------- */
-    .donate-btn-main {
-      background: #4c3f91;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .donate-btn-main:hover {
-      background: #372e70;
-    }
-
-    .donation-options {
-      display: none;
-      margin-top: 25px;
-      gap: 25px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .donation-options.show {
-      display: flex;
-    }
-
-    .donation-card {
-      background: #f9f8ff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      width: 260px;
-      text-align: center;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .donation-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .donation-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .donation-card h3 {
-      color: #4c3f91;
-      margin-top: 10px;
-    }
-
-    .donation-card button {
-      margin-top: 12px;
-      padding: 10px 16px;
-      background: #4c3f91;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .donation-card button:hover {
-      background: #372e70;
-    }
-
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
@@ -258,7 +185,6 @@
       margin-top: 40px;
     }
 
-    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
       .carousel { height: 35vh; }
       .dropbtn { font-size: 14px; padding: 8px 12px; }
@@ -274,15 +200,13 @@
     <p>Preserving language through digital innovation</p>
   </div>
 
-  <!-- SLIDER -->
+  <!-- SLIDER (HOME PAGE ONLY) -->
   <div class="carousel" id="carousel">
     <img src="images/maize.jpeg" class="active" alt="Maize field">
     <img src="images/ground.jpeg" alt="Ground work">
     <img src="images/lighter.jpg" alt="Village light">
     <img src="images/house.jpeg" alt="Traditional house">
-    <img src="images/people.jpeg" alt="Traditional house">
-    <img src="images/people1.jpeg" alt="Traditional house">
-    <img src="images/people2.jpeg" alt="Traditional house">
+    <img src="images/people.jpeg" alt="Community gathering">
   </div>
 
   <!-- NAVIGATION -->
@@ -298,23 +222,7 @@
       <div id="about-menu" class="dropdown-content">
         <a href="#about" onclick="showSection('about')">About the Project</a>
         <a href="#history" onclick="showSection('history')">History of Research</a>
-        <a href="#database" onclick="showSection('database')">Toolbox Database</a>
-        <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
-        <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
-        <a href="#news" onclick="showSection('news')">News</a>
         <a href="#team" onclick="showSection('team')">Team</a>
-        <a href="#budget" onclick="showSection('budget')">Budget</a>
-      </div>
-    </div>
-
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
-        💖 Support <span class="arrow">▾</span>
-      </button>
-      <div id="support-menu" class="dropdown-content">
-        <a href="#support" onclick="showSection('support')">Support Overview</a>
-        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-        <a href="#donate" onclick="showSection('donate')">Donate</a>
         <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
@@ -357,7 +265,8 @@ After thorough revision, the database must be transferred to another program, FL
 Selected texts will be formatted, annotated, translated and made available online for research. The annotations will be both linguistic and cultural.
 Our goal is to make available online a collection of texts number at least 500,000 words.
 </p>
-    <img src="images/screenshot of a proverb.jpg" alt="Example" style="width:100%;max-width:400px;border-radius:8px;">
+   <img src="images/screenshot of a proverb.jpg" alt="Example"
+     style="width:900px;border-radius:12px;display:block;margin:auto;">
   </section>
 
   <section id="documentation">
@@ -826,10 +735,45 @@ document.addEventListener("DOMContentLoaded", () => {
       slides[index].classList.remove("active");
       index = (index + 1) % slides.length;
       slides[index].classList.add("active");
-    }, 8000);
+    }, 8000);function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      const section = document.getElementById(id);
+      if (section) section.classList.add('active');
+
+      // show/hide carousel
+      const carousel = document.getElementById('carousel');
+      if (carousel) {
+        if (id === 'home') {
+          carousel.style.display = 'block';
+        } else {
+          carousel.style.display = 'none';
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleDropdown(menuId, button) {
+      document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+      document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+      const menu = document.getElementById(menuId);
+      const arrow = button.querySelector('.arrow');
+      if (menu) menu.classList.toggle('show');
+      if (arrow) arrow.classList.toggle('rotate');
+    }
+
+    // Automatic slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll("#carousel img");
+    function nextSlide() {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }
+    setInterval(nextSlide, 5000);
   </script>
 </body>
 </html>
+
 
 
 
