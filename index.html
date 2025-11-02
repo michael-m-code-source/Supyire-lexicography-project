@@ -1,321 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Supyire Lexicography Project</title>
-
   <style>
-    /* ---------- GENERAL ---------- */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      line-height: 1.6;
+    :root{
+      --primary:#4c3f91;
+      --accent:#6b58c2;
+      --muted:#f9f8ff;
+      --dark:#222;
     }
-
-    /* ---------- TOP HEADING ---------- */
-    .top-heading {
-      text-align: center;
-      padding: 40px 20px 10px;
-      background: white;
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f8f8f8;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
     }
-
-    .top-heading h1 {
-      font-size: 2.6em;
-      font-weight: 800;
-      color: #4c3f91;
-      margin-bottom: 8px;
+    a{color:var(--primary)}
+    .top-heading{
+      text-align:center;
+      padding:36px 20px 12px;
+      background:#fff;
+      border-bottom:4px solid var(--primary);
     }
+    .top-heading h1{font-size:2.4rem;color:var(--primary);font-weight:800;margin:0}
+    .top-heading p{margin:6px 0 0;color:#333;font-weight:500}
 
-    .top-heading p {
-      font-size: 1.1em;
-      color: #333;
-      font-weight: 500;
-      margin: 0;
+    /* Carousel */
+    .carousel{
+      position:relative;
+      overflow:hidden;
+      height:45vh;
+      max-height:460px;
+      border-bottom:4px solid var(--primary);
+      background:#000;
     }
-
-    /* ---------- SLIDER ---------- */
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      height: 45vh;
-      max-height: 460px;
-      border-bottom: 4px solid #4c3f91;
+    .carousel img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transform:scale(1.02);
+      transition:opacity 1.2s ease-in-out, transform 6s linear;
     }
+    .carousel img.active{opacity:1;transform:scale(1)}
 
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
+    /* Nav */
+    nav{
+      position:sticky;top:0;z-index:1200;
+      background:rgba(45,45,45,0.92);
+      padding:10px 12px;text-align:center;
+      backdrop-filter:blur(6px);box-shadow:0 4px 18px rgba(0,0,0,0.18);
     }
-
-    .carousel img.active {
-      display: block;
-      opacity: 1;
+    .nav-inner{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+    .dropdown{position:relative;display:inline-block}
+    .dropbtn{
+      background:var(--primary);color:#fff;padding:10px 16px;border:0;border-radius:8px;
+      cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px;
     }
-
-    /* ---------- SEMI-TRANSPARENT NAVIGATION ---------- */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(45, 45, 45, 0.9);
-      padding: 10px;
-      text-align: center;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    .dropbtn:hover{background:#5a4bb1}
+    .arrow{transition:transform .22s ease}
+    .arrow.rotate{transform:rotate(180deg)}
+    .dropdown-content{
+      display:none;position:absolute;left:0;background:rgba(60,60,60,0.98);
+      min-width:220px;border-radius:8px;padding:6px 0;box-shadow:0 12px 30px rgba(0,0,0,0.3);z-index:1250;
     }
+    .dropdown-content.show{display:block}
+    .dropdown-content a{display:block;color:#fff;padding:10px 14px;text-decoration:none}
+    .dropdown-content a:hover{background:var(--primary)}
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin: 0 10px;
+    /* Main sections */
+    main{max-width:1200px;margin:26px auto;padding:0 16px}
+    section{
+      display:none;background:#fff;border-radius:12px;padding:36px;margin:18px 0;
+      box-shadow:0 8px 30px rgba(0,0,0,0.06);
     }
+    section.active{display:block;animation:fadeUp .45s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    h2{color:var(--primary);margin-bottom:12px}
+    p,li{color:#333}
 
-    .dropbtn {
-      background-color: #4c3f91;
-      color: white;
-      padding: 10px 18px;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      border-radius: 6px;
-      transition: background 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
+    /* Team */
+    .team-grid{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+    .team-member{width:300px;background:var(--muted);border-radius:12px;padding:18px;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,0.06);transition:transform .25s ease}
+    .team-member:hover{transform:translateY(-6px)}
+    .team-member img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+    .team-member h3{color:var(--primary);margin:12px 0 6px}
 
-    .dropbtn:hover {
-      background-color: #5a4bb1;
-    }
+    /* Budget table */
+    .table-container{margin:22px 0;border-radius:12px;overflow:auto;background:#fff;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    .budget-table{width:100%;border-collapse:collapse;font-size:0.95rem}
+    .budget-table thead{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;text-transform:uppercase}
+    .budget-table th,.budget-table td{padding:12px 10px;text-align:center;border-bottom:1px solid rgba(0,0,0,0.04)}
+    .budget-table tbody tr:nth-child(even){background:#faf7ff}
+    .budget-table tbody tr:hover{background:#efe9ff;transition:0.18s}
+    .category-total td{background:#f2ecff;font-weight:700}
+    .grand-total td{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-weight:800}
 
-    .arrow {
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
+    /* Donate cards */
+    .donate-actions{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+    .donation-card{width:280px;background:#fff;border-radius:12px;padding:14px;text-align:center;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform .24s}
+    .donation-card:hover{transform:translateY(-6px)}
+    .donation-card img{width:100%;height:130px;object-fit:cover;border-radius:8px}
+    .donate-btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700;margin-top:10px}
+    .donate-btn:hover{background:#5a4bb1}
 
-    .arrow.rotate {
-      transform: rotate(180deg);
-    }
+    /* Form */
+    form input,form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-top:6px;box-sizing:border-box}
+    form button{background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: rgba(60, 60, 60, 0.95);
-      min-width: 200px;
-      border-radius: 6px;
-      padding: 4px 0;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 2;
-    }
+    footer{text-align:center;padding:18px;background:var(--dark);color:#fff;margin-top:18px;border-top:4px solid var(--primary)}
 
-    .dropdown-content.show {
-      display: block;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 10px 14px;
-      text-decoration: none;
-      display: block;
-      font-size: 14px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #4c3f91;
-    }
-
-    /* ---------- PAGE SECTIONS ---------- */
-    section {
-      display: none;
-      padding: 80px 40px 40px; /* padding for sticky nav */
-      background: white;
-      margin: 25px auto;
-      max-width: 900px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    section.active {
-      display: block;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      color: #4c3f91;
-    }
-
-    /* ---------- TEAM ---------- */
-    .team-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .team-member img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .team-member p {
-      text-align: center;
-      margin-top: 10px;
-      font-weight: 500;
-    }
-
-    /* ---------- DONATION BUTTONS ---------- */
-    .donate-btn-main {
-      background: #4c3f91;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .donate-btn-main:hover {
-      background: #372e70;
-    }
-
-    .donation-options {
-      display: none;
-      margin-top: 25px;
-      gap: 25px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .donation-options.show {
-      display: flex;
-    }
-
-    .donation-card {
-      background: #f9f8ff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      width: 260px;
-      text-align: center;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .donation-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .donation-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .donation-card h3 {
-      color: #4c3f91;
-      margin-top: 10px;
-    }
-
-    .donation-card button {
-      margin-top: 12px;
-      padding: 10px 16px;
-      background: #4c3f91;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .donation-card button:hover {
-      background: #372e70;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #222;
-      color: white;
-      margin-top: 40px;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .carousel { height: 35vh; }
-      .dropbtn { font-size: 14px; padding: 8px 12px; }
-      .dropdown-content a { font-size: 13px; }
+    @media (max-width:900px){
+      .team-member{width:100%}
+      .donation-card{width:100%}
+      .carousel{height:35vh}
     }
   </style>
 </head>
-
 <body>
-  <!-- HEADER -->
-  <div class="top-heading">
-    <h1>Supyire Lexicography Project</h1>
-    <p>Preserving language through digital innovation</p>
-  </div>
 
-  <!-- SLIDER -->
-  <div class="carousel" id="carousel">
-    <img src="images/maize.jpeg" class="active" alt="Maize field">
+  <header class="top-heading" role="banner">
+    <h1>Supyire Lexicography Project</h1>
+    <p>Completion of Supyire Dictionary and Digitized Text Corpus — Africa International University</p>
+  </header>
+
+  <!-- Carousel (Home only) -->
+  <div id="carousel" class="carousel" aria-hidden="false">
+    <img src="images/maize.jpeg" alt="Maize field" class="active">
     <img src="images/ground.jpeg" alt="Ground work">
     <img src="images/lighter.jpg" alt="Village light">
     <img src="images/house.jpeg" alt="Traditional house">
+    <img src="images/people.jpeg" alt="Community gathering">
   </div>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="dropdown">
-      <button class="dropbtn" onclick="showSection('home')">🏠 Home</button>
-    </div>
-
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
-        📘 About <span class="arrow">▾</span>
-      </button>
-      <div id="about-menu" class="dropdown-content">
-        <a href="#about" onclick="showSection('about')">About the Project</a>
-        <a href="#history" onclick="showSection('history')">History of Research</a>
-        <a href="#database" onclick="showSection('database')">Toolbox Database</a>
-        <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
-        <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
-        <a href="#news" onclick="showSection('news')">News</a>
-        <a href="#team" onclick="showSection('team')">Team</a>
-        <a href="#budget" onclick="showSection('budget')">Budget</a>
+  <!-- Navigation -->
+  <nav role="navigation" aria-label="Main menu">
+    <div class="nav-inner">
+      <div class="dropdown">
+        <button class="dropbtn" onclick="showSection('home')">🏠 Home</button>
       </div>
-    </div>
 
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
-        💖 Support <span class="arrow">▾</span>
-      </button>
-      <div id="support-menu" class="dropdown-content">
-        <a href="#support" onclick="showSection('support')">Support Overview</a>
-        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
-        <a href="#donate" onclick="showSection('donate')">Donate</a>
-        <a href="#contact" onclick="showSection('contact')">Contact</a>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
+          📘 About <span class="arrow">▾</span>
+        </button>
+        <div id="about-menu" class="dropdown-content" role="menu">
+          <a role="menuitem" onclick="showSection('about')">About the Project</a>
+          <a role="menuitem" onclick="showSection('history')">History of Research</a>
+          <a role="menuitem" onclick="showSection('database')">Toolbox Database</a>
+          <a role="menuitem" onclick="showSection('example-text')">Example of a Text</a>
+          <a role="menuitem" onclick="showSection('documentation')">Documentation</a>
+          <a role="menuitem" onclick="showSection('news')">News</a>
+          <a role="menuitem" onclick="showSection('team')">Team</a>
+          <a role="menuitem" onclick="showSection('budget')">Budget</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+          💖 Support <span class="arrow">▾</span>
+        </button>
+        <div id="support-menu" class="dropdown-content" role="menu">
+          <a role="menuitem" onclick="showSection('support')">Support Overview</a>
+          <a role="menuitem" onclick="showSection('prayer')">Prayer</a>
+          <a role="menuitem" onclick="showSection('donate')">Donate</a>
+          <a role="menuitem" onclick="showSection('contact')">Contact</a>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- Main content -->
+  <main>
 
   <!-- HOME -->
   <section id="home" class="active">
@@ -778,90 +642,134 @@ document.addEventListener("DOMContentLoaded", () => {
     </form>
   </div>
 
-  <script>
-    // Hover effect for button
-    const sendBtn = document.querySelector('#contact button');
-    sendBtn.addEventListener('mouseover', () => sendBtn.style.background = '#372e70');
-    sendBtn.addEventListener('mouseout', () => sendBtn.style.background = '#4c3f91');
-  </script>
-</section>
+ </main>
 
-
-  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- Scripts -->
   <script>
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      window.scrollTo(0, 0);
-    }
+    // Show/hide sections and carousel
+    function showSection(id){
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      const sec = document.getElementById(id);
+      if(sec) sec.classList.add('active');
 
-    function toggleDropdown(menuId, button) {
-      const menu = document.getElementById(menuId);
-      const arrow = button.querySelector(".arrow");
-      document.querySelectorAll(".dropdown-content").forEach(m => {
-        if (m !== menu) m.classList.remove("show");
-      });
-      document.querySelectorAll(".arrow").forEach(a => {
-        if (a !== arrow) a.classList.remove("rotate");
-      });
-      menu.classList.toggle("show");
-      arrow.classList.toggle("rotate");
-    }
-
-    function toggleDonationOptions() {
-      document.getElementById("donation-options").classList.toggle("show");
-    }
-
-    // Slow slideshow
-    const slides = document.querySelectorAll(".carousel img");
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 8000);function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      const section = document.getElementById(id);
-      if (section) section.classList.add('active');
-
-      // show/hide carousel
       const carousel = document.getElementById('carousel');
-      if (carousel) {
-        if (id === 'home') {
-          carousel.style.display = 'block';
-        } else {
-          carousel.style.display = 'none';
-        }
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+      if(carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
 
-    function toggleDropdown(menuId, button) {
+      // close donation options
+      const donationWrap = document.getElementById('donation-options');
+      if(donationWrap) donationWrap.style.display = 'none';
+
+      // close dropdowns
       document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
       document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
-      const menu = document.getElementById(menuId);
-      const arrow = button.querySelector('.arrow');
-      if (menu) menu.classList.toggle('show');
-      if (arrow) arrow.classList.toggle('rotate');
+
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    // Automatic slideshow
-    let currentSlide = 0;
-    const slides = document.querySelectorAll("#carousel img");
-    function nextSlide() {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add("active");
+    function toggleDropdown(menuId, button){
+      const menu = document.getElementById(menuId);
+      const arrow = button.querySelector('.arrow');
+      if(!menu) return;
+      document.querySelectorAll('.dropdown-content').forEach(m => { if(m!==menu) m.classList.remove('show'); });
+      document.querySelectorAll('.arrow').forEach(a => { if(a!==arrow) a.classList.remove('rotate'); });
+      menu.classList.toggle('show');
+      if(arrow) arrow.classList.toggle('rotate');
     }
-    setInterval(nextSlide, 5000);
+
+    // Donation options toggle
+    function toggleDonationOptions(){
+      const wrap = document.getElementById('donation-options');
+      if(!wrap) return;
+      wrap.style.display = (wrap.style.display === 'flex' || wrap.classList.contains('show')) ? 'none' : 'flex';
+      wrap.classList.toggle('show');
+    }
+
+    // Carousel: change every 4 seconds; only visible on home
+    (function(){
+      const carousel = document.getElementById('carousel');
+      if(!carousel) return;
+      const slides = carousel.querySelectorAll('img');
+      let idx = 0;
+      const next = () => {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      };
+      // Hide carousel if not on home at load
+      if(!document.getElementById('home').classList.contains('active')) carousel.style.display = 'none';
+      setInterval(next, 4000);
+    })();
+
+    // Budget count-up animation
+    (function(){
+      const counters = document.querySelectorAll('.count');
+      if(!counters || counters.length===0) return;
+      let played = false;
+      function animate(el,target){
+        const duration = 1400;
+        const frame = 20;
+        const steps = Math.ceil(duration/frame);
+        let current = 0;
+        const inc = target/steps;
+        const t = setInterval(()=> {
+          current += inc;
+          if(current >= target){
+            el.textContent = target.toLocaleString();
+            clearInterval(t);
+            el.classList.add('glow');
+            return;
+          }
+          el.textContent = Math.floor(current).toLocaleString();
+        }, frame);
+      }
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting && !played){
+            counters.forEach(c=>{
+              const val = Number(c.getAttribute('data-value'))||0;
+              animate(c,val);
+            });
+            played = true;
+          }
+        });
+      },{threshold:0.25});
+      const budget = document.getElementById('budget');
+      if(budget) obs.observe(budget);
+    })();
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e)=>{
+      if(!e.target.closest('.dropdown')){
+        document.querySelectorAll('.dropdown-content').forEach(m=>m.classList.remove('show'));
+        document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('rotate'));
+      }
+    });
+
+    // Close with Escape
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.dropdown-content').forEach(m=>m.classList.remove('show'));
+        document.querySelectorAll('.arrow').forEach(a=>a.classList.remove('rotate'));
+      }
+    });
   </script>
+
+  <!-- Glow CSS for counts -->
+  <style>
+    .glow{animation:glowPulse 1.4s ease-in-out 1}
+    @keyframes glowPulse{
+      0%{text-shadow:0 0 0 rgba(255,255,255,0)}
+      50%{text-shadow:0 0 12px rgba(255,255,255,0.9)}
+      100%{text-shadow:0 0 0 rgba(255,255,255,0)}
+    }
+  </style>
 </body>
 </html>
+
 
 
 
