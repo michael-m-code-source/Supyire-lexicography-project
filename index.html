@@ -6,6 +6,7 @@
   <title>Supyire Lexicography Project</title>
 
   <style>
+    /* ---------- GENERAL ---------- */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -57,7 +58,7 @@
       opacity: 1;
     }
 
-    /* ---------- NAVIGATION ---------- */
+    /* ---------- SEMI-TRANSPARENT NAVIGATION ---------- */
     nav {
       position: sticky;
       top: 0;
@@ -129,10 +130,10 @@
       background-color: #4c3f91;
     }
 
-    /* ---------- SECTIONS ---------- */
+    /* ---------- PAGE SECTIONS ---------- */
     section {
       display: none;
-      padding: 80px 40px 40px;
+      padding: 80px 40px 40px; /* padding for sticky nav */
       background: white;
       margin: 25px auto;
       max-width: 900px;
@@ -176,6 +177,78 @@
       font-weight: 500;
     }
 
+    /* ---------- DONATION BUTTONS ---------- */
+    .donate-btn-main {
+      background: #4c3f91;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .donate-btn-main:hover {
+      background: #372e70;
+    }
+
+    .donation-options {
+      display: none;
+      margin-top: 25px;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .donation-options.show {
+      display: flex;
+    }
+
+    .donation-card {
+      background: #f9f8ff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      width: 260px;
+      text-align: center;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .donation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .donation-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .donation-card h3 {
+      color: #4c3f91;
+      margin-top: 10px;
+    }
+
+    .donation-card button {
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: #4c3f91;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .donation-card button:hover {
+      background: #372e70;
+    }
+
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
@@ -185,6 +258,7 @@
       margin-top: 40px;
     }
 
+    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
       .carousel { height: 35vh; }
       .dropbtn { font-size: 14px; padding: 8px 12px; }
@@ -200,13 +274,12 @@
     <p>Preserving language through digital innovation</p>
   </div>
 
-  <!-- SLIDER (HOME PAGE ONLY) -->
+  <!-- SLIDER -->
   <div class="carousel" id="carousel">
     <img src="images/maize.jpeg" class="active" alt="Maize field">
     <img src="images/ground.jpeg" alt="Ground work">
     <img src="images/lighter.jpg" alt="Village light">
     <img src="images/house.jpeg" alt="Traditional house">
-    <img src="images/people.jpeg" alt="Community gathering">
   </div>
 
   <!-- NAVIGATION -->
@@ -222,7 +295,23 @@
       <div id="about-menu" class="dropdown-content">
         <a href="#about" onclick="showSection('about')">About the Project</a>
         <a href="#history" onclick="showSection('history')">History of Research</a>
+        <a href="#database" onclick="showSection('database')">Toolbox Database</a>
+        <a href="#example-text" onclick="showSection('example-text')">Example of a Text</a>
+        <a href="#documentation" onclick="showSection('documentation')">Documentation</a>
+        <a href="#news" onclick="showSection('news')">News</a>
         <a href="#team" onclick="showSection('team')">Team</a>
+        <a href="#budget" onclick="showSection('budget')">Budget</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+        💖 Support <span class="arrow">▾</span>
+      </button>
+      <div id="support-menu" class="dropdown-content">
+        <a href="#support" onclick="showSection('support')">Support Overview</a>
+        <a href="#prayer" onclick="showSection('prayer')">Prayer</a>
+        <a href="#donate" onclick="showSection('donate')">Donate</a>
         <a href="#contact" onclick="showSection('contact')">Contact</a>
       </div>
     </div>
@@ -773,6 +862,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </script>
 </body>
 </html>
+
 
 
 
