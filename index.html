@@ -132,16 +132,69 @@
     <p>Completion of Supyire Dictionary and Digitized Text Corpus — Africa International University</p>
   </header>
 
-  <!-- Carousel (Home only) -->
-  <div id="carousel" class="carousel" aria-hidden="false">
-    <img src="images/maize.jpeg" alt="Maize field" class="active">
-    <img src="images/ground.jpeg" alt="Ground work">
-    <img src="images/lighter.jpg" alt="Village light">
-    <img src="images/house.jpeg" alt="Traditional house">
-    <img src="images/people.JPG" alt="Community gathering">
-    <img src="images/people1.JPG" alt="Community">
-    <img src="images/people2.JPG" alt=" Gathering">
-  </div>
+<!-- Carousel (Home only with smooth zoom effect) -->
+<div id="carousel" class="carousel" aria-hidden="false">
+  <img src="images/maize.jpeg" alt="Maize field" class="active">
+  <img src="images/ground.jpeg" alt="Ground work">
+  <img src="images/lighter.jpg" alt="Village light">
+  <img src="images/house.jpeg" alt="Traditional house">
+  <img src="images/people.JPG" alt="Community gathering">
+  <img src="images/people1.JPG" alt="Community">
+  <img src="images/people2.JPG" alt="Gathering">
+</div>
+
+<style>
+/* Carousel Base */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  height: 50vh;
+  max-height: 500px;
+  border-bottom: 4px solid #4c3f91;
+}
+
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 1.5s ease-in-out, transform 8s ease-in-out;
+}
+
+.carousel img.active {
+  opacity: 1;
+  transform: scale(1.1); /* smooth zoom-in */
+  z-index: 1;
+}
+
+/* Optional: subtle dark overlay for contrast */
+.carousel::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+</style>
+
+<script>
+// 4-second interval slideshow
+let currentSlide = 0;
+const slides = document.querySelectorAll("#carousel img");
+
+function nextSlide() {
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
+setInterval(nextSlide, 4000); // changes every 4 seconds
+</script>
 
   <!-- Navigation -->
   <nav role="navigation" aria-label="Main menu">
@@ -797,6 +850,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </style>
 </body>
 </html>
+
 
 
 
