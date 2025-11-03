@@ -36,10 +36,9 @@
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 50vh;
+      height: 50vh;           /* fixed viewport height */
       max-height: 500px;
       border-bottom: 4px solid #4c3f91;
-      transition: opacity 1s ease-in-out;
     }
     .carousel img {
       position: absolute;
@@ -48,13 +47,14 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       opacity: 0;
       transform: scale(1);
       transition: opacity 1.5s ease-in-out, transform 8s ease-in-out;
     }
     .carousel img.active {
       opacity: 1;
-      transform: scale(1.1);
+      transform: scale(1.08); /* smooth zoom effect */
       z-index: 1;
     }
     .carousel::after {
@@ -62,7 +62,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.15);
       pointer-events: none;
     }
 
@@ -88,25 +88,15 @@
       min-width:220px;border-radius:8px;padding:6px 0;box-shadow:0 12px 30px rgba(0,0,0,0.3);z-index:1250;
     }
     .dropdown-content.show{display:block}
-    .dropdown-content a{display:block;color:#fff;padding:10px 14px;text-decoration:none}
+    .dropdown-content a{display:block;color:#fff;padding:10px 14px;text-decoration:none;cursor:pointer}
     .dropdown-content a:hover{background:var(--primary)}
 
-    /* ---------- Sections ---------- */
-    main section{
-      display:none;
-      background:#fff;
-      border-radius:10px;
-      margin:30px auto;
-      max-width:900px;
-      padding:40px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.1);
-      animation:fadeIn .5s ease-in-out;
-    }
-    section.active{display:block}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+    /* ---------- Main content (placeholder for rest of site) ---------- */
+    main{max-width:1200px;margin:26px auto;padding:0 16px}
 
-    footer{text-align:center;padding:20px;background:#222;color:#fff;margin-top:40px}
-    @media (max-width:900px){.carousel{height:35vh}}
+    @media (max-width:900px){
+      .carousel{height:35vh}
+    }
   </style>
 </head>
 <body>
@@ -117,7 +107,7 @@
     <p>Completion of Supyire Dictionary and Digitized Text Corpus — Africa International University</p>
   </header>
 
-  <!-- ---------- Carousel ---------- -->
+  <!-- ---------- Carousel (Home only) ---------- -->
   <div id="carousel" class="carousel" aria-hidden="false">
     <img src="images/maize.jpeg" alt="Maize field" class="active">
     <img src="images/ground.jpeg" alt="Ground work">
@@ -143,6 +133,11 @@
           <a role="menuitem" onclick="showSection('about')">About the Project</a>
           <a role="menuitem" onclick="showSection('history')">History of Research</a>
           <a role="menuitem" onclick="showSection('database')">Toolbox Database</a>
+          <a role="menuitem" onclick="showSection('example-text')">Example of a Text</a>
+          <a role="menuitem" onclick="showSection('documentation')">Documentation</a>
+          <a role="menuitem" onclick="showSection('news')">News</a>
+          <a role="menuitem" onclick="showSection('team')">Team</a>
+          <a role="menuitem" onclick="showSection('budget')">Budget</a>
         </div>
       </div>
 
@@ -152,46 +147,15 @@
         </button>
         <div id="support-menu" class="dropdown-content" role="menu">
           <a role="menuitem" onclick="showSection('support')">Support Overview</a>
+          <a role="menuitem" onclick="showSection('prayer')">Prayer</a>
+          <a role="menuitem" onclick="showSection('donate')">Donate</a>
           <a role="menuitem" onclick="showSection('contact')">Contact</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- ---------- Content Sections ---------- -->
   <main>
-    <section id="home" class="active">
-      <h2>Welcome</h2>
-      <p>This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
-    </section>
-
-    <section id="about">
-      <h2>About the Project</h2>
-      <p>Supyire is a language spoken by over 350,000 people in southeastern Mali. This project aims to create dictionaries and digital archives for linguistic and cultural preservation.</p>
-    </section>
-
-    <section id="history">
-      <h2>History of Research</h2>
-      <p>Research on Supyire began in 1980 with fieldwork, publications, and the development of language resources that continue to grow today.</p>
-    </section>
-
-    <section id="database">
-      <h2>Toolbox Database</h2>
-      <p>The lexical data is managed in SIL Toolbox and will later be transferred to FLEx for broader accessibility and app creation.</p>
-    </section>
-
-    <section id="support">
-      <h2>Support the Project</h2>
-      <p>You can support through prayer or donations to help continue the Supyire language preservation.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-      <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
-    </section>
-  </main>
-
   <!-- HOME -->
   <section id="home" class="active">
     <h2><center>Welcome to the Supyire Lexicography Project</center></h2>
@@ -245,6 +209,7 @@ Our goal is to make available online a collection of texts number at least 500,0
     <p>Download project files and research documentation.</p>
     <a href="Project proposal.docx" download style="color:#4c3f91;font-weight:bold;">📄 Download Project</a>
   </section>
+
 <section id="news">
   <h2>News & Updates</h2>
 
@@ -268,6 +233,7 @@ Our goal is to make available online a collection of texts number at least 500,0
     </p>
   </article>
 </section>
+
  <!-- TEAM SECTION -->
 <section id="team" style="background: #fff; padding: 50px 20px; text-align: center; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 1100px; margin: 30px auto;">
   <h2 style="color: #4c3f91; font-size: 2em; margin-bottom: 10px;">Our Team</h2>
@@ -536,7 +502,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <li><strong>Provision of Resources</strong> – for financial, technical, and human resources needed to complete the work successfully.</li>
   </ul>
 </section>
-<!-- ===================== DONATION SECTION ===================== -->
+
+<!-- ===================== DONATION SECTION (kept all content) ===================== -->
 <section id="donate">
   <h2 style="font-size: 2em; color: #4c3f91; text-align: center;">Ways to Donate</h2>
   <p style="font-size: 1.1em; color: #333; line-height: 1.8;">
@@ -551,7 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <button class="donate-btn-main" onclick="toggleDonationOptions()">💰 Choose Donation Option</button>
   </div>
 
-  <div class="donation-options" id="donation-options" style="margin-top: 35px;">
+  <div class="donation-options" id="donation-options" style="margin-top: 35px; display:none;">
     <!-- Option 1 -->
     <div class="donation-card">
       <img src="images/trustbridge.webp" alt="International Generosity logo"
@@ -581,8 +548,8 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<!-- ===================== DONATION SECTION ===================== -->
-<section id="donate">
+<!-- Duplicate donate content preserved (kept as user had it) but made unique ID to avoid conflicts -->
+<section id="donate-duplicate" style="display:none;">
   <h2 style="font-size: 2.2em; color: #4c3f91; text-align: center; font-weight: 800;">Ways to Donate</h2>
   <p style="font-size: 1.2em; color: #222; line-height: 1.9; font-weight: 500;">
     There are two charities in the US which receive and transmit funds for the project to AIU in Kenya.  
@@ -596,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <button class="donate-btn-main" style="font-size:1.1em; padding:14px 28px;" onclick="toggleDonationOptions()">💰 Choose Donation Option</button>
   </div>
 
-  <div class="donation-options" id="donation-options" style="margin-top: 35px;">
+  <div class="donation-options" style="margin-top: 35px;">
     <!-- Option 1 -->
     <div class="donation-card" style="font-size:1.05em;">
       <img src="images/trustbridge.webp" alt="International Generosity logo" style="width:180px; height:auto; object-fit:contain; display:block; margin:auto;">
@@ -741,6 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </button>
     </form>
   </div>
+</section>
 
  </main>
 
@@ -750,16 +718,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- Scripts -->
   <script>
-    // Show/hide sections and carousel
+    // Show/hide sections and carousel; single-page behavior
     function showSection(id){
+      // hide all main sections
       document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-      const sec = document.getElementById(id);
-      if(sec) sec.classList.add('active');
-
-      const carousel = document.getElementById('carousel');
-      if(carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
-
-      // close donation options
+      // try exact id, else if duplicate area like donate-duplicate etc, still keep user's content visible
+      const sec = document.getElementById(id) || document.querySelector("#" + id + "");
+      if(sec){
+        sec.classList.add('active');
+        // if opening home, scroll to top and show carousel, else hide it
+        const carousel = document.getElementById('carousel');
+        if(carousel) {
+          if(id === 'home') {
+            carousel.style.display = 'block';
+          } else {
+            carousel.style.display = 'none';
+          }
+        }
+      }
+      // hide donation options panel when switching
       const donationWrap = document.getElementById('donation-options');
       if(donationWrap) donationWrap.style.display = 'none';
 
@@ -767,6 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
       document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
 
+      // scroll to top
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
@@ -784,8 +762,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function toggleDonationOptions(){
       const wrap = document.getElementById('donation-options');
       if(!wrap) return;
-      wrap.style.display = (wrap.style.display === 'flex' || wrap.classList.contains('show')) ? 'none' : 'flex';
-      wrap.classList.toggle('show');
+      // toggle display flex/none
+      if(wrap.style.display === 'flex' || wrap.classList.contains('show')){
+        wrap.style.display = 'none';
+        wrap.classList.remove('show');
+      } else {
+        wrap.style.display = 'flex';
+        wrap.classList.add('show');
+      }
     }
 
     // Carousel: change every 4 seconds; only visible on home
@@ -869,6 +853,8 @@ document.addEventListener("DOMContentLoaded", () => {
   </style>
 </body>
 </html>
+
+
 
 
 
