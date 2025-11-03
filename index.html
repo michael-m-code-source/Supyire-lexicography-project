@@ -152,7 +152,73 @@
     </div>
   </nav>
 
-  <main>
+  <main>    <!-- ---------- Page Sections (each opens alone) ---------- -->
+    <section id="home" style="display:block;">
+      <h2>Welcome to the Supyire Lexicography Project</h2>
+      <p>This is the homepage with the images showing above.</p>
+    </section>
+
+    <section id="about" style="display:none;">
+      <h2>About the Project</h2>
+      <p>Details about the Supyire Lexicography Project.</p>
+    </section>
+
+    <section id="history" style="display:none;">
+      <h2>History of Research</h2>
+      <p>Information on research history goes here.</p>
+    </section>
+
+    <section id="database" style="display:none;">
+      <h2>Toolbox Database</h2>
+      <p>Information about the Toolbox database.</p>
+    </section>
+
+    <section id="example-text" style="display:none;">
+      <h2>Example of a Text</h2>
+      <p>Sample text and explanations.</p>
+    </section>
+
+    <section id="documentation" style="display:none;">
+      <h2>Documentation</h2>
+      <p>Documentation and resources here.</p>
+    </section>
+
+    <section id="news" style="display:none;">
+      <h2>News</h2>
+      <p>Recent updates and announcements.</p>
+    </section>
+
+    <section id="team" style="display:none;">
+      <h2>Team</h2>
+      <p>Meet the team working on the Supyire Lexicography Project.</p>
+    </section>
+
+    <section id="budget" style="display:none;">
+      <h2>Budget</h2>
+      <p>Budget breakdown and funding sources.</p>
+    </section>
+
+    <section id="support" style="display:none;">
+      <h2>Support Overview</h2>
+      <p>Ways to support the project.</p>
+    </section>
+
+    <section id="prayer" style="display:none;">
+      <h2>Prayer</h2>
+      <p>Prayer points and requests.</p>
+    </section>
+
+    <section id="donate" style="display:none;">
+      <h2>Donate</h2>
+      <p>Information for donations.</p>
+    </section>
+
+    <section id="contact" style="display:none;">
+      <h2>Contact</h2>
+      <p>How to get in touch with the team.</p>
+    </section>
+  </main>
+
 
   <!-- HOME -->
   <section id="home" class="active">
@@ -848,9 +914,62 @@ document.addEventListener("DOMContentLoaded", () => {
       50%{text-shadow:0 0 12px rgba(255,255,255,0.9)}
       100%{text-shadow:0 0 0 rgba(255,255,255,0)}
     }
-  </style>
+   <script>
+    // Function to show only one section at a time
+    function showSection(id) {
+      // Hide all sections
+      document.querySelectorAll("main section").forEach(sec => sec.style.display = "none");
+
+      // Show the one that was clicked
+      const target = document.getElementById(id);
+      if (target) target.style.display = "block";
+
+      // Show carousel only on Home
+      const carousel = document.getElementById("carousel");
+      if (id === "home") {
+        carousel.style.display = "block";
+      } else {
+        carousel.style.display = "none";
+      }
+
+      // Close dropdown menus
+      document.querySelectorAll('.dropdown-content').forEach(el=>el.classList.remove('show'));
+      document.querySelectorAll('.arrow').forEach(el=>el.classList.remove('rotate'));
+    }
+
+    // Dropdown open/close
+    function toggleDropdown(id, btn){
+      document.querySelectorAll('.dropdown-content').forEach(el=>el.classList.remove('show'));
+      document.querySelectorAll('.arrow').forEach(el=>el.classList.remove('rotate'));
+      const menu=document.getElementById(id);
+      const arrow=btn.querySelector('.arrow');
+      if(!menu.classList.contains('show')){
+        menu.classList.add('show');
+        arrow.classList.add('rotate');
+      }
+    }
+
+    // Close dropdown when clicking outside
+    window.onclick=function(e){
+      if(!e.target.matches('.dropbtn') && !e.target.closest('.dropdown')){
+        document.querySelectorAll('.dropdown-content').forEach(el=>el.classList.remove('show'));
+        document.querySelectorAll('.arrow').forEach(el=>el.classList.remove('rotate'));
+      }
+    }
+
+    // Carousel animation
+    const imgs=document.querySelectorAll('.carousel img');
+    let current=0;
+    setInterval(()=>{
+      imgs[current].classList.remove('active');
+      current=(current+1)%imgs.length;
+      imgs[current].classList.add('active');
+    },5000);
+  </script>
+ </style>
 </body>
 </html>
+
 
 
 
