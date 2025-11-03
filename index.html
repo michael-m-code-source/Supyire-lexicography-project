@@ -36,9 +36,10 @@
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 50vh;           /* fixed viewport height */
+      height: 50vh;
       max-height: 500px;
       border-bottom: 4px solid #4c3f91;
+      transition: opacity 1s ease-in-out;
     }
     .carousel img {
       position: absolute;
@@ -53,7 +54,7 @@
     }
     .carousel img.active {
       opacity: 1;
-      transform: scale(1.1); /* smooth zoom effect */
+      transform: scale(1.1);
       z-index: 1;
     }
     .carousel::after {
@@ -90,12 +91,22 @@
     .dropdown-content a{display:block;color:#fff;padding:10px 14px;text-decoration:none}
     .dropdown-content a:hover{background:var(--primary)}
 
-    /* ---------- Main content (placeholder for rest of site) ---------- */
-    main{max-width:1200px;margin:26px auto;padding:0 16px}
-
-    @media (max-width:900px){
-      .carousel{height:35vh}
+    /* ---------- Sections ---------- */
+    main section{
+      display:none;
+      background:#fff;
+      border-radius:10px;
+      margin:30px auto;
+      max-width:900px;
+      padding:40px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      animation:fadeIn .5s ease-in-out;
     }
+    section.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+    footer{text-align:center;padding:20px;background:#222;color:#fff;margin-top:40px}
+    @media (max-width:900px){.carousel{height:35vh}}
   </style>
 </head>
 <body>
@@ -132,11 +143,6 @@
           <a role="menuitem" onclick="showSection('about')">About the Project</a>
           <a role="menuitem" onclick="showSection('history')">History of Research</a>
           <a role="menuitem" onclick="showSection('database')">Toolbox Database</a>
-          <a role="menuitem" onclick="showSection('example-text')">Example of a Text</a>
-          <a role="menuitem" onclick="showSection('documentation')">Documentation</a>
-          <a role="menuitem" onclick="showSection('news')">News</a>
-          <a role="menuitem" onclick="showSection('team')">Team</a>
-          <a role="menuitem" onclick="showSection('budget')">Budget</a>
         </div>
       </div>
 
@@ -146,15 +152,46 @@
         </button>
         <div id="support-menu" class="dropdown-content" role="menu">
           <a role="menuitem" onclick="showSection('support')">Support Overview</a>
-          <a role="menuitem" onclick="showSection('prayer')">Prayer</a>
-          <a role="menuitem" onclick="showSection('donate')">Donate</a>
           <a role="menuitem" onclick="showSection('contact')">Contact</a>
         </div>
       </div>
     </div>
   </nav>
 
+  <!-- ---------- Content Sections ---------- -->
   <main>
+    <section id="home" class="active">
+      <h2>Welcome</h2>
+      <p>This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
+    </section>
+
+    <section id="about">
+      <h2>About the Project</h2>
+      <p>Supyire is a language spoken by over 350,000 people in southeastern Mali. This project aims to create dictionaries and digital archives for linguistic and cultural preservation.</p>
+    </section>
+
+    <section id="history">
+      <h2>History of Research</h2>
+      <p>Research on Supyire began in 1980 with fieldwork, publications, and the development of language resources that continue to grow today.</p>
+    </section>
+
+    <section id="database">
+      <h2>Toolbox Database</h2>
+      <p>The lexical data is managed in SIL Toolbox and will later be transferred to FLEx for broader accessibility and app creation.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support the Project</h2>
+      <p>You can support through prayer or donations to help continue the Supyire language preservation.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+      <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+    </section>
+  </main>
+
   <!-- HOME -->
   <section id="home" class="active">
     <h2><center>Welcome to the Supyire Lexicography Project</center></h2>
@@ -832,6 +869,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </style>
 </body>
 </html>
+
 
 
 
