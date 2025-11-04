@@ -589,34 +589,88 @@ function showDonate(id) {
 
 
   <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="center" style="color:#4c3f91;">Contact Us</h2>
-    <div class="center" style="margin-bottom:12px;">
-      <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
-      <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
-    </div>
+<section id="contact">
+  <h2 class="center" style="color:#4c3f91;">Contact Us</h2>
+  <div class="center" style="margin-bottom:12px;">
+    <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+  </div>
 
-    <h3 class="center">Feedback</h3>
-    <div style="display:flex;justify-content:center;">
-      <form action="https://formspree.io/f/mblplgre" method="POST" enctype="multipart/form-data" style="width:100%;max-width:500px;padding:20px;background:#f4f4f4;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
-        <label>Your email:<br>
-          <input type="email" name="email" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;">
-        </label><br><br>
+  <h3 class="center">Feedback</h3>
+  <div style="display:flex;justify-content:center;">
+    <form id="feedback-form"
+      action="https://formspree.io/f/mblplgre"
+      method="POST"
+      enctype="multipart/form-data"
+      style="width:100%;max-width:500px;padding:20px;background:#f4f4f4;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
 
-        <label>Your message:<br>
-          <textarea name="message" rows="5" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;"></textarea>
-        </label><br><br>
+      <label>Your email:<br>
+        <input type="email" name="email" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;">
+      </label><br><br>
 
-        <label>Upload a file (optional):<br>
-          <input type="file" name="upload" style="margin-top:5px;">
-        </label><br><br>
+      <label>Your message:<br>
+        <textarea name="message" rows="5" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;"></textarea>
+      </label><br><br>
 
-        <button type="submit" style="background:#4c3f91;color:white;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;font-weight:bold;">
-          Send
-        </button>
-      </form>
-    </div>
-  </section>
+      <label>Upload a file (optional):<br>
+        <input type="file" name="upload" style="margin-top:5px;">
+      </label><br><br>
+
+      <button id="send-btn" type="submit" style="background:#4c3f91;color:white;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;font-weight:bold;display:inline-flex;align-items:center;gap:8px;">
+        <span>Send</span>
+        <span id="spinner" style="display:none;width:18px;height:18px;border:3px solid #fff;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;"></span>
+      </button>
+
+      <p id="form-message" style="text-align:center;color:green;margin-top:15px;display:none;">
+        ✅ Message sent successfully!
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- SPINNER ANIMATION STYLE -->
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<!-- FORM RESET + SPINNER SCRIPT -->
+<script>
+const form = document.getElementById('feedback-form');
+const messageBox = document.getElementById('form-message');
+const sendBtn = document.getElementById('send-btn');
+const spinner = document.getElementById('spinner');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); // prevent default submit
+  messageBox.style.display = 'none';
+  spinner.style.display = 'inline-block';
+  sendBtn.disabled = true;
+
+  const formData = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  spinner.style.display = 'none';
+  sendBtn.disabled = false;
+
+  if (response.ok) {
+    form.reset();
+    messageBox.style.display = 'block';
+    messageBox.style.color = 'green';
+    messageBox.textContent = '✅ Message sent successfully!';
+  } else {
+    messageBox.style.display = 'block';
+    messageBox.style.color = 'red';
+    messageBox.textContent = '❌ Something went wrong. Please try again.';
+  }
+});
+</script>
 
 </main>
 
@@ -819,4 +873,7 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
+
+
+
 
